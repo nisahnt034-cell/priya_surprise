@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happiest Birthday, Priya Verma! ❤️🎂</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Particle & Ambient Canvas Layers -->
+    <canvas id="ambient-canvas"></canvas>
+    <canvas id="fireworks-canvas"></canvas>
+
+    <!-- Floating Top Header & Controls -->
+    <header class="floating-header">
+        <div class="scene-tracker">
+            <span class="scene-dot" data-scene="1" title="Scene 1: Enchanted Garden"></span>
+            <span class="scene-dot" data-scene="2" title="Scene 2: Playful Moments"></span>
+            <span class="scene-dot" data-scene="3" title="Scene 3: Birthday Surprise"></span>
+            <span class="scene-dot" data-scene="4" title="Scene 4: From The Heart"></span>
+            <span class="scene-dot" data-scene="5" title="Scene 5: Fireworks Finale"></span>
+            <span class="scene-title-badge">Enchanted Garden 🌸</span>
+        </div>
+
+        <div class="controls-group">
+            <button id="music-toggle" class="control-btn" title="Toggle Fairytale Music">
+                <span class="music-icon">🎵</span>
+                <span class="music-waves">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+                <span class="music-label">Music</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="story-wrapper">
+
+        <!-- ===================================================================
+             SCENE 1: BEAUTIFUL NATURE AND ANIMALS
+             =================================================================== -->
+        <section id="scene-1" class="scene active">
+            <!-- Scenery Nature Background -->
+            <div class="scenery-background">
+                <!-- Warm Glowing Sun with Radiating Rays -->
+                <div class="sun-container">
+                    <div class="sun-rays"></div>
+                    <div class="sun-core"></div>
+                </div>
+
+                <!-- Rolling Hills -->
+                <div class="rolling-hills">
+                    <div class="hill hill-back"></div>
+                    <div class="hill hill-mid"></div>
+                    <div class="hill hill-front"></div>
+                </div>
+
+                <!-- Animated River Stream -->
+                <div class="river-stream">
+                    <div class="river-waves"></div>
+                </div>
+
+                <!-- Trees & Garden Flora SVG -->
+                <div class="nature-flora">
+                    <!-- Flowering Cherry Tree Left -->
+                    <svg width="240" height="280" viewBox="0 0 240 280" style="position: absolute; bottom: 40px; left: -20px; z-index: 1;">
+                        <defs>
+                            <linearGradient id="trunkGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#58311a"/>
+                                <stop offset="100%" stop-color="#804a29"/>
+                            </linearGradient>
+                            <radialGradient id="foliageGrad1" cx="40%" cy="40%" r="60%">
+                                <stop offset="0%" stop-color="#ffccd5"/>
+                                <stop offset="70%" stop-color="#ff758f"/>
+                                <stop offset="100%" stop-color="#e63946"/>
+                            </radialGradient>
+                        </defs>
+                        <!-- Trunk -->
+                        <path d="M120 280 C110 210, 80 180, 70 120 C60 60, 110 70, 120 40 C130 80, 160 110, 170 170 C175 220, 160 250, 150 280 Z" fill="url(#trunkGrad)"/>
+                        <!-- Branches -->
+                        <path d="M85 140 Q40 110, 30 90" stroke="#58311a" stroke-width="10" stroke-linecap="round" fill="none"/>
+                        <path d="M145 130 Q190 100, 210 80" stroke="#58311a" stroke-width="9" stroke-linecap="round" fill="none"/>
+                        <!-- Blossom Clusters -->
+                        <circle cx="50" cy="80" r="45" fill="url(#foliageGrad1)" opacity="0.92"/>
+                        <circle cx="110" cy="50" r="55" fill="url(#foliageGrad1)" opacity="0.95"/>
+                        <circle cx="170" cy="70" r="50" fill="url(#foliageGrad1)" opacity="0.9"/>
+                        <circle cx="130" cy="100" r="42" fill="url(#foliageGrad1)" opacity="0.88"/>
+                    </svg>
+
+                    <!-- Nature Tree Right -->
+                    <svg width="220" height="260" viewBox="0 0 220 260" style="position: absolute; bottom: 50px; right: -25px; z-index: 1;">
+                        <defs>
+                            <radialGradient id="greenTreeGrad" cx="35%" cy="35%" r="65%">
+                                <stop offset="0%" stop-color="#b7e4c7"/>
+                                <stop offset="70%" stop-color="#52b788"/>
+                                <stop offset="100%" stop-color="#2d6a4f"/>
+                            </radialGradient>
+                        </defs>
+                        <path d="M110 260 C100 200, 85 160, 75 110 C80 50, 130 50, 135 110 C130 170, 125 210, 120 260 Z" fill="url(#trunkGrad)"/>
+                        <circle cx="70" cy="100" r="48" fill="url(#greenTreeGrad)" opacity="0.9"/>
+                        <circle cx="140" cy="90" r="52" fill="url(#greenTreeGrad)" opacity="0.94"/>
+                        <circle cx="105" cy="55" r="50" fill="url(#greenTreeGrad)" opacity="0.96"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Free-Roaming Garden Creatures in Scene 1 -->
+            <div class="garden-creatures">
+                <!-- Golden Puppy Lounging -->
+                <div class="garden-creature" style="bottom: 70px; right: 18%;" title="Happy puppy enjoying the warm sun">
+                    <svg width="110" height="90" viewBox="0 0 110 90">
+                        <defs>
+                            <linearGradient id="dogFur" x1="0" y1="0" x2="0" y2="100%">
+                                <stop offset="0%" stop-color="#fed9b7"/>
+                                <stop offset="100%" stop-color="#f07167"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- Wagging Tail -->
+                        <path d="M20 55 C10 40, 5 30, 8 20 C12 25, 18 35, 25 50" fill="none" stroke="#f07167" stroke-width="8" stroke-linecap="round">
+                            <animateTransform attributeName="transform" type="rotate" values="-15 25 55; 20 25 55; -15 25 55" dur="0.8s" repeatCount="indefinite"/>
+                        </path>
+                        <!-- Body -->
+                        <ellipse cx="50" cy="60" rx="32" ry="22" fill="url(#dogFur)"/>
+                        <!-- Head -->
+                        <circle cx="78" cy="45" r="22" fill="url(#dogFur)"/>
+                        <!-- Floppy Ear -->
+                        <ellipse cx="68" cy="45" rx="7" ry="14" fill="#cf4307" transform="rotate(-15 68 45)"/>
+                        <!-- Snout -->
+                        <ellipse cx="90" cy="50" rx="10" ry="8" fill="#ffe5d9"/>
+                        <circle cx="94" cy="47" r="3.5" fill="#2b1a17"/>
+                        <!-- Happy closed eyes -->
+                        <path d="M74 38 Q78 34, 82 38" fill="none" stroke="#2b1a17" stroke-width="2.5" stroke-linecap="round"/>
+                        <!-- Paws -->
+                        <ellipse cx="65" cy="78" rx="8" ry="6" fill="#f07167"/>
+                        <ellipse cx="40" cy="78" rx="9" ry="6" fill="#f07167"/>
+                    </svg>
+                </div>
+
+                <!-- Cute Calico Cat Sitting on grass -->
+                <div class="garden-creature" style="bottom: 75px; left: 16%;" title="Cute kitty napping">
+                    <svg width="95" height="85" viewBox="0 0 95 85">
+                        <ellipse cx="45" cy="55" rx="26" ry="19" fill="#ffedd8"/>
+                        <!-- Patches -->
+                        <path d="M35 40 Q45 45, 40 60 Q30 55, 35 40 Z" fill="#e07a5f"/>
+                        <!-- Head -->
+                        <circle cx="68" cy="38" r="18" fill="#ffedd8"/>
+                        <path d="M56 26 L62 14 L70 24 Z" fill="#e07a5f"/>
+                        <path d="M72 23 L80 14 L84 26 Z" fill="#ffedd8"/>
+                        <!-- Face -->
+                        <circle cx="63" cy="38" r="2.5" fill="#2b1a17"/>
+                        <circle cx="75" cy="38" r="2.5" fill="#2b1a17"/>
+                        <polygon points="68,43 70,41 72,43" fill="#ff758f"/>
+                        <!-- Tail -->
+                        <path d="M20 58 Q8 50, 15 35" fill="none" stroke="#e07a5f" stroke-width="6" stroke-linecap="round">
+                            <animateTransform attributeName="transform" type="rotate" values="-5 20 58; 10 20 58; -5 20 58" dur="1.8s" repeatCount="indefinite"/>
+                        </path>
+                    </svg>
+                </div>
+
+                <!-- Sweet Bunny Hopping -->
+                <div class="garden-creature" style="bottom: 85px; left: 32%;" title="Little bunny twitching its nose">
+                    <svg width="70" height="70" viewBox="0 0 70 70">
+                        <!-- Ears -->
+                        <ellipse cx="32" cy="18" rx="5" ry="14" fill="#ffffff" stroke="#ffccd5" stroke-width="2"/>
+                        <ellipse cx="42" cy="17" rx="5" ry="14" fill="#ffffff" stroke="#ffccd5" stroke-width="2"/>
+                        <!-- Head & Body -->
+                        <circle cx="37" cy="35" r="14" fill="#ffffff"/>
+                        <ellipse cx="37" cy="52" rx="16" ry="13" fill="#ffffff"/>
+                        <circle cx="33" cy="34" r="2" fill="#ff5e7e"/>
+                        <circle cx="41" cy="34" r="2" fill="#ff5e7e"/>
+                        <!-- Nose -->
+                        <circle cx="37" cy="39" r="1.5" fill="#ff758f"/>
+                        <circle cx="53" cy="54" r="5" fill="#ffffff"/>
+                    </svg>
+                </div>
+
+                <!-- Chirping Bluebird -->
+                <div class="garden-creature" style="top: 26%; left: 12%;" title="Singing bluebird">
+                    <svg width="60" height="50" viewBox="0 0 60 50">
+                        <ellipse cx="28" cy="28" rx="16" ry="12" fill="#48cae4"/>
+                        <circle cx="38" cy="20" r="10" fill="#90e0ef"/>
+                        <!-- Beak -->
+                        <polygon points="48,19 55,21 48,23" fill="#ffb703"/>
+                        <circle cx="41" cy="18" r="2" fill="#1b2a4a"/>
+                        <!-- Wing -->
+                        <ellipse cx="24" cy="27" rx="9" ry="6" fill="#0077b6" transform="rotate(-15 24 27)"/>
+                        <!-- Music Notes -->
+                        <text x="44" y="10" font-size="14" fill="#ff4d6d">♪</text>
+                    </svg>
+                </div>
+
+                <!-- Fluttering Butterfly -->
+                <div class="garden-creature flying-butterfly bfly-1">
+                    <svg width="40" height="40" viewBox="0 0 40 40">
+                        <path d="M20 20 C10 5, 0 12, 10 24 C1 28, 5 38, 20 25 C35 38, 39 28, 30 24 C40 12, 30 5, 20 20 Z" fill="#ff70a6" opacity="0.9"/>
+                        <circle cx="20" cy="21" r="3" fill="#ffd166"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Welcome Glassmorphism Card -->
+            <div class="welcome-card">
+                <div class="welcome-badge">
+                    <span>✨</span> A Fairytale Just For You <span>✨</span>
+                </div>
+                <h1 class="welcome-title">
+                    Heyyy <span class="priya-highlight">Priyaaa!</span> 🥹❤️
+                </h1>
+                <p class="welcome-sub">
+                    Come, I have something special for you… 🌸
+                </p>
+                <button id="btn-start-surprise" class="btn-magic-primary">
+                    <span>Start Your Surprise ❤️</span>
+                    <span class="btn-arrow">✨</span>
+                </button>
+            </div>
+        </section>
+
+
+        <!-- ===================================================================
+             SCENE 2: A GIRL PLAYING WITH ANIMALS
+             =================================================================== -->
+        <section id="scene-2" class="scene">
+            <div class="scene-header-pill">
+                <h2>A Pure & Beautiful Soul 🌸🐾</h2>
+                <p>Surrounded by love, innocence, and playful friends</p>
+            </div>
+
+            <!-- Stage Arena: Priya with cute cats, puppies, squirrels, bunnies -->
+            <div class="play-stage">
+                <!-- Flying Butterflies -->
+                <div class="flying-butterfly bfly-1">
+                    <svg width="36" height="36" viewBox="0 0 36 36">
+                        <path d="M18 18 C8 4, 0 10, 8 20 C0 24, 4 32, 18 22 C32 32, 36 24, 28 20 C36 10, 28 4, 18 18 Z" fill="#ff99c8"/>
+                    </svg>
+                </div>
+                <div class="flying-butterfly bfly-2">
+                    <svg width="34" height="34" viewBox="0 0 36 36">
+                        <path d="M18 18 C8 4, 0 10, 8 20 C0 24, 4 32, 18 22 C32 32, 36 24, 28 20 C36 10, 28 4, 18 18 Z" fill="#fcf6bd"/>
+                    </svg>
+                </div>
+
+                <!-- Cute Kitten Playing with Rolling Yarn -->
+                <div id="actor-cat" class="animal-actor actor-cat" title="Click kitty to play with yarn!">
+                    <svg width="120" height="110" viewBox="0 0 120 110">
+                        <defs>
+                            <linearGradient id="kittyFur" x1="0" y1="0" x2="0" y2="100%">
+                                <stop offset="0%" stop-color="#fff1e6"/>
+                                <stop offset="100%" stop-color="#eddcd2"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- Playful pouncing body -->
+                        <ellipse cx="55" cy="70" rx="30" ry="22" fill="url(#kittyFur)"/>
+                        <!-- Calico ginger patches -->
+                        <path d="M65 52 C75 50, 85 65, 78 80 C68 85, 60 70, 65 52 Z" fill="#f4a261"/>
+                        <!-- Head -->
+                        <circle cx="85" cy="50" r="24" fill="url(#kittyFur)"/>
+                        <!-- Ears with pink inner -->
+                        <polygon points="70,35 78,16 88,32" fill="url(#kittyFur)"/>
+                        <polygon points="74,32 79,20 85,30" fill="#ffb4a2"/>
+                        <polygon points="88,32 98,16 104,35" fill="url(#kittyFur)"/>
+                        <polygon points="91,30 97,20 101,32" fill="#ffb4a2"/>
+                        <!-- Big Anime Eyes -->
+                        <ellipse cx="80" cy="48" rx="4" ry="6" fill="#264653"/>
+                        <circle cx="79" cy="46" r="1.5" fill="#ffffff"/>
+                        <ellipse cx="94" cy="48" rx="4" ry="6" fill="#264653"/>
+                        <circle cx="93" cy="46" r="1.5" fill="#ffffff"/>
+                        <!-- Little Pink Nose -->
+                        <polygon points="86,55 88,57 90,55" fill="#e76f51"/>
+                        <!-- Happy Paw reaching out -->
+                        <ellipse cx="102" cy="72" rx="10" ry="7" fill="url(#kittyFur)" transform="rotate(-20 102 72)"/>
+                        <!-- Wagging Upward Tail -->
+                        <path d="M25 72 Q10 60, 18 40" fill="none" stroke="#f4a261" stroke-width="7" stroke-linecap="round"/>
+                    </svg>
+                </div>
+
+                <!-- Ball of pink yarn rolling between cat and Priya -->
+                <div id="yarn-ball" class="yarn-ball" title="Ball of yarn">
+                    <svg width="42" height="42" viewBox="0 0 42 42">
+                        <circle cx="21" cy="21" r="18" fill="#ff4d6d"/>
+                        <path d="M8 15 Q21 8, 34 16" stroke="#ffccd5" stroke-width="2.5" fill="none"/>
+                        <path d="M12 28 Q21 34, 30 26" stroke="#ffccd5" stroke-width="2.5" fill="none"/>
+                        <path d="M15 8 Q28 21, 14 34" stroke="#ff758f" stroke-width="2.5" fill="none"/>
+                        <path d="M30 30 Q38 35, 42 32" stroke="#ff4d6d" stroke-width="2" fill="none"/>
+                    </svg>
+                </div>
+
+                <!-- Little Fluffy Bunny -->
+                <div id="actor-bunny" class="animal-actor actor-bunny" title="Click bunny!">
+                    <svg width="90" height="90" viewBox="0 0 90 90">
+                        <ellipse cx="40" cy="62" rx="22" ry="18" fill="#ffffff" filter="drop-shadow(0 4px 6px rgba(0,0,0,0.06))"/>
+                        <circle cx="48" cy="40" r="16" fill="#ffffff"/>
+                        <!-- Floppy bunny ears -->
+                        <path d="M40 28 C36 12, 45 5, 48 24 Z" fill="#ffffff" stroke="#ffb4a2" stroke-width="1.5"/>
+                        <path d="M48 26 C54 10, 62 8, 56 25 Z" fill="#ffffff" stroke="#ffb4a2" stroke-width="1.5"/>
+                        <!-- Eyes & blush -->
+                        <circle cx="44" cy="38" r="2.5" fill="#6d597a"/>
+                        <circle cx="54" cy="38" r="2.5" fill="#6d597a"/>
+                        <circle cx="40" cy="43" r="3" fill="#ffb4a2" opacity="0.6"/>
+                        <circle cx="58" cy="43" r="3" fill="#ffb4a2" opacity="0.6"/>
+                        <circle cx="49" cy="43" r="1.5" fill="#e56b6f"/>
+                    </svg>
+                </div>
+
+                <!-- Priya Verma (Chibi Animated Character in Center) -->
+                <div id="char-priya" class="char-priya-wrapper" title="Click Priya to make her smile!">
+                    <div class="dialogue-bubble">Hehehe! So cute! 🥹💖</div>
+                    <svg width="220" height="280" viewBox="0 0 220 280">
+                        <defs>
+                            <linearGradient id="hairGrad" x1="0" y1="0" x2="0" y2="100%">
+                                <stop offset="0%" stop-color="#4a2810"/>
+                                <stop offset="50%" stop-color="#603813"/>
+                                <stop offset="100%" stop-color="#3d1e06"/>
+                            </linearGradient>
+                            <linearGradient id="skinGrad" x1="0" y1="0" x2="0" y2="100%">
+                                <stop offset="0%" stop-color="#fff0ea"/>
+                                <stop offset="100%" stop-color="#ffe4dc"/>
+                            </linearGradient>
+                            <linearGradient id="dressGrad" x1="0" y1="0" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#ff758f"/>
+                                <stop offset="50%" stop-color="#ff8fa3"/>
+                                <stop offset="100%" stop-color="#ffb3c1"/>
+                            </linearGradient>
+                        </defs>
+
+                        <!-- Long Flowing Hair Behind -->
+                        <path d="M60 90 C40 130, 45 200, 65 240 C75 210, 75 140, 75 90 Z" fill="url(#hairGrad)"/>
+                        <path d="M160 90 C180 130, 175 200, 155 240 C145 210, 145 140, 145 90 Z" fill="url(#hairGrad)"/>
+
+                        <!-- Dress Body / Sitting Pose -->
+                        <path d="M78 160 C65 210, 50 250, 40 270 L180 270 C170 250, 155 210, 142 160 Z" fill="url(#dressGrad)"/>
+                        <!-- White Lace Collar -->
+                        <path d="M88 160 Q110 178, 132 160 Q110 168, 88 160 Z" fill="#ffffff"/>
+                        <!-- Cute Dress Bow Ribbon -->
+                        <circle cx="110" cy="172" r="5" fill="#ffffff"/>
+                        <path d="M105 172 Q95 165, 102 180 Z" fill="#ffffff"/>
+                        <path d="M115 172 Q125 165, 118 180 Z" fill="#ffffff"/>
+
+                        <!-- Arms petting forward -->
+                        <path d="M85 170 Q60 190, 45 215" stroke="url(#skinGrad)" stroke-width="12" stroke-linecap="round" fill="none"/>
+                        <path d="M135 170 Q160 190, 175 215" stroke="url(#skinGrad)" stroke-width="12" stroke-linecap="round" fill="none"/>
+                        <!-- Hands -->
+                        <circle cx="45" cy="215" r="7" fill="url(#skinGrad)"/>
+                        <circle cx="175" cy="215" r="7" fill="url(#skinGrad)"/>
+
+                        <!-- Cute Head -->
+                        <ellipse cx="110" cy="105" rx="44" ry="42" fill="url(#skinGrad)"/>
+
+                        <!-- Rosy Blushing Cheeks -->
+                        <ellipse cx="82" cy="116" rx="9" ry="5.5" fill="#ff758f" opacity="0.6"/>
+                        <ellipse cx="138" cy="116" rx="9" ry="5.5" fill="#ff758f" opacity="0.6"/>
+
+                        <!-- Big Sparkling Anime Eyes -->
+                        <g id="priya-eyes">
+                            <!-- Left Eye -->
+                            <ellipse cx="90" cy="104" rx="8" ry="11" fill="#2d1e2f"/>
+                            <ellipse cx="88" cy="100" rx="3.5" ry="5" fill="#ffffff"/>
+                            <circle cx="93" cy="108" r="2" fill="#ffffff"/>
+                            <path d="M82 92 Q90 88, 98 92" stroke="#2d1e2f" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                            <!-- Right Eye -->
+                            <ellipse cx="130" cy="104" rx="8" ry="11" fill="#2d1e2f"/>
+                            <ellipse cx="128" cy="100" rx="3.5" ry="5" fill="#ffffff"/>
+                            <circle cx="133" cy="108" r="2" fill="#ffffff"/>
+                            <path d="M122 92 Q130 88, 138 92" stroke="#2d1e2f" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                        </g>
+
+                        <!-- Sweet Warm Smile -->
+                        <path d="M102 122 Q110 131, 118 122" stroke="#d6336c" stroke-width="3" stroke-linecap="round" fill="#d6336c"/>
+
+                        <!-- Front Hair Bangs & Waves -->
+                        <path d="M66 95 C66 60, 154 60, 154 95 C140 75, 125 78, 110 74 C95 78, 80 75, 66 95 Z" fill="url(#hairGrad)"/>
+                        <path d="M66 95 C60 120, 68 145, 74 150 C76 130, 72 110, 74 95 Z" fill="url(#hairGrad)"/>
+                        <path d="M154 95 C160 120, 152 145, 146 150 C144 130, 148 110, 146 95 Z" fill="url(#hairGrad)"/>
+
+                        <!-- Floral Hair Clip Accessory -->
+                        <circle cx="70" cy="78" r="6" fill="#ffd166"/>
+                        <circle cx="65" cy="74" r="5" fill="#ff758f"/>
+                        <circle cx="75" cy="74" r="5" fill="#ff758f"/>
+                        <circle cx="65" cy="82" r="5" fill="#ff758f"/>
+                        <circle cx="75" cy="82" r="5" fill="#ff758f"/>
+                    </svg>
+                </div>
+
+                <!-- Cute Squirrel Collecting Nuts -->
+                <div id="actor-squirrel" class="animal-actor actor-squirrel" title="Click squirrel!">
+                    <svg width="85" height="95" viewBox="0 0 85 95">
+                        <defs>
+                            <linearGradient id="sqFur" x1="0" y1="0" x2="0" y2="100%">
+                                <stop offset="0%" stop-color="#d4a373"/>
+                                <stop offset="100%" stop-color="#bc6c25"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- Big Bushy Curled Tail -->
+                        <path d="M25 80 C-5 70, -8 30, 18 18 C35 8, 45 25, 35 45 C30 55, 30 70, 25 80 Z" fill="url(#sqFur)"/>
+                        <!-- Body -->
+                        <ellipse cx="48" cy="65" rx="16" ry="20" fill="url(#sqFur)"/>
+                        <ellipse cx="52" cy="67" rx="9" ry="14" fill="#faedcd"/>
+                        <!-- Head -->
+                        <circle cx="56" cy="42" r="14" fill="url(#sqFur)"/>
+                        <polygon points="56,30 60,18 64,29" fill="url(#sqFur)"/>
+                        <!-- Eyes & nose -->
+                        <circle cx="62" cy="40" r="2.5" fill="#2b1a17"/>
+                        <circle cx="68" cy="44" r="1.5" fill="#2b1a17"/>
+                        <!-- Little Golden Acorn in paws -->
+                        <ellipse cx="64" cy="58" rx="5" ry="6" fill="#8d5b4c"/>
+                        <path d="M60 54 Q64 51, 68 54 Z" fill="#582f0e"/>
+                    </svg>
+                </div>
+
+                <!-- Jumping Happy Golden Puppy Wagging Tail -->
+                <div id="actor-dog" class="animal-actor actor-dog" title="Click puppy to make him jump!">
+                    <svg width="130" height="120" viewBox="0 0 130 120">
+                        <defs>
+                            <linearGradient id="pupGrad" x1="0" y1="0" x2="0" y2="100%">
+                                <stop offset="0%" stop-color="#ffb703"/>
+                                <stop offset="100%" stop-color="#fb8500"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- Wagging Tail -->
+                        <path d="M98 75 C115 65, 125 50, 120 35" fill="none" stroke="#fb8500" stroke-width="8" stroke-linecap="round">
+                            <animateTransform attributeName="transform" type="rotate" values="10 98 75; -20 98 75; 10 98 75" dur="0.4s" repeatCount="indefinite"/>
+                        </path>
+                        <!-- Leaping Body -->
+                        <ellipse cx="70" cy="75" rx="30" ry="22" fill="url(#pupGrad)" transform="rotate(-15 70 75)"/>
+                        <!-- Paws jumping forward -->
+                        <ellipse cx="40" cy="65" rx="8" ry="12" fill="url(#pupGrad)" transform="rotate(-40 40 65)"/>
+                        <ellipse cx="50" cy="80" rx="7" ry="11" fill="url(#pupGrad)" transform="rotate(-20 50 80)"/>
+                        <!-- Head -->
+                        <circle cx="42" cy="46" r="22" fill="url(#pupGrad)"/>
+                        <!-- Big Floppy Ear -->
+                        <path d="M48 35 C62 40, 65 65, 52 68 Z" fill="#d97706"/>
+                        <!-- Snout & Happy Tongue -->
+                        <ellipse cx="28" cy="52" rx="12" ry="9" fill="#fff3b0"/>
+                        <circle cx="23" cy="48" r="3.5" fill="#2b1a17"/>
+                        <!-- Tongue -->
+                        <path d="M26 56 C26 64, 34 64, 34 56 Z" fill="#ff4d6d"/>
+                        <!-- Happy sparkling eyes -->
+                        <path d="M34 40 Q39 36, 44 40" stroke="#2b1a17" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Navigation to Scene 3 -->
+            <div class="scene-nav-actions">
+                <button class="btn-secondary-pill" data-prev-scene>
+                    <span>← Back</span>
+                </button>
+                <button class="btn-magic-primary" data-next-scene>
+                    <span>A Surprise is Waiting... 🎈✨</span>
+                </button>
+            </div>
+        </section>
+
+
+        <!-- ===================================================================
+             SCENE 3: SURPRISE BIRTHDAY CELEBRATION
+             =================================================================== -->
+        <section id="scene-3" class="scene">
+            <!-- Floating Colorful Birthday Balloons -->
+            <div class="scene-balloons-container">
+                <div class="scene-balloon b-1" style="left: 6%; animation-delay: 0s;">🎈</div>
+                <div class="scene-balloon b-2" style="left: 18%; animation-delay: 2.1s;">🎈</div>
+                <div class="scene-balloon b-3" style="left: 32%; animation-delay: 0.8s;">🎈</div>
+                <div class="scene-balloon b-4" style="left: 68%; animation-delay: 2.7s;">🎈</div>
+                <div class="scene-balloon b-5" style="left: 82%; animation-delay: 1.2s;">🎈</div>
+                <div class="scene-balloon b-6" style="left: 92%; animation-delay: 3.2s;">🎈</div>
+            </div>
+
+            <!-- Animated Main Title -->
+            <div class="birthday-banner-container">
+                <h1 class="bday-main-title">
+                    HAPPIEST BIRTHDAY, PRIYA VERMAAA! ❤️🎂
+                </h1>
+            </div>
+
+            <!-- Interactive 3-Tier Birthday Cake with Glowing Candles -->
+            <div class="cake-celebration-box">
+                <div id="birthday-cake" class="cake-svg-container" title="Click cake to blow out candles!">
+                    <svg width="220" height="180" viewBox="0 0 220 180">
+                        <defs>
+                            <linearGradient id="cakePlateGrad" x1="0" y1="0" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#ffd166"/>
+                                <stop offset="100%" stop-color="#ffb703"/>
+                            </linearGradient>
+                            <linearGradient id="tier1Grad" x1="0" y1="0" x2="0" y2="100%">
+                                <stop offset="0%" stop-color="#f8edeb"/>
+                                <stop offset="100%" stop-color="#fcd5ce"/>
+                            </linearGradient>
+                            <linearGradient id="tier2Grad" x1="0" y1="0" x2="0" y2="100%">
+                                <stop offset="0%" stop-color="#ffb5a7"/>
+                                <stop offset="100%" stop-color="#fec5bb"/>
+                            </linearGradient>
+                            <linearGradient id="tier3Grad" x1="0" y1="0" x2="0" y2="100%">
+                                <stop offset="0%" stop-color="#ffccd5"/>
+                                <stop offset="100%" stop-color="#ff758f"/>
+                            </linearGradient>
+                        </defs>
+
+                        <!-- Cake Platter Stand -->
+                        <ellipse cx="110" cy="168" rx="90" ry="10" fill="url(#cakePlateGrad)"/>
+                        <path d="M95 168 L125 168 L118 178 L102 178 Z" fill="#d4a373"/>
+
+                        <!-- Tier 1 (Bottom Tier) -->
+                        <rect x="40" y="115" width="140" height="48" rx="10" fill="url(#tier1Grad)"/>
+                        <!-- Frosting Swirls -->
+                        <path d="M40 125 Q50 135, 60 125 T80 125 T100 125 T120 125 T140 125 T160 125 T180 125" fill="none" stroke="#ffffff" stroke-width="6"/>
+
+                        <!-- Tier 2 (Middle Tier) -->
+                        <rect x="60" y="75" width="100" height="42" rx="8" fill="url(#tier2Grad)"/>
+                        <path d="M60 85 Q70 93, 80 85 T100 85 T120 85 T140 85 T160 85" fill="none" stroke="#ffffff" stroke-width="5"/>
+
+                        <!-- Tier 3 (Top Tier) -->
+                        <rect x="80" y="45" width="60" height="32" rx="6" fill="url(#tier3Grad)"/>
+                        <path d="M80 52 Q90 58, 100 52 T120 52 T140 52" fill="none" stroke="#ffffff" stroke-width="4"/>
+
+                        <!-- Fresh Strawberry Toppings -->
+                        <circle cx="86" cy="43" r="5" fill="#e63946"/>
+                        <circle cx="110" cy="43" r="5.5" fill="#e63946"/>
+                        <circle cx="134" cy="43" r="5" fill="#e63946"/>
+
+                        <!-- 3 Glowing Candles -->
+                        <!-- Left Candle -->
+                        <rect x="92" y="24" width="5" height="20" fill="#ffd166" rx="2"/>
+                        <path class="candle-flame" d="M94.5 14 C91 19, 91 23, 94.5 24 C98 23, 98 19, 94.5 14 Z" fill="#ffbe0b"/>
+
+                        <!-- Center Candle (Taller) -->
+                        <rect x="107.5" y="18" width="5" height="26" fill="#ff758f" rx="2"/>
+                        <path class="candle-flame" d="M110 8 C106 13, 106 17, 110 18 C114 17, 114 13, 110 8 Z" fill="#ff006e"/>
+
+                        <!-- Right Candle -->
+                        <rect x="123" y="24" width="5" height="20" fill="#a8dadc" rx="2"/>
+                        <path class="candle-flame" d="M125.5 14 C122 19, 122 23, 125.5 24 C129 23, 129 19, 125.5 14 Z" fill="#ffbe0b"/>
+                    </svg>
+                </div>
+                <div id="cake-hint" class="cake-hint-tag">
+                    🎂 Make a wish & tap the cake to blow out candles! 🕯️
+                </div>
+            </div>
+
+            <!-- Sequenced Birthday Messages from Prompt -->
+            <div class="bday-wishes-stack">
+                <div class="wish-card">
+                    <span class="wish-icon">🥹❤️</span>
+                    <p class="wish-text">“Yrr Priya, happiest birthday to youuu! 🥹❤️”</p>
+                </div>
+                <div class="wish-card">
+                    <span class="wish-icon">🧿💖</span>
+                    <p class="wish-text">“Hamesha khush reh, hasti reh aur teri saari wishes poori ho jaayein. 🧿💖”</p>
+                </div>
+                <div class="wish-card">
+                    <span class="wish-icon">🫶🏻❤️</span>
+                    <p class="wish-text">“Tu sach mein bahut special hai yrr, aur tujhse baat karke ek alag hi happiness milti hai. 🫶🏻❤️”</p>
+                </div>
+                <div class="wish-card">
+                    <span class="wish-icon">🥹💗</span>
+                    <p class="wish-text">“Teri smile, teri baatein, tera sab kuch bahut pyaara hai yrr. 🥹💗”</p>
+                </div>
+            </div>
+
+            <!-- Animals Celebrating with Party Hats -->
+            <div class="party-animals-row">
+                <!-- Cat in Party Hat -->
+                <svg width="65" height="60" viewBox="0 0 65 60">
+                    <circle cx="32" cy="38" r="18" fill="#ffedd8"/>
+                    <!-- Party Hat -->
+                    <polygon points="24,25 32,4 40,25" fill="#ff006e"/>
+                    <circle cx="32" cy="4" r="3" fill="#ffd166"/>
+                    <circle cx="27" cy="38" r="2" fill="#2b1a17"/>
+                    <circle cx="37" cy="38" r="2" fill="#2b1a17"/>
+                    <path d="M30 43 Q32 46, 34 43" stroke="#ff758f" stroke-width="2" fill="none"/>
+                </svg>
+
+                <!-- Puppy with Party Blower -->
+                <svg width="70" height="65" viewBox="0 0 70 65">
+                    <circle cx="35" cy="40" r="20" fill="#fed9b7"/>
+                    <!-- Party Hat -->
+                    <polygon points="26,26 35,5 44,26" fill="#70e000"/>
+                    <circle cx="35" cy="5" r="3" fill="#ff4d6d"/>
+                    <path d="M29 38 Q33 34, 37 38" stroke="#2b1a17" stroke-width="2.5" fill="none"/>
+                    <!-- Party Blower roll -->
+                    <path d="M35 46 Q45 44, 55 42" stroke="#ffbe0b" stroke-width="4" stroke-linecap="round" fill="none"/>
+                </svg>
+
+                <!-- Squirrel Holding Gift Box -->
+                <svg width="60" height="60" viewBox="0 0 60 60">
+                    <circle cx="30" cy="30" r="16" fill="#d4a373"/>
+                    <polygon points="23,18 30,3 37,18" fill="#3a86ff"/>
+                    <circle cx="30" cy="3" r="2.5" fill="#ffffff"/>
+                    <!-- Little Gift Box -->
+                    <rect x="20" y="38" width="20" height="18" fill="#ff4d6d" rx="3"/>
+                    <rect x="28" y="38" width="4" height="18" fill="#ffd166"/>
+                    <rect x="20" y="45" width="20" height="4" fill="#ffd166"/>
+                </svg>
+            </div>
+
+            <!-- Navigation -->
+            <div class="scene-nav-actions">
+                <button class="btn-secondary-pill" data-prev-scene>
+                    <span>← Previous</span>
+                </button>
+                <button class="btn-magic-primary" data-next-scene>
+                    <span>Something from the heart... 💌 →</span>
+                </button>
+            </div>
+        </section>
+
+
+        <!-- ===================================================================
+             SCENE 4: EMOTIONAL LOVE MESSAGE
+             =================================================================== -->
+        <section id="scene-4" class="scene">
+            <div class="twilight-stars"></div>
+            <div class="fairy-lights-wire"></div>
+
+            <!-- Emotional Glass Card -->
+            <div class="emotional-content-card">
+                <div class="emotional-lines-container">
+                    <p class="emotional-line">
+                        “And yrr ek baat bolni thi jo kaafi time se kehna chahta tha… 👉🏻👈🏻🥹”
+                    </p>
+                    <p class="emotional-line">
+                        “Pata nahi tujhe ye sunkar kaisa lagega, but jo bhi hai dil se hai. ❤️”
+                    </p>
+                    <h2 class="emotional-line highlight-confession">
+                        “I LOVE YOU YAAR PRIYA 😭❤️🫶🏻”
+                    </h2>
+                    <p class="emotional-line">
+                        “Tu mere liye bahut special hai, and I just wanted you to know that. 🫂💗”
+                    </p>
+                </div>
+
+                <!-- Peaceful Cuddling Animals in Twilight -->
+                <div class="cozy-twilight-animals">
+                    <svg width="180" height="60" viewBox="0 0 180 60">
+                        <!-- Sleeping puppy -->
+                        <ellipse cx="60" cy="40" rx="25" ry="15" fill="#f4a261"/>
+                        <circle cx="80" cy="34" r="14" fill="#f4a261"/>
+                        <path d="M76 32 Q80 30, 84 32" stroke="#264653" stroke-width="2" stroke-linecap="round" fill="none"/>
+                        <!-- Sleeping kitten curled against pup -->
+                        <ellipse cx="115" cy="42" rx="18" ry="12" fill="#e9c46a"/>
+                        <circle cx="102" cy="36" r="11" fill="#e9c46a"/>
+                        <path d="M98 34 Q102 32, 106 34" stroke="#264653" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+                        <text x="88" y="20" font-size="12" fill="#ffccd5">z Z z</text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="scene-nav-actions">
+                <button class="btn-secondary-pill" data-prev-scene>
+                    <span>← Previous</span>
+                </button>
+                <button class="btn-magic-primary" data-next-scene>
+                    <span>Look up at the stars... 🌌✨</span>
+                </button>
+            </div>
+        </section>
+
+
+        <!-- ===================================================================
+             SCENE 5: GRAND FIREWORKS FINALE
+             =================================================================== -->
+        <section id="scene-5" class="scene">
+            <div class="nebula-glow"></div>
+
+            <!-- Sky Firework Glowing Typography -->
+            <div class="finale-text-display">
+                <h1 id="finale-burst" class="finale-burst-text">
+                    LOVE U PRIYAAA ❤️🥹
+                </h1>
+                <h2 id="finale-sub" class="finale-subtitle-text">
+                    HAPPY BIRTHDAY, PRIYA VERMA! 🎂❤️🧿
+                </h2>
+                <p id="finale-blessing" class="finale-blessing-text">
+                    “Stay happy, keep smiling, and always be the beautiful person you are. 🫶🏻💗✨”
+                </p>
+            </div>
+
+            <!-- Garden Hill Silhouettes Gazing Up At Fireworks -->
+            <div class="garden-silhouettes">
+                <svg width="100%" height="160" viewBox="0 0 1000 160" preserveAspectRatio="none">
+                    <defs>
+                        <linearGradient id="silhouetteGrad" x1="0" y1="0" x2="0" y2="100%">
+                            <stop offset="0%" stop-color="#0a0520"/>
+                            <stop offset="100%" stop-color="#04020a"/>
+                        </linearGradient>
+                    </defs>
+                    <!-- Hill crest -->
+                    <path d="M0 160 Q250 80 500 95 T1000 160 Z" fill="url(#silhouetteGrad)"/>
+
+                    <!-- Priya Silhouette in Center gazing up -->
+                    <circle cx="500" cy="62" r="16" fill="#04020a"/>
+                    <!-- Ponytail / Hair flow -->
+                    <path d="M486 64 C478 72, 475 88, 480 100" stroke="#04020a" stroke-width="8" stroke-linecap="round" fill="none"/>
+                    <!-- Body sitting -->
+                    <path d="M485 78 C485 105, 470 125, 465 135 L535 135 C530 125, 515 105, 515 78 Z" fill="#04020a"/>
+
+                    <!-- Dog silhouette sitting beside her -->
+                    <circle cx="545" cy="98" r="11" fill="#04020a"/>
+                    <ellipse cx="555" cy="118" rx="14" ry="12" fill="#04020a"/>
+                    <!-- Cat silhouette curled on left side -->
+                    <circle cx="452" cy="112" r="9" fill="#04020a"/>
+                    <ellipse cx="445" cy="122" rx="12" ry="8" fill="#04020a"/>
+                </svg>
+            </div>
+
+            <!-- "Made with love, just for you" Tag -->
+            <div id="made-with-love" class="made-with-love-tag">
+                Made with love, just for you ❤️
+            </div>
+
+            <!-- Final Action Controls -->
+            <div id="finale-actions" class="finale-controls">
+                <button id="btn-replay" class="btn-magic-primary">
+                    <span>Relive The Surprise 🔄</span>
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Scripts -->
+    <script src="audio.js"></script>
+    <script src="particles.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

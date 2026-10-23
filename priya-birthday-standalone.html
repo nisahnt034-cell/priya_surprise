@@ -1,0 +1,3201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happiest Birthday, Priya Verma! ❤️🎂</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
+    <style>
+/* ==========================================================================
+   Priya Verma's Birthday Surprise - Stylesheet
+   Theme: Pastel Fairytale, Kawaii Aesthetic, Emotional & Celebratory
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fredoka:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Quicksand:wght@500;600;700&display=swap');
+
+:root {
+    --font-heading: 'Fredoka', 'Quicksand', sans-serif;
+    --font-body: 'Outfit', 'Quicksand', sans-serif;
+    --font-hand: 'Caveat', cursive;
+
+    /* Palette */
+    --pink-primary: #ff5e7e;
+    --pink-soft: #ff85a1;
+    --pink-pastel: #ffccd5;
+    --pink-light: #fff0f3;
+    --lavender: #c8b6ff;
+    --lavender-soft: #e7c6ff;
+    --mint: #bbf2f6;
+    --mint-grass: #70e000;
+    --gold: #ffb703;
+    --gold-glow: #ffd166;
+    --night-sky-1: #0b092b;
+    --night-sky-2: #1e1245;
+    --night-sky-3: #3b185f;
+
+    /* Shadows & Glass */
+    --glass-bg: rgba(255, 255, 255, 0.72);
+    --glass-border: rgba(255, 255, 255, 0.85);
+    --glass-shadow: 0 12px 35px rgba(255, 117, 143, 0.18);
+    --text-main: #3d2c3e;
+    --text-muted: #6b556d;
+    --text-highlight: #e63946;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    font-family: var(--font-body);
+    color: var(--text-main);
+    background-color: #ffe5ec;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Background Canvas Layers */
+#ambient-canvas,
+#fireworks-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 10;
+}
+
+#fireworks-canvas {
+    z-index: 12;
+}
+
+/* Main Container */
+.story-wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   Header & Floating Navigation
+   ========================================================================== */
+.floating-header {
+    position: fixed;
+    top: 16px;
+    left: 0;
+    width: 100%;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.scene-tracker {
+    pointer-events: auto;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1.5px solid var(--glass-border);
+    border-radius: 50px;
+    padding: 6px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+.scene-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #e2cfea;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
+    position: relative;
+}
+
+.scene-dot.active {
+    width: 24px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--pink-primary), var(--pink-soft));
+    box-shadow: 0 0 10px rgba(255, 94, 126, 0.6);
+}
+
+.scene-title-badge {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--pink-primary);
+    margin-left: 6px;
+    font-family: var(--font-heading);
+}
+
+.controls-group {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.control-btn {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1.5px solid var(--glass-border);
+    border-radius: 50px;
+    padding: 8px 14px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 117, 143, 0.15);
+}
+
+.control-btn:hover {
+    transform: translateY(-2px) scale(1.03);
+    background: #ffffff;
+    box-shadow: 0 6px 20px rgba(255, 117, 143, 0.28);
+}
+
+.music-waves {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    height: 14px;
+}
+
+.music-waves span {
+    width: 3px;
+    height: 100%;
+    background: var(--pink-primary);
+    border-radius: 2px;
+    animation: waveBounce 0.8s ease-in-out infinite alternate;
+}
+
+.music-waves span:nth-child(2) { animation-delay: 0.2s; height: 70%; }
+.music-waves span:nth-child(3) { animation-delay: 0.4s; height: 40%; }
+.control-btn.muted .music-waves span {
+    animation: none;
+    height: 3px;
+    background: #bbb;
+}
+
+@keyframes waveBounce {
+    0% { height: 20%; }
+    100% { height: 100%; }
+}
+
+/* ==========================================================================
+   Scene Sections Architecture
+   ========================================================================== */
+.scene {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.96) translateY(20px);
+    transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1),
+                transform 0.9s cubic-bezier(0.25, 1, 0.5, 1),
+                visibility 0.9s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 20px;
+}
+
+.scene.active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1) translateY(0);
+    z-index: 5;
+}
+
+/* ==========================================================================
+   Scene 1: Enchanted Nature Garden & Welcome
+   ========================================================================== */
+#scene-1 {
+    background: linear-gradient(180deg, #c4f1f9 0%, #d8f3dc 45%, #b7e4c7 80%, #95d5b2 100%);
+}
+
+.scenery-background {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+/* Sun with rotating rays */
+.sun-container {
+    position: absolute;
+    top: 5%;
+    right: 10%;
+    width: 140px;
+    height: 140px;
+}
+
+.sun-core {
+    position: absolute;
+    inset: 20px;
+    background: radial-gradient(circle, #fff9a6 0%, #ffd166 60%, #ffb703 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 50px rgba(255, 209, 102, 0.8), 0 0 100px rgba(255, 183, 3, 0.4);
+    animation: sunPulse 4s ease-in-out infinite alternate;
+}
+
+.sun-rays {
+    position: absolute;
+    inset: 0;
+    background: repeating-conic-gradient(from 0deg, rgba(255, 230, 109, 0.25) 0deg 15deg, transparent 15deg 30deg);
+    border-radius: 50%;
+    animation: sunSpin 40s linear infinite;
+}
+
+@keyframes sunPulse {
+    0% { transform: scale(0.95); opacity: 0.9; }
+    100% { transform: scale(1.08); opacity: 1; }
+}
+
+@keyframes sunSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Rolling Hills */
+.rolling-hills {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 48%;
+}
+
+.hill {
+    position: absolute;
+    bottom: 0;
+    border-radius: 50% 50% 0 0;
+}
+
+.hill-back {
+    left: -15%;
+    width: 80%;
+    height: 80%;
+    background: linear-gradient(180deg, #95d5b2 0%, #74c69d 100%);
+}
+
+.hill-mid {
+    right: -10%;
+    width: 75%;
+    height: 70%;
+    background: linear-gradient(180deg, #74c69d 0%, #52b788 100%);
+}
+
+.hill-front {
+    left: 5%;
+    width: 110%;
+    height: 55%;
+    background: linear-gradient(180deg, #52b788 0%, #40916c 100%);
+}
+
+/* Winding Animated River */
+.river-stream {
+    position: absolute;
+    bottom: 0;
+    left: -10%;
+    width: 120%;
+    height: 120px;
+    background: linear-gradient(180deg, rgba(162, 210, 255, 0.7) 0%, rgba(142, 202, 230, 0.9) 100%);
+    border-radius: 50% 50% 0 0 / 25px 25px 0 0;
+    overflow: hidden;
+}
+
+.river-waves {
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    background-image: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.45) 8%, transparent 9%);
+    background-size: 40px 25px;
+    animation: riverFlow 6s linear infinite;
+}
+
+@keyframes riverFlow {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* Flowing Nature Flora & Fauna */
+.nature-flora {
+    position: absolute;
+    bottom: 12px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Animals in Scene 1 */
+.garden-creatures {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.garden-creature {
+    position: absolute;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.garden-creature:hover {
+    transform: scale(1.15) translateY(-6px);
+}
+
+/* Floating Welcome Glass Card */
+.welcome-card {
+    position: relative;
+    z-index: 20;
+    max-width: 620px;
+    width: 90%;
+    padding: 38px 32px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 2px solid rgba(255, 255, 255, 0.95);
+    border-radius: 36px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(112, 224, 0, 0.15),
+                0 10px 25px rgba(255, 94, 126, 0.18);
+    animation: floatCard 4s ease-in-out infinite alternate;
+}
+
+@keyframes floatCard {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+
+.welcome-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 18px;
+    background: linear-gradient(135deg, #ffe5ec, #fcd5ce);
+    border-radius: 50px;
+    color: var(--pink-primary);
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.welcome-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    color: #43281c;
+    line-height: 1.25;
+    margin-bottom: 14px;
+}
+
+.welcome-title .priya-highlight {
+    background: linear-gradient(135deg, #ff4d6d, #ff758f, #ffb703);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    filter: drop-shadow(0 2px 4px rgba(255, 77, 109, 0.25));
+}
+
+.welcome-sub {
+    font-size: clamp(1.1rem, 2.8vw, 1.45rem);
+    color: #6c584c;
+    font-weight: 600;
+    margin-bottom: 28px;
+    line-height: 1.5;
+}
+
+.btn-magic-primary {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 16px 36px;
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    background: linear-gradient(135deg, #ff5e7e 0%, #ff85a1 50%, #ffb703 100%);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(255, 94, 126, 0.45),
+                0 4px 10px rgba(255, 183, 3, 0.3);
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    overflow: hidden;
+}
+
+.btn-magic-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: btnShimmer 3s infinite;
+}
+
+@keyframes btnShimmer {
+    0% { left: -100%; }
+    50%, 100% { left: 150%; }
+}
+
+.btn-magic-primary:hover {
+    transform: translateY(-4px) scale(1.04);
+    box-shadow: 0 15px 35px rgba(255, 94, 126, 0.6),
+                0 6px 15px rgba(255, 183, 3, 0.4);
+}
+
+.btn-magic-primary:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+/* ==========================================================================
+   Scene 2: Girl Playing with Adorable Animals
+   ========================================================================== */
+#scene-2 {
+    background: linear-gradient(180deg, #e0f2fe 0%, #fbcfe8 50%, #fdf2f8 100%);
+}
+
+.scene-header-pill {
+    position: relative;
+    z-index: 20;
+    padding: 10px 24px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1.5px solid rgba(255, 255, 255, 0.95);
+    border-radius: 50px;
+    box-shadow: 0 8px 25px rgba(251, 207, 232, 0.5);
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.scene-header-pill h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+    color: var(--pink-primary);
+    font-weight: 700;
+}
+
+.scene-header-pill p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+/* Stage Arena for Characters */
+.play-stage {
+    position: relative;
+    width: min(920px, 94vw);
+    height: min(440px, 50vh);
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 2.5px solid rgba(255, 255, 255, 0.9);
+    border-radius: 40px;
+    box-shadow: 0 20px 60px rgba(255, 133, 161, 0.22);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    overflow: hidden;
+    padding-bottom: 20px;
+    z-index: 15;
+}
+
+/* Character: Priya (Center) */
+.char-priya-wrapper {
+    position: relative;
+    width: 220px;
+    height: 310px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.char-priya-wrapper:hover {
+    transform: scale(1.03);
+}
+
+.dialogue-bubble {
+    position: absolute;
+    top: -45px;
+    background: #ffffff;
+    border: 2px solid var(--pink-pastel);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-family: var(--font-hand);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--pink-primary);
+    box-shadow: 0 6px 18px rgba(255, 94, 126, 0.2);
+    white-space: nowrap;
+    opacity: 0;
+    transform: scale(0.8) translateY(10px);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+    z-index: 30;
+}
+
+.dialogue-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 8px 8px 0;
+    border-style: solid;
+    border-color: #ffffff transparent;
+}
+
+.char-priya-wrapper.laughing .dialogue-bubble,
+.char-priya-wrapper:hover .dialogue-bubble {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+/* Interactive Companion Animals */
+.animal-actor {
+    position: absolute;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    user-select: none;
+    z-index: 12;
+}
+
+.animal-actor:hover {
+    transform: scale(1.15) translateY(-5px);
+}
+
+.actor-cat {
+    bottom: 25px;
+    left: 8%;
+    width: 140px;
+}
+
+.actor-dog {
+    bottom: 20px;
+    right: 8%;
+    width: 150px;
+}
+
+.actor-squirrel {
+    bottom: 35px;
+    right: 28%;
+    width: 100px;
+}
+
+.actor-bunny {
+    bottom: 25px;
+    left: 26%;
+    width: 110px;
+}
+
+.yarn-ball {
+    position: absolute;
+    bottom: 28px;
+    left: 19%;
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+    animation: yarnRoll 3s ease-in-out infinite alternate;
+}
+
+@keyframes yarnRoll {
+    0% { transform: translateX(0) rotate(0deg); }
+    100% { transform: translateX(45px) rotate(360deg); }
+}
+
+/* Butterfly Orbit in Scene 2 */
+.flying-butterfly {
+    position: absolute;
+    width: 38px;
+    height: 38px;
+    z-index: 14;
+    animation: butterflyFlutter 4s ease-in-out infinite;
+}
+
+.bfly-1 {
+    top: 25%;
+    left: 36%;
+    animation-duration: 5s;
+}
+
+.bfly-2 {
+    top: 32%;
+    right: 34%;
+    animation-duration: 4.2s;
+    animation-delay: -1.5s;
+}
+
+@keyframes butterflyFlutter {
+    0%, 100% { transform: translate(0, 0) scale(1) rotate(5deg); }
+    25% { transform: translate(25px, -35px) scale(1.1) rotate(-8deg); }
+    50% { transform: translate(45px, 15px) scale(0.95) rotate(12deg); }
+    75% { transform: translate(15px, -20px) scale(1.05) rotate(-5deg); }
+}
+
+/* Nav Action Bar */
+.scene-nav-actions {
+    position: relative;
+    z-index: 20;
+    margin-top: 18px;
+    display: flex;
+    gap: 16px;
+}
+
+.btn-secondary-pill {
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    background: #ffffff;
+    color: var(--pink-primary);
+    border: 2px solid var(--pink-pastel);
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(255, 94, 126, 0.15);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-secondary-pill:hover {
+    background: var(--pink-light);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(255, 94, 126, 0.25);
+}
+
+/* ==========================================================================
+   Scene 3: Surprise Birthday Celebration
+   ========================================================================== */
+#scene-3 {
+    background: linear-gradient(180deg, #fce7f3 0%, #fae8ff 45%, #ede9fe 100%);
+}
+
+.scene-balloons-container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 6;
+}
+
+.scene-balloon {
+    position: absolute;
+    bottom: -70px;
+    font-size: 2.8rem;
+    filter: drop-shadow(0 6px 14px rgba(255, 94, 126, 0.35));
+    animation: balloonFloatUp 8s ease-in-out infinite;
+}
+
+@keyframes balloonFloatUp {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(0.85);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.95;
+    }
+    85% {
+        opacity: 0.95;
+    }
+    100% {
+        transform: translateY(-115vh) rotate(25deg) scale(1.1);
+        opacity: 0;
+    }
+}
+
+.birthday-banner-container {
+    position: relative;
+    z-index: 20;
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.bday-main-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 5vw, 3.4rem);
+    font-weight: 800;
+    color: #e63946;
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
+    animation: titleBounce 2s ease-in-out infinite alternate;
+    text-shadow: 0 4px 15px rgba(230, 57, 70, 0.25),
+                 0 0 30px rgba(255, 209, 102, 0.6);
+}
+
+@keyframes titleBounce {
+    0% { transform: scale(0.98); }
+    100% { transform: scale(1.03); }
+}
+
+/* Interactive Birthday Cake */
+.cake-celebration-box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 14px;
+    z-index: 18;
+}
+
+.cake-svg-container {
+    position: relative;
+    width: 220px;
+    height: 180px;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.cake-svg-container:hover {
+    transform: scale(1.06);
+}
+
+.candle-flame {
+    transform-origin: center bottom;
+    animation: flameFlicker 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes flameFlicker {
+    0% { transform: scale(1) rotate(-3deg); filter: drop-shadow(0 0 6px #ffbe0b); }
+    50% { transform: scale(1.15) rotate(3deg); filter: drop-shadow(0 0 10px #ff006e); }
+    100% { transform: scale(0.9) rotate(-1deg); filter: drop-shadow(0 0 5px #fb5607); }
+}
+
+.candle-flame.extinguished {
+    display: none;
+}
+
+.cake-hint-tag {
+    margin-top: 6px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--pink-primary);
+    border: 1px dashed var(--pink-soft);
+    animation: pulseHint 2s infinite;
+}
+
+@keyframes pulseHint {
+    0%, 100% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+/* Sequenced Birthday Wishes Cards */
+.bday-wishes-stack {
+    position: relative;
+    width: min(680px, 92vw);
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 20;
+}
+
+.wish-card {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1.5px solid #ffffff;
+    border-radius: 24px;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 8px 30px rgba(255, 105, 180, 0.12);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.wish-card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.wish-icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+}
+
+.wish-text {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-weight: 600;
+    color: #4a2840;
+    line-height: 1.45;
+}
+
+/* Party Animals Stage (Scene 3 bottom) */
+.party-animals-row {
+    position: relative;
+    width: min(850px, 95vw);
+    height: 100px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    margin-top: 10px;
+    z-index: 15;
+}
+
+/* ==========================================================================
+   Scene 4: Emotional Love Message
+   ========================================================================== */
+#scene-4 {
+    background: linear-gradient(180deg, #2b1b54 0%, #442268 40%, #683074 80%, #904878 100%);
+    color: #ffffff;
+}
+
+.twilight-stars {
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(1.5px 1.5px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 40px 70px, #ffd166, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 90px 40px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 160px 120px, #ffccd5, rgba(0,0,0,0));
+    background-size: 200px 200px;
+    opacity: 0.6;
+    animation: starsTwinkle 6s ease-in-out infinite alternate;
+}
+
+@keyframes starsTwinkle {
+    0% { opacity: 0.4; }
+    100% { opacity: 0.8; }
+}
+
+.fairy-lights-wire {
+    position: absolute;
+    top: 75px;
+    left: 0;
+    width: 100%;
+    height: 45px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='40' viewBox='0 0 100 40'%3E%3Cpath d='M0,10 Q25,35 50,10 T100,10' fill='none' stroke='rgba(255,255,255,0.3)' stroke-width='1.5'/%3E%3Ccircle cx='25' cy='23' r='4' fill='%23ffd166' filter='drop-shadow(0 0 5px %23ffd166)'/%3E%3Ccircle cx='75' cy='23' r='4' fill='%23ff9ebb' filter='drop-shadow(0 0 5px %23ff9ebb)'/%3E%3C/svg%3E") repeat-x;
+    opacity: 0.85;
+    z-index: 10;
+}
+
+.emotional-content-card {
+    position: relative;
+    z-index: 20;
+    max-width: 680px;
+    width: 92%;
+    background: rgba(36, 17, 65, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 182, 193, 0.35);
+    border-radius: 36px;
+    padding: 36px 30px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4),
+                0 0 40px rgba(255, 105, 180, 0.25);
+}
+
+.emotional-lines-container {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 24px;
+}
+
+.emotional-line {
+    font-size: clamp(1.1rem, 2.7vw, 1.45rem);
+    font-weight: 500;
+    color: #f7e6f9;
+    line-height: 1.5;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.emotional-line.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.emotional-line.highlight-confession {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+    font-weight: 800;
+    color: #ffffff;
+    background: linear-gradient(135deg, #ff4d6d, #ff758f, #ffd166);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 16px rgba(255, 77, 109, 0.7));
+    margin: 8px 0;
+    letter-spacing: 0.5px;
+    animation: heartThrob 1.8s ease-in-out infinite;
+}
+
+@keyframes heartThrob {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* Sleeping/Cuddling Animals in Scene 4 */
+.cozy-twilight-animals {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 80px;
+    margin: 10px auto 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+/* ==========================================================================
+   Scene 5: Grand Fireworks Finale
+   ========================================================================== */
+#scene-5 {
+    background: radial-gradient(ellipse at bottom, #2b1055 0%, #15093c 45%, #08031a 100%);
+    color: #ffffff;
+}
+
+.nebula-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 30%, rgba(255, 0, 128, 0.15) 0%, transparent 60%),
+                radial-gradient(circle at 20% 70%, rgba(114, 9, 183, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 60%, rgba(76, 201, 240, 0.15) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.finale-text-display {
+    position: relative;
+    z-index: 25;
+    text-align: center;
+    max-width: 820px;
+    width: 90%;
+    margin-bottom: 30px;
+}
+
+.finale-burst-text {
+    font-family: var(--font-heading);
+    font-size: clamp(2.2rem, 6vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.2;
+    background: linear-gradient(135deg, #ffffff 0%, #ffccd5 40%, #ffd166 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 25px rgba(255, 209, 102, 0.7))
+            drop-shadow(0 0 50px rgba(255, 77, 109, 0.6));
+    opacity: 0;
+    transform: scale(0.7);
+    transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+    margin-bottom: 12px;
+}
+
+.finale-burst-text.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.finale-subtitle-text {
+    font-family: var(--font-heading);
+    font-size: clamp(1.4rem, 4vw, 2.4rem);
+    font-weight: 700;
+    color: #ff85a1;
+    text-shadow: 0 0 15px rgba(255, 133, 161, 0.8);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+    margin-bottom: 16px;
+}
+
+.finale-subtitle-text.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.finale-blessing-text {
+    font-size: clamp(1.1rem, 2.6vw, 1.4rem);
+    font-weight: 500;
+    color: #f1e3d3;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+    line-height: 1.6;
+}
+
+.finale-blessing-text.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Silhouettes watching fireworks */
+.garden-silhouettes {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    pointer-events: none;
+    z-index: 18;
+}
+
+/* Final screen fadeout note */
+.made-with-love-tag {
+    position: absolute;
+    bottom: 30px;
+    z-index: 30;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 10px 24px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+    opacity: 0;
+    transition: opacity 1.5s ease;
+}
+
+.made-with-love-tag.show {
+    opacity: 1;
+}
+
+.finale-controls {
+    position: relative;
+    z-index: 35;
+    margin-top: 20px;
+    display: flex;
+    gap: 16px;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.finale-controls.show {
+    opacity: 1;
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+@media (max-width: 768px) {
+    .floating-header {
+        padding: 0 14px;
+        top: 10px;
+    }
+
+    .scene-tracker {
+        padding: 5px 12px;
+        gap: 6px;
+    }
+
+    .scene-dot {
+        width: 8px;
+        height: 8px;
+    }
+
+    .scene-dot.active {
+        width: 18px;
+    }
+
+    .scene-title-badge {
+        display: none;
+    }
+
+    .play-stage {
+        height: 52vh;
+        width: 95vw;
+        border-radius: 28px;
+    }
+
+    .char-priya-wrapper {
+        width: 180px;
+        height: 250px;
+    }
+
+    .actor-cat {
+        left: 2%;
+        width: 100px;
+    }
+
+    .actor-dog {
+        right: 2%;
+        width: 110px;
+    }
+
+    .actor-squirrel {
+        right: 20%;
+        width: 75px;
+    }
+
+    .actor-bunny {
+        left: 20%;
+        width: 80px;
+    }
+
+    .welcome-card {
+        padding: 28px 20px;
+        border-radius: 28px;
+    }
+
+    .cake-svg-container {
+        width: 180px;
+        height: 150px;
+    }
+
+    .emotional-content-card {
+        padding: 28px 18px;
+        border-radius: 28px;
+    }
+}
+
+</style>
+</head>
+<body>
+
+    <!-- Particle & Ambient Canvas Layers -->
+    <canvas id="ambient-canvas"></canvas>
+    <canvas id="fireworks-canvas"></canvas>
+
+    <!-- Floating Top Header & Controls -->
+    <header class="floating-header">
+        <div class="scene-tracker">
+            <span class="scene-dot" data-scene="1" title="Scene 1: Enchanted Garden"></span>
+            <span class="scene-dot" data-scene="2" title="Scene 2: Playful Moments"></span>
+            <span class="scene-dot" data-scene="3" title="Scene 3: Birthday Surprise"></span>
+            <span class="scene-dot" data-scene="4" title="Scene 4: From The Heart"></span>
+            <span class="scene-dot" data-scene="5" title="Scene 5: Fireworks Finale"></span>
+            <span class="scene-title-badge">Enchanted Garden 🌸</span>
+        </div>
+
+        <div class="controls-group">
+            <button id="music-toggle" class="control-btn" title="Toggle Fairytale Music">
+                <span class="music-icon">🎵</span>
+                <span class="music-waves">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+                <span class="music-label">Music</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="story-wrapper">
+
+        <!-- ===================================================================
+             SCENE 1: BEAUTIFUL NATURE AND ANIMALS
+             =================================================================== -->
+        <section id="scene-1" class="scene active">
+            <!-- Scenery Nature Background -->
+            <div class="scenery-background">
+                <!-- Warm Glowing Sun with Radiating Rays -->
+                <div class="sun-container">
+                    <div class="sun-rays"></div>
+                    <div class="sun-core"></div>
+                </div>
+
+                <!-- Rolling Hills -->
+                <div class="rolling-hills">
+                    <div class="hill hill-back"></div>
+                    <div class="hill hill-mid"></div>
+                    <div class="hill hill-front"></div>
+                </div>
+
+                <!-- Animated River Stream -->
+                <div class="river-stream">
+                    <div class="river-waves"></div>
+                </div>
+
+                <!-- Trees & Garden Flora SVG -->
+                <div class="nature-flora">
+                    <!-- Flowering Cherry Tree Left -->
+                    <svg width="240" height="280" viewBox="0 0 240 280" style="position: absolute; bottom: 40px; left: -20px; z-index: 1;">
+                        <defs>
+                            <linearGradient id="trunkGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#58311a"/>
+                                <stop offset="100%" stop-color="#804a29"/>
+                            </linearGradient>
+                            <radialGradient id="foliageGrad1" cx="40%" cy="40%" r="60%">
+                                <stop offset="0%" stop-color="#ffccd5"/>
+                                <stop offset="70%" stop-color="#ff758f"/>
+                                <stop offset="100%" stop-color="#e63946"/>
+                            </radialGradient>
+                        </defs>
+                        <!-- Trunk -->
+                        <path d="M120 280 C110 210, 80 180, 70 120 C60 60, 110 70, 120 40 C130 80, 160 110, 170 170 C175 220, 160 250, 150 280 Z" fill="url(#trunkGrad)"/>
+                        <!-- Branches -->
+                        <path d="M85 140 Q40 110, 30 90" stroke="#58311a" stroke-width="10" stroke-linecap="round" fill="none"/>
+                        <path d="M145 130 Q190 100, 210 80" stroke="#58311a" stroke-width="9" stroke-linecap="round" fill="none"/>
+                        <!-- Blossom Clusters -->
+                        <circle cx="50" cy="80" r="45" fill="url(#foliageGrad1)" opacity="0.92"/>
+                        <circle cx="110" cy="50" r="55" fill="url(#foliageGrad1)" opacity="0.95"/>
+                        <circle cx="170" cy="70" r="50" fill="url(#foliageGrad1)" opacity="0.9"/>
+                        <circle cx="130" cy="100" r="42" fill="url(#foliageGrad1)" opacity="0.88"/>
+                    </svg>
+
+                    <!-- Nature Tree Right -->
+                    <svg width="220" height="260" viewBox="0 0 220 260" style="position: absolute; bottom: 50px; right: -25px; z-index: 1;">
+                        <defs>
+                            <radialGradient id="greenTreeGrad" cx="35%" cy="35%" r="65%">
+                                <stop offset="0%" stop-color="#b7e4c7"/>
+                                <stop offset="70%" stop-color="#52b788"/>
+                                <stop offset="100%" stop-color="#2d6a4f"/>
+                            </radialGradient>
+                        </defs>
+                        <path d="M110 260 C100 200, 85 160, 75 110 C80 50, 130 50, 135 110 C130 170, 125 210, 120 260 Z" fill="url(#trunkGrad)"/>
+                        <circle cx="70" cy="100" r="48" fill="url(#greenTreeGrad)" opacity="0.9"/>
+                        <circle cx="140" cy="90" r="52" fill="url(#greenTreeGrad)" opacity="0.94"/>
+                        <circle cx="105" cy="55" r="50" fill="url(#greenTreeGrad)" opacity="0.96"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Free-Roaming Garden Creatures in Scene 1 -->
+            <div class="garden-creatures">
+                <!-- Golden Puppy Lounging -->
+                <div class="garden-creature" style="bottom: 70px; right: 18%;" title="Happy puppy enjoying the warm sun">
+                    <svg width="110" height="90" viewBox="0 0 110 90">
+                        <defs>
+                            <linearGradient id="dogFur" x1="0" y1="0" x2="0" y2="100%">
+                                <stop offset="0%" stop-color="#fed9b7"/>
+                                <stop offset="100%" stop-color="#f07167"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- Wagging Tail -->
+                        <path d="M20 55 C10 40, 5 30, 8 20 C12 25, 18 35, 25 50" fill="none" stroke="#f07167" stroke-width="8" stroke-linecap="round">
+                            <animateTransform attributeName="transform" type="rotate" values="-15 25 55; 20 25 55; -15 25 55" dur="0.8s" repeatCount="indefinite"/>
+                        </path>
+                        <!-- Body -->
+                        <ellipse cx="50" cy="60" rx="32" ry="22" fill="url(#dogFur)"/>
+                        <!-- Head -->
+                        <circle cx="78" cy="45" r="22" fill="url(#dogFur)"/>
+                        <!-- Floppy Ear -->
+                        <ellipse cx="68" cy="45" rx="7" ry="14" fill="#cf4307" transform="rotate(-15 68 45)"/>
+                        <!-- Snout -->
+                        <ellipse cx="90" cy="50" rx="10" ry="8" fill="#ffe5d9"/>
+                        <circle cx="94" cy="47" r="3.5" fill="#2b1a17"/>
+                        <!-- Happy closed eyes -->
+                        <path d="M74 38 Q78 34, 82 38" fill="none" stroke="#2b1a17" stroke-width="2.5" stroke-linecap="round"/>
+                        <!-- Paws -->
+                        <ellipse cx="65" cy="78" rx="8" ry="6" fill="#f07167"/>
+                        <ellipse cx="40" cy="78" rx="9" ry="6" fill="#f07167"/>
+                    </svg>
+                </div>
+
+                <!-- Cute Calico Cat Sitting on grass -->
+                <div class="garden-creature" style="bottom: 75px; left: 16%;" title="Cute kitty napping">
+                    <svg width="95" height="85" viewBox="0 0 95 85">
+                        <ellipse cx="45" cy="55" rx="26" ry="19" fill="#ffedd8"/>
+                        <!-- Patches -->
+                        <path d="M35 40 Q45 45, 40 60 Q30 55, 35 40 Z" fill="#e07a5f"/>
+                        <!-- Head -->
+                        <circle cx="68" cy="38" r="18" fill="#ffedd8"/>
+                        <path d="M56 26 L62 14 L70 24 Z" fill="#e07a5f"/>
+                        <path d="M72 23 L80 14 L84 26 Z" fill="#ffedd8"/>
+                        <!-- Face -->
+                        <circle cx="63" cy="38" r="2.5" fill="#2b1a17"/>
+                        <circle cx="75" cy="38" r="2.5" fill="#2b1a17"/>
+                        <polygon points="68,43 70,41 72,43" fill="#ff758f"/>
+                        <!-- Tail -->
+                        <path d="M20 58 Q8 50, 15 35" fill="none" stroke="#e07a5f" stroke-width="6" stroke-linecap="round">
+                            <animateTransform attributeName="transform" type="rotate" values="-5 20 58; 10 20 58; -5 20 58" dur="1.8s" repeatCount="indefinite"/>
+                        </path>
+                    </svg>
+                </div>
+
+                <!-- Sweet Bunny Hopping -->
+                <div class="garden-creature" style="bottom: 85px; left: 32%;" title="Little bunny twitching its nose">
+                    <svg width="70" height="70" viewBox="0 0 70 70">
+                        <!-- Ears -->
+                        <ellipse cx="32" cy="18" rx="5" ry="14" fill="#ffffff" stroke="#ffccd5" stroke-width="2"/>
+                        <ellipse cx="42" cy="17" rx="5" ry="14" fill="#ffffff" stroke="#ffccd5" stroke-width="2"/>
+                        <!-- Head & Body -->
+                        <circle cx="37" cy="35" r="14" fill="#ffffff"/>
+                        <ellipse cx="37" cy="52" rx="16" ry="13" fill="#ffffff"/>
+                        <circle cx="33" cy="34" r="2" fill="#ff5e7e"/>
+                        <circle cx="41" cy="34" r="2" fill="#ff5e7e"/>
+                        <!-- Nose -->
+                        <circle cx="37" cy="39" r="1.5" fill="#ff758f"/>
+                        <circle cx="53" cy="54" r="5" fill="#ffffff"/>
+                    </svg>
+                </div>
+
+                <!-- Chirping Bluebird -->
+                <div class="garden-creature" style="top: 26%; left: 12%;" title="Singing bluebird">
+                    <svg width="60" height="50" viewBox="0 0 60 50">
+                        <ellipse cx="28" cy="28" rx="16" ry="12" fill="#48cae4"/>
+                        <circle cx="38" cy="20" r="10" fill="#90e0ef"/>
+                        <!-- Beak -->
+                        <polygon points="48,19 55,21 48,23" fill="#ffb703"/>
+                        <circle cx="41" cy="18" r="2" fill="#1b2a4a"/>
+                        <!-- Wing -->
+                        <ellipse cx="24" cy="27" rx="9" ry="6" fill="#0077b6" transform="rotate(-15 24 27)"/>
+                        <!-- Music Notes -->
+                        <text x="44" y="10" font-size="14" fill="#ff4d6d">♪</text>
+                    </svg>
+                </div>
+
+                <!-- Fluttering Butterfly -->
+                <div class="garden-creature flying-butterfly bfly-1">
+                    <svg width="40" height="40" viewBox="0 0 40 40">
+                        <path d="M20 20 C10 5, 0 12, 10 24 C1 28, 5 38, 20 25 C35 38, 39 28, 30 24 C40 12, 30 5, 20 20 Z" fill="#ff70a6" opacity="0.9"/>
+                        <circle cx="20" cy="21" r="3" fill="#ffd166"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Welcome Glassmorphism Card -->
+            <div class="welcome-card">
+                <div class="welcome-badge">
+                    <span>✨</span> A Fairytale Just For You <span>✨</span>
+                </div>
+                <h1 class="welcome-title">
+                    Heyyy <span class="priya-highlight">Priyaaa!</span> 🥹❤️
+                </h1>
+                <p class="welcome-sub">
+                    Come, I have something special for you… 🌸
+                </p>
+                <button id="btn-start-surprise" class="btn-magic-primary">
+                    <span>Start Your Surprise ❤️</span>
+                    <span class="btn-arrow">✨</span>
+                </button>
+            </div>
+        </section>
+
+
+        <!-- ===================================================================
+             SCENE 2: A GIRL PLAYING WITH ANIMALS
+             =================================================================== -->
+        <section id="scene-2" class="scene">
+            <div class="scene-header-pill">
+                <h2>A Pure & Beautiful Soul 🌸🐾</h2>
+                <p>Surrounded by love, innocence, and playful friends</p>
+            </div>
+
+            <!-- Stage Arena: Priya with cute cats, puppies, squirrels, bunnies -->
+            <div class="play-stage">
+                <!-- Flying Butterflies -->
+                <div class="flying-butterfly bfly-1">
+                    <svg width="36" height="36" viewBox="0 0 36 36">
+                        <path d="M18 18 C8 4, 0 10, 8 20 C0 24, 4 32, 18 22 C32 32, 36 24, 28 20 C36 10, 28 4, 18 18 Z" fill="#ff99c8"/>
+                    </svg>
+                </div>
+                <div class="flying-butterfly bfly-2">
+                    <svg width="34" height="34" viewBox="0 0 36 36">
+                        <path d="M18 18 C8 4, 0 10, 8 20 C0 24, 4 32, 18 22 C32 32, 36 24, 28 20 C36 10, 28 4, 18 18 Z" fill="#fcf6bd"/>
+                    </svg>
+                </div>
+
+                <!-- Cute Kitten Playing with Rolling Yarn -->
+                <div id="actor-cat" class="animal-actor actor-cat" title="Click kitty to play with yarn!">
+                    <svg width="120" height="110" viewBox="0 0 120 110">
+                        <defs>
+                            <linearGradient id="kittyFur" x1="0" y1="0" x2="0" y2="100%">
+                                <stop offset="0%" stop-color="#fff1e6"/>
+                                <stop offset="100%" stop-color="#eddcd2"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- Playful pouncing body -->
+                        <ellipse cx="55" cy="70" rx="30" ry="22" fill="url(#kittyFur)"/>
+                        <!-- Calico ginger patches -->
+                        <path d="M65 52 C75 50, 85 65, 78 80 C68 85, 60 70, 65 52 Z" fill="#f4a261"/>
+                        <!-- Head -->
+                        <circle cx="85" cy="50" r="24" fill="url(#kittyFur)"/>
+                        <!-- Ears with pink inner -->
+                        <polygon points="70,35 78,16 88,32" fill="url(#kittyFur)"/>
+                        <polygon points="74,32 79,20 85,30" fill="#ffb4a2"/>
+                        <polygon points="88,32 98,16 104,35" fill="url(#kittyFur)"/>
+                        <polygon points="91,30 97,20 101,32" fill="#ffb4a2"/>
+                        <!-- Big Anime Eyes -->
+                        <ellipse cx="80" cy="48" rx="4" ry="6" fill="#264653"/>
+                        <circle cx="79" cy="46" r="1.5" fill="#ffffff"/>
+                        <ellipse cx="94" cy="48" rx="4" ry="6" fill="#264653"/>
+                        <circle cx="93" cy="46" r="1.5" fill="#ffffff"/>
+                        <!-- Little Pink Nose -->
+                        <polygon points="86,55 88,57 90,55" fill="#e76f51"/>
+                        <!-- Happy Paw reaching out -->
+                        <ellipse cx="102" cy="72" rx="10" ry="7" fill="url(#kittyFur)" transform="rotate(-20 102 72)"/>
+                        <!-- Wagging Upward Tail -->
+                        <path d="M25 72 Q10 60, 18 40" fill="none" stroke="#f4a261" stroke-width="7" stroke-linecap="round"/>
+                    </svg>
+                </div>
+
+                <!-- Ball of pink yarn rolling between cat and Priya -->
+                <div id="yarn-ball" class="yarn-ball" title="Ball of yarn">
+                    <svg width="42" height="42" viewBox="0 0 42 42">
+                        <circle cx="21" cy="21" r="18" fill="#ff4d6d"/>
+                        <path d="M8 15 Q21 8, 34 16" stroke="#ffccd5" stroke-width="2.5" fill="none"/>
+                        <path d="M12 28 Q21 34, 30 26" stroke="#ffccd5" stroke-width="2.5" fill="none"/>
+                        <path d="M15 8 Q28 21, 14 34" stroke="#ff758f" stroke-width="2.5" fill="none"/>
+                        <path d="M30 30 Q38 35, 42 32" stroke="#ff4d6d" stroke-width="2" fill="none"/>
+                    </svg>
+                </div>
+
+                <!-- Little Fluffy Bunny -->
+                <div id="actor-bunny" class="animal-actor actor-bunny" title="Click bunny!">
+                    <svg width="90" height="90" viewBox="0 0 90 90">
+                        <ellipse cx="40" cy="62" rx="22" ry="18" fill="#ffffff" filter="drop-shadow(0 4px 6px rgba(0,0,0,0.06))"/>
+                        <circle cx="48" cy="40" r="16" fill="#ffffff"/>
+                        <!-- Floppy bunny ears -->
+                        <path d="M40 28 C36 12, 45 5, 48 24 Z" fill="#ffffff" stroke="#ffb4a2" stroke-width="1.5"/>
+                        <path d="M48 26 C54 10, 62 8, 56 25 Z" fill="#ffffff" stroke="#ffb4a2" stroke-width="1.5"/>
+                        <!-- Eyes & blush -->
+                        <circle cx="44" cy="38" r="2.5" fill="#6d597a"/>
+                        <circle cx="54" cy="38" r="2.5" fill="#6d597a"/>
+                        <circle cx="40" cy="43" r="3" fill="#ffb4a2" opacity="0.6"/>
+                        <circle cx="58" cy="43" r="3" fill="#ffb4a2" opacity="0.6"/>
+                        <circle cx="49" cy="43" r="1.5" fill="#e56b6f"/>
+                    </svg>
+                </div>
+
+                <!-- Priya Verma (Chibi Animated Character in Center) -->
+                <div id="char-priya" class="char-priya-wrapper" title="Click Priya to make her smile!">
+                    <div class="dialogue-bubble">Hehehe! So cute! 🥹💖</div>
+                    <svg width="220" height="280" viewBox="0 0 220 280">
+                        <defs>
+                            <linearGradient id="hairGrad" x1="0" y1="0" x2="0" y2="100%">
+                                <stop offset="0%" stop-color="#4a2810"/>
+                                <stop offset="50%" stop-color="#603813"/>
+                                <stop offset="100%" stop-color="#3d1e06"/>
+                            </linearGradient>
+                            <linearGradient id="skinGrad" x1="0" y1="0" x2="0" y2="100%">
+                                <stop offset="0%" stop-color="#fff0ea"/>
+                                <stop offset="100%" stop-color="#ffe4dc"/>
+                            </linearGradient>
+                            <linearGradient id="dressGrad" x1="0" y1="0" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#ff758f"/>
+                                <stop offset="50%" stop-color="#ff8fa3"/>
+                                <stop offset="100%" stop-color="#ffb3c1"/>
+                            </linearGradient>
+                        </defs>
+
+                        <!-- Long Flowing Hair Behind -->
+                        <path d="M60 90 C40 130, 45 200, 65 240 C75 210, 75 140, 75 90 Z" fill="url(#hairGrad)"/>
+                        <path d="M160 90 C180 130, 175 200, 155 240 C145 210, 145 140, 145 90 Z" fill="url(#hairGrad)"/>
+
+                        <!-- Dress Body / Sitting Pose -->
+                        <path d="M78 160 C65 210, 50 250, 40 270 L180 270 C170 250, 155 210, 142 160 Z" fill="url(#dressGrad)"/>
+                        <!-- White Lace Collar -->
+                        <path d="M88 160 Q110 178, 132 160 Q110 168, 88 160 Z" fill="#ffffff"/>
+                        <!-- Cute Dress Bow Ribbon -->
+                        <circle cx="110" cy="172" r="5" fill="#ffffff"/>
+                        <path d="M105 172 Q95 165, 102 180 Z" fill="#ffffff"/>
+                        <path d="M115 172 Q125 165, 118 180 Z" fill="#ffffff"/>
+
+                        <!-- Arms petting forward -->
+                        <path d="M85 170 Q60 190, 45 215" stroke="url(#skinGrad)" stroke-width="12" stroke-linecap="round" fill="none"/>
+                        <path d="M135 170 Q160 190, 175 215" stroke="url(#skinGrad)" stroke-width="12" stroke-linecap="round" fill="none"/>
+                        <!-- Hands -->
+                        <circle cx="45" cy="215" r="7" fill="url(#skinGrad)"/>
+                        <circle cx="175" cy="215" r="7" fill="url(#skinGrad)"/>
+
+                        <!-- Cute Head -->
+                        <ellipse cx="110" cy="105" rx="44" ry="42" fill="url(#skinGrad)"/>
+
+                        <!-- Rosy Blushing Cheeks -->
+                        <ellipse cx="82" cy="116" rx="9" ry="5.5" fill="#ff758f" opacity="0.6"/>
+                        <ellipse cx="138" cy="116" rx="9" ry="5.5" fill="#ff758f" opacity="0.6"/>
+
+                        <!-- Big Sparkling Anime Eyes -->
+                        <g id="priya-eyes">
+                            <!-- Left Eye -->
+                            <ellipse cx="90" cy="104" rx="8" ry="11" fill="#2d1e2f"/>
+                            <ellipse cx="88" cy="100" rx="3.5" ry="5" fill="#ffffff"/>
+                            <circle cx="93" cy="108" r="2" fill="#ffffff"/>
+                            <path d="M82 92 Q90 88, 98 92" stroke="#2d1e2f" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                            <!-- Right Eye -->
+                            <ellipse cx="130" cy="104" rx="8" ry="11" fill="#2d1e2f"/>
+                            <ellipse cx="128" cy="100" rx="3.5" ry="5" fill="#ffffff"/>
+                            <circle cx="133" cy="108" r="2" fill="#ffffff"/>
+                            <path d="M122 92 Q130 88, 138 92" stroke="#2d1e2f" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                        </g>
+
+                        <!-- Sweet Warm Smile -->
+                        <path d="M102 122 Q110 131, 118 122" stroke="#d6336c" stroke-width="3" stroke-linecap="round" fill="#d6336c"/>
+
+                        <!-- Front Hair Bangs & Waves -->
+                        <path d="M66 95 C66 60, 154 60, 154 95 C140 75, 125 78, 110 74 C95 78, 80 75, 66 95 Z" fill="url(#hairGrad)"/>
+                        <path d="M66 95 C60 120, 68 145, 74 150 C76 130, 72 110, 74 95 Z" fill="url(#hairGrad)"/>
+                        <path d="M154 95 C160 120, 152 145, 146 150 C144 130, 148 110, 146 95 Z" fill="url(#hairGrad)"/>
+
+                        <!-- Floral Hair Clip Accessory -->
+                        <circle cx="70" cy="78" r="6" fill="#ffd166"/>
+                        <circle cx="65" cy="74" r="5" fill="#ff758f"/>
+                        <circle cx="75" cy="74" r="5" fill="#ff758f"/>
+                        <circle cx="65" cy="82" r="5" fill="#ff758f"/>
+                        <circle cx="75" cy="82" r="5" fill="#ff758f"/>
+                    </svg>
+                </div>
+
+                <!-- Cute Squirrel Collecting Nuts -->
+                <div id="actor-squirrel" class="animal-actor actor-squirrel" title="Click squirrel!">
+                    <svg width="85" height="95" viewBox="0 0 85 95">
+                        <defs>
+                            <linearGradient id="sqFur" x1="0" y1="0" x2="0" y2="100%">
+                                <stop offset="0%" stop-color="#d4a373"/>
+                                <stop offset="100%" stop-color="#bc6c25"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- Big Bushy Curled Tail -->
+                        <path d="M25 80 C-5 70, -8 30, 18 18 C35 8, 45 25, 35 45 C30 55, 30 70, 25 80 Z" fill="url(#sqFur)"/>
+                        <!-- Body -->
+                        <ellipse cx="48" cy="65" rx="16" ry="20" fill="url(#sqFur)"/>
+                        <ellipse cx="52" cy="67" rx="9" ry="14" fill="#faedcd"/>
+                        <!-- Head -->
+                        <circle cx="56" cy="42" r="14" fill="url(#sqFur)"/>
+                        <polygon points="56,30 60,18 64,29" fill="url(#sqFur)"/>
+                        <!-- Eyes & nose -->
+                        <circle cx="62" cy="40" r="2.5" fill="#2b1a17"/>
+                        <circle cx="68" cy="44" r="1.5" fill="#2b1a17"/>
+                        <!-- Little Golden Acorn in paws -->
+                        <ellipse cx="64" cy="58" rx="5" ry="6" fill="#8d5b4c"/>
+                        <path d="M60 54 Q64 51, 68 54 Z" fill="#582f0e"/>
+                    </svg>
+                </div>
+
+                <!-- Jumping Happy Golden Puppy Wagging Tail -->
+                <div id="actor-dog" class="animal-actor actor-dog" title="Click puppy to make him jump!">
+                    <svg width="130" height="120" viewBox="0 0 130 120">
+                        <defs>
+                            <linearGradient id="pupGrad" x1="0" y1="0" x2="0" y2="100%">
+                                <stop offset="0%" stop-color="#ffb703"/>
+                                <stop offset="100%" stop-color="#fb8500"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- Wagging Tail -->
+                        <path d="M98 75 C115 65, 125 50, 120 35" fill="none" stroke="#fb8500" stroke-width="8" stroke-linecap="round">
+                            <animateTransform attributeName="transform" type="rotate" values="10 98 75; -20 98 75; 10 98 75" dur="0.4s" repeatCount="indefinite"/>
+                        </path>
+                        <!-- Leaping Body -->
+                        <ellipse cx="70" cy="75" rx="30" ry="22" fill="url(#pupGrad)" transform="rotate(-15 70 75)"/>
+                        <!-- Paws jumping forward -->
+                        <ellipse cx="40" cy="65" rx="8" ry="12" fill="url(#pupGrad)" transform="rotate(-40 40 65)"/>
+                        <ellipse cx="50" cy="80" rx="7" ry="11" fill="url(#pupGrad)" transform="rotate(-20 50 80)"/>
+                        <!-- Head -->
+                        <circle cx="42" cy="46" r="22" fill="url(#pupGrad)"/>
+                        <!-- Big Floppy Ear -->
+                        <path d="M48 35 C62 40, 65 65, 52 68 Z" fill="#d97706"/>
+                        <!-- Snout & Happy Tongue -->
+                        <ellipse cx="28" cy="52" rx="12" ry="9" fill="#fff3b0"/>
+                        <circle cx="23" cy="48" r="3.5" fill="#2b1a17"/>
+                        <!-- Tongue -->
+                        <path d="M26 56 C26 64, 34 64, 34 56 Z" fill="#ff4d6d"/>
+                        <!-- Happy sparkling eyes -->
+                        <path d="M34 40 Q39 36, 44 40" stroke="#2b1a17" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Navigation to Scene 3 -->
+            <div class="scene-nav-actions">
+                <button class="btn-secondary-pill" data-prev-scene>
+                    <span>← Back</span>
+                </button>
+                <button class="btn-magic-primary" data-next-scene>
+                    <span>A Surprise is Waiting... 🎈✨</span>
+                </button>
+            </div>
+        </section>
+
+
+        <!-- ===================================================================
+             SCENE 3: SURPRISE BIRTHDAY CELEBRATION
+             =================================================================== -->
+        <section id="scene-3" class="scene">
+            <!-- Floating Colorful Birthday Balloons -->
+            <div class="scene-balloons-container">
+                <div class="scene-balloon b-1" style="left: 6%; animation-delay: 0s;">🎈</div>
+                <div class="scene-balloon b-2" style="left: 18%; animation-delay: 2.1s;">🎈</div>
+                <div class="scene-balloon b-3" style="left: 32%; animation-delay: 0.8s;">🎈</div>
+                <div class="scene-balloon b-4" style="left: 68%; animation-delay: 2.7s;">🎈</div>
+                <div class="scene-balloon b-5" style="left: 82%; animation-delay: 1.2s;">🎈</div>
+                <div class="scene-balloon b-6" style="left: 92%; animation-delay: 3.2s;">🎈</div>
+            </div>
+
+            <!-- Animated Main Title -->
+            <div class="birthday-banner-container">
+                <h1 class="bday-main-title">
+                    HAPPIEST BIRTHDAY, PRIYA VERMAAA! ❤️🎂
+                </h1>
+            </div>
+
+            <!-- Interactive 3-Tier Birthday Cake with Glowing Candles -->
+            <div class="cake-celebration-box">
+                <div id="birthday-cake" class="cake-svg-container" title="Click cake to blow out candles!">
+                    <svg width="220" height="180" viewBox="0 0 220 180">
+                        <defs>
+                            <linearGradient id="cakePlateGrad" x1="0" y1="0" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#ffd166"/>
+                                <stop offset="100%" stop-color="#ffb703"/>
+                            </linearGradient>
+                            <linearGradient id="tier1Grad" x1="0" y1="0" x2="0" y2="100%">
+                                <stop offset="0%" stop-color="#f8edeb"/>
+                                <stop offset="100%" stop-color="#fcd5ce"/>
+                            </linearGradient>
+                            <linearGradient id="tier2Grad" x1="0" y1="0" x2="0" y2="100%">
+                                <stop offset="0%" stop-color="#ffb5a7"/>
+                                <stop offset="100%" stop-color="#fec5bb"/>
+                            </linearGradient>
+                            <linearGradient id="tier3Grad" x1="0" y1="0" x2="0" y2="100%">
+                                <stop offset="0%" stop-color="#ffccd5"/>
+                                <stop offset="100%" stop-color="#ff758f"/>
+                            </linearGradient>
+                        </defs>
+
+                        <!-- Cake Platter Stand -->
+                        <ellipse cx="110" cy="168" rx="90" ry="10" fill="url(#cakePlateGrad)"/>
+                        <path d="M95 168 L125 168 L118 178 L102 178 Z" fill="#d4a373"/>
+
+                        <!-- Tier 1 (Bottom Tier) -->
+                        <rect x="40" y="115" width="140" height="48" rx="10" fill="url(#tier1Grad)"/>
+                        <!-- Frosting Swirls -->
+                        <path d="M40 125 Q50 135, 60 125 T80 125 T100 125 T120 125 T140 125 T160 125 T180 125" fill="none" stroke="#ffffff" stroke-width="6"/>
+
+                        <!-- Tier 2 (Middle Tier) -->
+                        <rect x="60" y="75" width="100" height="42" rx="8" fill="url(#tier2Grad)"/>
+                        <path d="M60 85 Q70 93, 80 85 T100 85 T120 85 T140 85 T160 85" fill="none" stroke="#ffffff" stroke-width="5"/>
+
+                        <!-- Tier 3 (Top Tier) -->
+                        <rect x="80" y="45" width="60" height="32" rx="6" fill="url(#tier3Grad)"/>
+                        <path d="M80 52 Q90 58, 100 52 T120 52 T140 52" fill="none" stroke="#ffffff" stroke-width="4"/>
+
+                        <!-- Fresh Strawberry Toppings -->
+                        <circle cx="86" cy="43" r="5" fill="#e63946"/>
+                        <circle cx="110" cy="43" r="5.5" fill="#e63946"/>
+                        <circle cx="134" cy="43" r="5" fill="#e63946"/>
+
+                        <!-- 3 Glowing Candles -->
+                        <!-- Left Candle -->
+                        <rect x="92" y="24" width="5" height="20" fill="#ffd166" rx="2"/>
+                        <path class="candle-flame" d="M94.5 14 C91 19, 91 23, 94.5 24 C98 23, 98 19, 94.5 14 Z" fill="#ffbe0b"/>
+
+                        <!-- Center Candle (Taller) -->
+                        <rect x="107.5" y="18" width="5" height="26" fill="#ff758f" rx="2"/>
+                        <path class="candle-flame" d="M110 8 C106 13, 106 17, 110 18 C114 17, 114 13, 110 8 Z" fill="#ff006e"/>
+
+                        <!-- Right Candle -->
+                        <rect x="123" y="24" width="5" height="20" fill="#a8dadc" rx="2"/>
+                        <path class="candle-flame" d="M125.5 14 C122 19, 122 23, 125.5 24 C129 23, 129 19, 125.5 14 Z" fill="#ffbe0b"/>
+                    </svg>
+                </div>
+                <div id="cake-hint" class="cake-hint-tag">
+                    🎂 Make a wish & tap the cake to blow out candles! 🕯️
+                </div>
+            </div>
+
+            <!-- Sequenced Birthday Messages from Prompt -->
+            <div class="bday-wishes-stack">
+                <div class="wish-card">
+                    <span class="wish-icon">🥹❤️</span>
+                    <p class="wish-text">“Yrr Priya, happiest birthday to youuu! 🥹❤️”</p>
+                </div>
+                <div class="wish-card">
+                    <span class="wish-icon">🧿💖</span>
+                    <p class="wish-text">“Hamesha khush reh, hasti reh aur teri saari wishes poori ho jaayein. 🧿💖”</p>
+                </div>
+                <div class="wish-card">
+                    <span class="wish-icon">🫶🏻❤️</span>
+                    <p class="wish-text">“Tu sach mein bahut special hai yrr, aur tujhse baat karke ek alag hi happiness milti hai. 🫶🏻❤️”</p>
+                </div>
+                <div class="wish-card">
+                    <span class="wish-icon">🥹💗</span>
+                    <p class="wish-text">“Teri smile, teri baatein, tera sab kuch bahut pyaara hai yrr. 🥹💗”</p>
+                </div>
+            </div>
+
+            <!-- Animals Celebrating with Party Hats -->
+            <div class="party-animals-row">
+                <!-- Cat in Party Hat -->
+                <svg width="65" height="60" viewBox="0 0 65 60">
+                    <circle cx="32" cy="38" r="18" fill="#ffedd8"/>
+                    <!-- Party Hat -->
+                    <polygon points="24,25 32,4 40,25" fill="#ff006e"/>
+                    <circle cx="32" cy="4" r="3" fill="#ffd166"/>
+                    <circle cx="27" cy="38" r="2" fill="#2b1a17"/>
+                    <circle cx="37" cy="38" r="2" fill="#2b1a17"/>
+                    <path d="M30 43 Q32 46, 34 43" stroke="#ff758f" stroke-width="2" fill="none"/>
+                </svg>
+
+                <!-- Puppy with Party Blower -->
+                <svg width="70" height="65" viewBox="0 0 70 65">
+                    <circle cx="35" cy="40" r="20" fill="#fed9b7"/>
+                    <!-- Party Hat -->
+                    <polygon points="26,26 35,5 44,26" fill="#70e000"/>
+                    <circle cx="35" cy="5" r="3" fill="#ff4d6d"/>
+                    <path d="M29 38 Q33 34, 37 38" stroke="#2b1a17" stroke-width="2.5" fill="none"/>
+                    <!-- Party Blower roll -->
+                    <path d="M35 46 Q45 44, 55 42" stroke="#ffbe0b" stroke-width="4" stroke-linecap="round" fill="none"/>
+                </svg>
+
+                <!-- Squirrel Holding Gift Box -->
+                <svg width="60" height="60" viewBox="0 0 60 60">
+                    <circle cx="30" cy="30" r="16" fill="#d4a373"/>
+                    <polygon points="23,18 30,3 37,18" fill="#3a86ff"/>
+                    <circle cx="30" cy="3" r="2.5" fill="#ffffff"/>
+                    <!-- Little Gift Box -->
+                    <rect x="20" y="38" width="20" height="18" fill="#ff4d6d" rx="3"/>
+                    <rect x="28" y="38" width="4" height="18" fill="#ffd166"/>
+                    <rect x="20" y="45" width="20" height="4" fill="#ffd166"/>
+                </svg>
+            </div>
+
+            <!-- Navigation -->
+            <div class="scene-nav-actions">
+                <button class="btn-secondary-pill" data-prev-scene>
+                    <span>← Previous</span>
+                </button>
+                <button class="btn-magic-primary" data-next-scene>
+                    <span>Something from the heart... 💌 →</span>
+                </button>
+            </div>
+        </section>
+
+
+        <!-- ===================================================================
+             SCENE 4: EMOTIONAL LOVE MESSAGE
+             =================================================================== -->
+        <section id="scene-4" class="scene">
+            <div class="twilight-stars"></div>
+            <div class="fairy-lights-wire"></div>
+
+            <!-- Emotional Glass Card -->
+            <div class="emotional-content-card">
+                <div class="emotional-lines-container">
+                    <p class="emotional-line">
+                        “And yrr ek baat bolni thi jo kaafi time se kehna chahta tha… 👉🏻👈🏻🥹”
+                    </p>
+                    <p class="emotional-line">
+                        “Pata nahi tujhe ye sunkar kaisa lagega, but jo bhi hai dil se hai. ❤️”
+                    </p>
+                    <h2 class="emotional-line highlight-confession">
+                        “I LOVE YOU YAAR PRIYA 😭❤️🫶🏻”
+                    </h2>
+                    <p class="emotional-line">
+                        “Tu mere liye bahut special hai, and I just wanted you to know that. 🫂💗”
+                    </p>
+                </div>
+
+                <!-- Peaceful Cuddling Animals in Twilight -->
+                <div class="cozy-twilight-animals">
+                    <svg width="180" height="60" viewBox="0 0 180 60">
+                        <!-- Sleeping puppy -->
+                        <ellipse cx="60" cy="40" rx="25" ry="15" fill="#f4a261"/>
+                        <circle cx="80" cy="34" r="14" fill="#f4a261"/>
+                        <path d="M76 32 Q80 30, 84 32" stroke="#264653" stroke-width="2" stroke-linecap="round" fill="none"/>
+                        <!-- Sleeping kitten curled against pup -->
+                        <ellipse cx="115" cy="42" rx="18" ry="12" fill="#e9c46a"/>
+                        <circle cx="102" cy="36" r="11" fill="#e9c46a"/>
+                        <path d="M98 34 Q102 32, 106 34" stroke="#264653" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+                        <text x="88" y="20" font-size="12" fill="#ffccd5">z Z z</text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="scene-nav-actions">
+                <button class="btn-secondary-pill" data-prev-scene>
+                    <span>← Previous</span>
+                </button>
+                <button class="btn-magic-primary" data-next-scene>
+                    <span>Look up at the stars... 🌌✨</span>
+                </button>
+            </div>
+        </section>
+
+
+        <!-- ===================================================================
+             SCENE 5: GRAND FIREWORKS FINALE
+             =================================================================== -->
+        <section id="scene-5" class="scene">
+            <div class="nebula-glow"></div>
+
+            <!-- Sky Firework Glowing Typography -->
+            <div class="finale-text-display">
+                <h1 id="finale-burst" class="finale-burst-text">
+                    LOVE U PRIYAAA ❤️🥹
+                </h1>
+                <h2 id="finale-sub" class="finale-subtitle-text">
+                    HAPPY BIRTHDAY, PRIYA VERMA! 🎂❤️🧿
+                </h2>
+                <p id="finale-blessing" class="finale-blessing-text">
+                    “Stay happy, keep smiling, and always be the beautiful person you are. 🫶🏻💗✨”
+                </p>
+            </div>
+
+            <!-- Garden Hill Silhouettes Gazing Up At Fireworks -->
+            <div class="garden-silhouettes">
+                <svg width="100%" height="160" viewBox="0 0 1000 160" preserveAspectRatio="none">
+                    <defs>
+                        <linearGradient id="silhouetteGrad" x1="0" y1="0" x2="0" y2="100%">
+                            <stop offset="0%" stop-color="#0a0520"/>
+                            <stop offset="100%" stop-color="#04020a"/>
+                        </linearGradient>
+                    </defs>
+                    <!-- Hill crest -->
+                    <path d="M0 160 Q250 80 500 95 T1000 160 Z" fill="url(#silhouetteGrad)"/>
+
+                    <!-- Priya Silhouette in Center gazing up -->
+                    <circle cx="500" cy="62" r="16" fill="#04020a"/>
+                    <!-- Ponytail / Hair flow -->
+                    <path d="M486 64 C478 72, 475 88, 480 100" stroke="#04020a" stroke-width="8" stroke-linecap="round" fill="none"/>
+                    <!-- Body sitting -->
+                    <path d="M485 78 C485 105, 470 125, 465 135 L535 135 C530 125, 515 105, 515 78 Z" fill="#04020a"/>
+
+                    <!-- Dog silhouette sitting beside her -->
+                    <circle cx="545" cy="98" r="11" fill="#04020a"/>
+                    <ellipse cx="555" cy="118" rx="14" ry="12" fill="#04020a"/>
+                    <!-- Cat silhouette curled on left side -->
+                    <circle cx="452" cy="112" r="9" fill="#04020a"/>
+                    <ellipse cx="445" cy="122" rx="12" ry="8" fill="#04020a"/>
+                </svg>
+            </div>
+
+            <!-- "Made with love, just for you" Tag -->
+            <div id="made-with-love" class="made-with-love-tag">
+                Made with love, just for you ❤️
+            </div>
+
+            <!-- Final Action Controls -->
+            <div id="finale-actions" class="finale-controls">
+                <button id="btn-replay" class="btn-magic-primary">
+                    <span>Relive The Surprise 🔄</span>
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Scripts -->
+    <script>
+// Web Audio API Procedural Fairytale Music & Sound Effects Generator
+// 100% self-contained, no external MP3 dependencies required.
+
+class FairytaleAudio {
+    constructor() {
+        this.ctx = null;
+        this.isPlaying = false;
+        this.currentMood = 'garden'; // 'garden', 'playful', 'celebration', 'emotional', 'fireworks'
+        this.musicInterval = null;
+        this.ambientInterval = null;
+        this.masterGain = null;
+        this.musicGain = null;
+        this.sfxGain = null;
+        this.melodyStep = 0;
+        this.isMuted = false;
+
+        // Pentatonic & Lydian magical scales (Hz)
+        this.scales = {
+            garden: [
+                261.63, 293.66, 329.63, 392.00, 440.00, 523.25, 587.33, 659.25, 783.99 // C major / pentatonic
+            ],
+            playful: [
+                329.63, 369.99, 392.00, 440.00, 493.88, 587.33, 659.25, 739.99, 783.99 // E melodic / bright
+            ],
+            celebration: [
+                261.63, 329.63, 392.00, 523.25, 659.25, 783.99, 1046.50 // celebratory arpeggio
+            ],
+            emotional: [
+                220.00, 261.63, 329.63, 392.00, 440.00, 523.25, 659.25, 783.99 // A minor / warm emotional
+            ],
+            fireworks: [
+                261.63, 329.63, 392.00, 493.88, 523.25, 659.25, 783.99, 987.77, 1046.50 // Grand celestial
+            ]
+        };
+
+        // Chords for emotional & sweet pads
+        this.chords = {
+            garden: [
+                [261.63, 329.63, 392.00], // C
+                [220.00, 261.63, 329.63], // Am
+                [174.61, 220.00, 261.63], // F
+                [196.00, 246.94, 293.66]  // G
+            ],
+            celebration: [
+                [261.63, 329.63, 392.00], // C
+                [196.00, 246.94, 293.66], // G
+                [220.00, 261.63, 329.63], // Am
+                [174.61, 220.00, 261.63]  // F
+            ],
+            emotional: [
+                [220.00, 261.63, 329.63], // Am
+                [174.61, 220.00, 261.63], // F
+                [261.63, 329.63, 392.00], // C
+                [196.00, 246.94, 293.66]  // G
+            ]
+        };
+
+        this.chordStep = 0;
+    }
+
+    init() {
+        if (!this.ctx) {
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            this.ctx = new AudioCtx();
+
+            this.masterGain = this.ctx.createGain();
+            this.masterGain.gain.setValueAtTime(0.7, this.ctx.currentTime);
+            this.masterGain.connect(this.ctx.destination);
+
+            this.musicGain = this.ctx.createGain();
+            this.musicGain.gain.setValueAtTime(0.45, this.ctx.currentTime);
+            this.musicGain.connect(this.masterGain);
+
+            this.sfxGain = this.ctx.createGain();
+            this.sfxGain.gain.setValueAtTime(0.6, this.ctx.currentTime);
+            this.sfxGain.connect(this.masterGain);
+        }
+
+        if (this.ctx.state === 'suspended') {
+            this.ctx.resume();
+        }
+    }
+
+    start() {
+        this.init();
+        if (this.isPlaying) return;
+        this.isPlaying = true;
+        this.scheduleMelodyLoop();
+        this.startAmbient();
+    }
+
+    pause() {
+        this.isPlaying = false;
+        if (this.musicInterval) clearInterval(this.musicInterval);
+        if (this.ambientInterval) clearInterval(this.ambientInterval);
+    }
+
+    toggleMute() {
+        if (!this.ctx) {
+            this.start();
+            return false;
+        }
+        this.isMuted = !this.isMuted;
+        if (this.isMuted) {
+            this.masterGain.gain.setTargetAtTime(0, this.ctx.currentTime, 0.1);
+        } else {
+            this.masterGain.gain.setTargetAtTime(0.7, this.ctx.currentTime, 0.1);
+            if (!this.isPlaying) this.start();
+        }
+        return this.isMuted;
+    }
+
+    setMood(mood) {
+        this.currentMood = mood;
+        this.melodyStep = 0;
+        this.chordStep = 0;
+    }
+
+    // Play a single soft bell / music box tone
+    playBell(freq, duration = 1.2, gainLevel = 0.3) {
+        if (!this.ctx || this.isMuted) return;
+
+        const now = this.ctx.currentTime;
+        const osc = this.ctx.createOscillator();
+        const osc2 = this.ctx.createOscillator();
+        const noteGain = this.ctx.createGain();
+
+        // Music box / celesta tone: sine + gentle overtone
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, now);
+
+        osc2.type = 'triangle';
+        osc2.frequency.setValueAtTime(freq * 2.01, now); // slight shimmer detune
+
+        const overtoneGain = this.ctx.createGain();
+        overtoneGain.gain.setValueAtTime(0.2, now);
+        osc2.connect(overtoneGain);
+        overtoneGain.connect(noteGain);
+
+        osc.connect(noteGain);
+        noteGain.connect(this.musicGain);
+
+        // Bell envelope
+        noteGain.gain.setValueAtTime(0.001, now);
+        noteGain.gain.exponentialRampToValueAtTime(gainLevel, now + 0.02);
+        noteGain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+        osc.start(now);
+        osc2.start(now);
+        osc.stop(now + duration);
+        osc2.stop(now + duration);
+    }
+
+    // Play an emotional warm pad chord
+    playChord(frequencies, duration = 3.5) {
+        if (!this.ctx || this.isMuted) return;
+        const now = this.ctx.currentTime;
+
+        frequencies.forEach(freq => {
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            const filter = this.ctx.createBiquadFilter();
+
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, now);
+
+            filter.type = 'lowpass';
+            filter.frequency.setValueAtTime(800, now);
+
+            osc.connect(filter);
+            filter.connect(gain);
+            gain.connect(this.musicGain);
+
+            gain.gain.setValueAtTime(0.001, now);
+            gain.gain.linearRampToValueAtTime(0.08, now + 1.0);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+            osc.start(now);
+            osc.stop(now + duration);
+        });
+    }
+
+    // Melodic sequence loop that adapts to scene mood
+    scheduleMelodyLoop() {
+        if (this.musicInterval) clearInterval(this.musicInterval);
+
+        const tempoMs = {
+            garden: 480,
+            playful: 360,
+            celebration: 320,
+            emotional: 640,
+            fireworks: 420
+        };
+
+        const tick = () => {
+            if (!this.isPlaying) return;
+
+            const scale = this.scales[this.currentMood] || this.scales.garden;
+            const chords = this.chords[this.currentMood] || this.chords.garden;
+
+            // Trigger chord every 8 steps
+            if (this.melodyStep % 8 === 0 && chords) {
+                const chord = chords[this.chordStep % chords.length];
+                this.playChord(chord, (tempoMs[this.currentMood] * 8) / 1000);
+                this.chordStep++;
+            }
+
+            // Generate musical arpeggio pattern
+            const patterns = {
+                garden: [0, 2, 4, 7, 5, 4, 2, 0, 1, 3, 5, 8, 7, 5, 3, 1],
+                playful: [0, 4, 2, 5, 4, 7, 6, 8, 7, 5, 4, 2, 3, 5, 7, 8],
+                celebration: [0, 2, 4, 6, 4, 2, 4, 6, 0, 3, 5, 6, 5, 3, 2, 0],
+                emotional: [0, 2, 4, 5, 4, 2, 0, 3, 2, 0, 4, 5, 4, 3, 2, 0],
+                fireworks: [0, 3, 5, 7, 8, 7, 5, 3, 0, 4, 6, 8, 7, 6, 4, 2]
+            };
+
+            const pattern = patterns[this.currentMood] || patterns.garden;
+            const noteIdx = pattern[this.melodyStep % pattern.length];
+            const baseFreq = scale[noteIdx % scale.length];
+
+            // Add occasional sparkle octave
+            const freq = (this.melodyStep % 4 === 0 && Math.random() > 0.4) ? baseFreq * 2 : baseFreq;
+            const duration = this.currentMood === 'emotional' ? 1.8 : 1.1;
+            const volume = this.currentMood === 'celebration' ? 0.28 : 0.22;
+
+            this.playBell(freq, duration, volume);
+
+            this.melodyStep++;
+            this.musicInterval = setTimeout(tick, tempoMs[this.currentMood] || 480);
+        };
+
+        tick();
+    }
+
+    // Ambient nature sounds (gentle birds, magical wind)
+    startAmbient() {
+        if (this.ambientInterval) clearInterval(this.ambientInterval);
+
+        this.ambientInterval = setInterval(() => {
+            if (!this.isPlaying || this.isMuted) return;
+
+            if (this.currentMood === 'garden' || this.currentMood === 'playful') {
+                if (Math.random() > 0.4) {
+                    this.playBirdChirp();
+                }
+            } else if (this.currentMood === 'emotional') {
+                if (Math.random() > 0.5) {
+                    this.playWindChime();
+                }
+            }
+        }, 3200);
+    }
+
+    // Cute bird chirp SFX
+    playBirdChirp() {
+        if (!this.ctx || this.isMuted) return;
+        const now = this.ctx.currentTime;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+
+        osc.type = 'sine';
+        const startFreq = 2200 + Math.random() * 800;
+        osc.frequency.setValueAtTime(startFreq, now);
+        osc.frequency.exponentialRampToValueAtTime(startFreq + 600, now + 0.08);
+        osc.frequency.exponentialRampToValueAtTime(startFreq - 200, now + 0.16);
+
+        gain.gain.setValueAtTime(0.001, now);
+        gain.gain.linearRampToValueAtTime(0.05, now + 0.03);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.18);
+
+        osc.connect(gain);
+        gain.connect(this.sfxGain);
+
+        osc.start(now);
+        osc.stop(now + 0.2);
+    }
+
+    // Sparkly wind chime / fairy dust SFX
+    playWindChime() {
+        if (!this.ctx || this.isMuted) return;
+        const notes = [1046.50, 1318.51, 1567.98, 2093.00, 2637.02];
+        notes.forEach((freq, idx) => {
+            setTimeout(() => {
+                this.playBell(freq, 1.5, 0.08);
+            }, idx * 120 + Math.random() * 50);
+        });
+    }
+
+    // Interactive Tap / Heart Sparkle SFX
+    playSparkle() {
+        this.init();
+        if (this.isMuted) return;
+        const now = this.ctx.currentTime;
+        const notes = [1318.51, 1567.98, 2093.00];
+
+        notes.forEach((freq, i) => {
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(freq, now + i * 0.05);
+
+            gain.gain.setValueAtTime(0.001, now + i * 0.05);
+            gain.gain.linearRampToValueAtTime(0.12, now + i * 0.05 + 0.02);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.05 + 0.4);
+
+            osc.connect(gain);
+            gain.connect(this.sfxGain);
+
+            osc.start(now + i * 0.05);
+            osc.stop(now + i * 0.05 + 0.45);
+        });
+    }
+
+    // Purr / pet sound effect for kitty
+    playCatPurr() {
+        this.init();
+        if (this.isMuted) return;
+        const now = this.ctx.currentTime;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(80, now);
+        osc.frequency.linearRampToValueAtTime(110, now + 0.2);
+        osc.frequency.linearRampToValueAtTime(85, now + 0.4);
+
+        gain.gain.setValueAtTime(0.001, now);
+        gain.gain.linearRampToValueAtTime(0.15, now + 0.1);
+        gain.gain.linearRampToValueAtTime(0.001, now + 0.5);
+
+        osc.connect(gain);
+        gain.connect(this.sfxGain);
+
+        osc.start(now);
+        osc.stop(now + 0.5);
+
+        // Add a cute high meow tone
+        setTimeout(() => {
+            this.playBell(1046.50, 0.3, 0.1);
+        }, 150);
+    }
+
+    // Puppy happy chirp / bark SFX
+    playDogBark() {
+        this.init();
+        if (this.isMuted) return;
+        const now = this.ctx.currentTime;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(450, now);
+        osc.frequency.exponentialRampToValueAtTime(750, now + 0.08);
+        osc.frequency.exponentialRampToValueAtTime(320, now + 0.2);
+
+        gain.gain.setValueAtTime(0.01, now);
+        gain.gain.linearRampToValueAtTime(0.18, now + 0.04);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+
+        osc.connect(gain);
+        gain.connect(this.sfxGain);
+
+        osc.start(now);
+        osc.stop(now + 0.26);
+    }
+
+    // Candle blow-out whoosh sound
+    playBlowCandle() {
+        this.init();
+        if (this.isMuted) return;
+        const now = this.ctx.currentTime;
+
+        // Noise buffer for gentle breath whoosh
+        const bufferSize = this.ctx.sampleRate * 0.6;
+        const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+            data[i] = Math.random() * 2 - 1;
+        }
+
+        const noise = this.ctx.createBufferSource();
+        noise.buffer = buffer;
+
+        const filter = this.ctx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(800, now);
+        filter.frequency.linearRampToValueAtTime(300, now + 0.5);
+
+        const gain = this.ctx.createGain();
+        gain.gain.setValueAtTime(0.01, now);
+        gain.gain.linearRampToValueAtTime(0.2, now + 0.1);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
+
+        noise.connect(filter);
+        filter.connect(gain);
+        gain.connect(this.sfxGain);
+
+        noise.start(now);
+        noise.stop(now + 0.65);
+
+        // Followed by fanfare sparkle
+        setTimeout(() => {
+            this.playWindChime();
+        }, 300);
+    }
+
+    // Realistic Firework sound (Whistle up + Boom rumble)
+    playFireworkSound() {
+        this.init();
+        if (this.isMuted) return;
+        const now = this.ctx.currentTime;
+
+        // 1. Whistle rocket launch
+        const osc = this.ctx.createOscillator();
+        const oscGain = this.ctx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(400, now);
+        osc.frequency.exponentialRampToValueAtTime(1400, now + 0.5);
+
+        oscGain.gain.setValueAtTime(0.001, now);
+        oscGain.gain.linearRampToValueAtTime(0.08, now + 0.1);
+        oscGain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+
+        const whistleFilter = this.ctx.createBiquadFilter();
+        whistleFilter.type = 'bandpass';
+        whistleFilter.frequency.setValueAtTime(900, now);
+        whistleFilter.Q.setValueAtTime(4, now);
+
+        osc.connect(whistleFilter);
+        whistleFilter.connect(oscGain);
+        oscGain.connect(this.sfxGain);
+
+        osc.start(now);
+        osc.stop(now + 0.52);
+
+        // 2. Boom detonation at peak
+        setTimeout(() => {
+            if (!this.ctx || this.isMuted) return;
+            const boomTime = this.ctx.currentTime;
+
+            // Noise burst for crackle
+            const bufferSize = this.ctx.sampleRate * 0.8;
+            const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+            const data = buffer.getChannelData(0);
+            for (let i = 0; i < bufferSize; i++) {
+                data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (this.ctx.sampleRate * 0.2));
+            }
+
+            const noise = this.ctx.createBufferSource();
+            noise.buffer = buffer;
+
+            const filter = this.ctx.createBiquadFilter();
+            filter.type = 'lowpass';
+            filter.frequency.setValueAtTime(350, boomTime);
+
+            const boomGain = this.ctx.createGain();
+            boomGain.gain.setValueAtTime(0.35, boomTime);
+            boomGain.gain.exponentialRampToValueAtTime(0.001, boomTime + 0.7);
+
+            noise.connect(filter);
+            filter.connect(boomGain);
+            boomGain.connect(this.sfxGain);
+
+            noise.start(boomTime);
+            noise.stop(boomTime + 0.8);
+        }, 480);
+    }
+}
+
+// Global audio instance
+window.fairytaleAudio = new FairytaleAudio();
+
+</script>
+    <script>
+// Particle Systems: Ambient Petals, Confetti Cannons, Dynamic Fireworks, and Click Sparkles
+
+class ParticleCanvas {
+    constructor() {
+        this.ambientCanvas = document.getElementById('ambient-canvas');
+        this.fireworksCanvas = document.getElementById('fireworks-canvas');
+        this.actx = this.ambientCanvas ? this.ambientCanvas.getContext('2d') : null;
+        this.fctx = this.fireworksCanvas ? this.fireworksCanvas.getContext('2d') : null;
+
+        this.width = window.innerWidth;
+        this.height = window.innerHeight;
+
+        this.petals = [];
+        this.fireflies = [];
+        this.hearts = [];
+        this.confetti = [];
+        this.fireworks = [];
+        this.fireworkParticles = [];
+        this.clickSparks = [];
+
+        this.currentScene = 1;
+        this.isFireworksActive = false;
+        this.fireworkTimer = null;
+
+        this.init();
+    }
+
+    init() {
+        this.resize();
+        window.addEventListener('resize', () => this.resize());
+
+        // Spawn initial ambient particles
+        this.initAmbientParticles();
+
+        // Start render loop
+        this.render = this.render.bind(this);
+        requestAnimationFrame(this.render);
+
+        // Click sparkle listener
+        window.addEventListener('pointerdown', (e) => {
+            this.createClickSparkle(e.clientX, e.clientY);
+            if (window.fairytaleAudio) {
+                window.fairytaleAudio.playSparkle();
+            }
+        });
+    }
+
+    resize() {
+        this.width = window.innerWidth;
+        this.height = window.innerHeight;
+
+        if (this.ambientCanvas) {
+            this.ambientCanvas.width = this.width;
+            this.ambientCanvas.height = this.height;
+        }
+        if (this.fireworksCanvas) {
+            this.fireworksCanvas.width = this.width;
+            this.fireworksCanvas.height = this.height;
+        }
+    }
+
+    initAmbientParticles() {
+        // Petals for nature/garden scenes
+        for (let i = 0; i < 28; i++) {
+            this.petals.push(this.createPetal(true));
+        }
+
+        // Fireflies / sun dust
+        for (let i = 0; i < 35; i++) {
+            this.fireflies.push(this.createFirefly());
+        }
+    }
+
+    createPetal(randomY = false) {
+        const colors = [
+            'rgba(255, 182, 193, 0.75)', // soft pink
+            'rgba(255, 192, 203, 0.8)',  // rose pink
+            'rgba(255, 240, 245, 0.85)', // lavender blush
+            'rgba(255, 218, 233, 0.7)'   // pastel blush
+        ];
+        return {
+            x: Math.random() * this.width,
+            y: randomY ? Math.random() * this.height : -20,
+            size: Math.random() * 8 + 6,
+            speedY: Math.random() * 1.2 + 0.8,
+            speedX: Math.random() * 1.5 - 0.75,
+            rotation: Math.random() * Math.PI * 2,
+            rotSpeed: (Math.random() - 0.5) * 0.03,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            swayAngle: Math.random() * Math.PI * 2,
+            swaySpeed: Math.random() * 0.02 + 0.01
+        };
+    }
+
+    createFirefly() {
+        return {
+            x: Math.random() * this.width,
+            y: Math.random() * this.height,
+            size: Math.random() * 3 + 1.5,
+            speedX: (Math.random() - 0.5) * 0.6,
+            speedY: (Math.random() - 0.5) * 0.6,
+            alpha: Math.random(),
+            alphaSpeed: (Math.random() * 0.02 + 0.01) * (Math.random() > 0.5 ? 1 : -1),
+            color: Math.random() > 0.4 ? 'rgba(255, 243, 176,' : 'rgba(216, 180, 254,'
+        };
+    }
+
+    createHeart(x, y, rising = true) {
+        return {
+            x: x !== undefined ? x : Math.random() * this.width,
+            y: y !== undefined ? y : this.height + 20,
+            size: Math.random() * 16 + 10,
+            speedY: rising ? -(Math.random() * 1.5 + 1.0) : (Math.random() * 2 - 1),
+            speedX: (Math.random() - 0.5) * 1.2,
+            scale: Math.random() * 0.6 + 0.7,
+            alpha: 1,
+            fadeSpeed: Math.random() * 0.008 + 0.004,
+            hue: Math.random() > 0.3 ? 340 + Math.random() * 20 : 280 + Math.random() * 30
+        };
+    }
+
+    createClickSparkle(x, y) {
+        const count = 12;
+        for (let i = 0; i < count; i++) {
+            const angle = (Math.PI * 2 / count) * i + Math.random() * 0.4;
+            const speed = Math.random() * 4 + 2;
+            this.clickSparks.push({
+                x: x,
+                y: y,
+                vx: Math.cos(angle) * speed,
+                vy: Math.sin(angle) * speed,
+                size: Math.random() * 4 + 2,
+                color: `hsl(${Math.random() * 60 + 330}, 100%, 75%)`,
+                life: 1,
+                decay: Math.random() * 0.03 + 0.02,
+                isHeart: Math.random() > 0.6
+            });
+        }
+    }
+
+    // Scene 3 Confetti Cannon
+    burstConfetti() {
+        const colors = ['#ff758f', '#ffccd5', '#ffd166', '#a8dadc', '#d8b4e2', '#c7f9cc', '#f72585'];
+        for (let i = 0; i < 140; i++) {
+            const x = Math.random() * this.width;
+            const y = -10;
+            this.confetti.push({
+                x: x,
+                y: y,
+                w: Math.random() * 10 + 6,
+                h: Math.random() * 6 + 4,
+                vx: (Math.random() - 0.5) * 4,
+                vy: Math.random() * 4 + 2.5,
+                color: colors[Math.floor(Math.random() * colors.length)],
+                rotation: Math.random() * Math.PI * 2,
+                rotSpeedX: Math.random() * 0.1,
+                rotSpeedY: Math.random() * 0.1,
+                life: 1
+            });
+        }
+    }
+
+    // Scene 5 Fireworks Engine
+    startFireworks() {
+        if (this.isFireworksActive) return;
+        this.isFireworksActive = true;
+
+        const launchRandomFirework = () => {
+            if (!this.isFireworksActive) return;
+
+            const startX = Math.random() * (this.width * 0.8) + (this.width * 0.1);
+            const targetX = startX + (Math.random() - 0.5) * 150;
+            const targetY = Math.random() * (this.height * 0.45) + (this.height * 0.1);
+            const isHeartShape = Math.random() > 0.45;
+
+            this.launchRocket(startX, this.height, targetX, targetY, isHeartShape);
+
+            if (window.fairytaleAudio) {
+                window.fairytaleAudio.playFireworkSound();
+            }
+
+            const nextInterval = Math.random() * 800 + 700;
+            this.fireworkTimer = setTimeout(launchRandomFirework, nextInterval);
+        };
+
+        // Launch an initial burst
+        launchRandomFirework();
+        setTimeout(launchRandomFirework, 400);
+    }
+
+    stopFireworks() {
+        this.isFireworksActive = false;
+        if (this.fireworkTimer) clearTimeout(this.fireworkTimer);
+    }
+
+    launchRocket(x, y, targetX, targetY, isHeartShape = false) {
+        const dx = targetX - x;
+        const dy = targetY - y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const speed = Math.random() * 3 + 8;
+        const vx = (dx / dist) * speed;
+        const vy = (dy / dist) * speed;
+
+        const hues = [340, 320, 280, 45, 180, 20]; // Pink, Magenta, Purple, Gold, Cyan, Coral
+        const hue = hues[Math.floor(Math.random() * hues.length)];
+
+        this.fireworks.push({
+            x: x,
+            y: y,
+            targetY: targetY,
+            vx: vx,
+            vy: vy,
+            hue: hue,
+            isHeart: isHeartShape,
+            trail: []
+        });
+    }
+
+    explodeFirework(x, y, hue, isHeart) {
+        const particleCount = isHeart ? 70 : 85;
+
+        for (let i = 0; i < particleCount; i++) {
+            let vx, vy;
+
+            if (isHeart) {
+                // Heart shape parametric equation:
+                // x = 16 sin^3(t)
+                // y = -(13 cos(t) - 5 cos(2t) - 2 cos(3t) - cos(4t))
+                const t = (Math.PI * 2 / particleCount) * i;
+                const heartX = 16 * Math.pow(Math.sin(t), 3);
+                const heartY = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+                const scale = 0.22 + Math.random() * 0.05;
+                vx = heartX * scale;
+                vy = heartY * scale;
+            } else {
+                const angle = (Math.PI * 2 / particleCount) * i + Math.random() * 0.2;
+                const speed = Math.random() * 4.5 + 1.5;
+                vx = Math.cos(angle) * speed;
+                vy = Math.sin(angle) * speed;
+            }
+
+            this.fireworkParticles.push({
+                x: x,
+                y: y,
+                vx: vx,
+                vy: vy,
+                color: `hsl(${hue + (Math.random() * 30 - 15)}, 100%, ${60 + Math.random() * 25}%)`,
+                alpha: 1,
+                decay: Math.random() * 0.016 + 0.012,
+                gravity: 0.06,
+                size: Math.random() * 3 + 1.5,
+                twinkle: Math.random() > 0.4
+            });
+        }
+    }
+
+    setScene(sceneNum) {
+        this.currentScene = sceneNum;
+        if (sceneNum === 3) {
+            this.burstConfetti();
+        }
+        if (sceneNum === 5) {
+            this.startFireworks();
+        } else {
+            this.stopFireworks();
+        }
+    }
+
+    drawHeart(ctx, x, y, size, color) {
+        ctx.save();
+        ctx.fillStyle = color;
+        ctx.translate(x, y);
+        ctx.beginPath();
+        const topCurveHeight = size * 0.3;
+        ctx.moveTo(0, topCurveHeight);
+        ctx.bezierCurveTo(0, 0, -size / 2, 0, -size / 2, topCurveHeight);
+        ctx.bezierCurveTo(-size / 2, (size + topCurveHeight) / 2, 0, (size + topCurveHeight) / 1.4, 0, size);
+        ctx.bezierCurveTo(0, (size + topCurveHeight) / 1.4, size / 2, (size + topCurveHeight) / 2, size / 2, topCurveHeight);
+        ctx.bezierCurveTo(size / 2, 0, 0, 0, 0, topCurveHeight);
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+    }
+
+    render() {
+        // --- 1. Ambient Canvas Rendering ---
+        if (this.actx) {
+            this.actx.clearRect(0, 0, this.width, this.height);
+
+            // Petals (Active in scenes 1, 2, 3)
+            if (this.currentScene <= 3) {
+                for (let i = 0; i < this.petals.length; i++) {
+                    const p = this.petals[i];
+                    p.y += p.speedY;
+                    p.swayAngle += p.swaySpeed;
+                    p.x += Math.sin(p.swayAngle) * 0.8 + p.speedX;
+                    p.rotation += p.rotSpeed;
+
+                    if (p.y > this.height + 20) {
+                        this.petals[i] = this.createPetal();
+                    }
+
+                    this.actx.save();
+                    this.actx.translate(p.x, p.y);
+                    this.actx.rotate(p.rotation);
+                    this.actx.fillStyle = p.color;
+                    this.actx.beginPath();
+                    this.actx.ellipse(0, 0, p.size, p.size * 0.55, 0, 0, Math.PI * 2);
+                    this.actx.fill();
+                    this.actx.restore();
+                }
+            }
+
+            // Fireflies / Magic Dust (Active in all scenes, prominent in 4 & 5)
+            for (let i = 0; i < this.fireflies.length; i++) {
+                const f = this.fireflies[i];
+                f.x += f.speedX;
+                f.y += f.speedY;
+                f.alpha += f.alphaSpeed;
+                if (f.alpha > 0.95 || f.alpha < 0.1) {
+                    f.alphaSpeed = -f.alphaSpeed;
+                }
+
+                if (f.x < -10) f.x = this.width + 10;
+                if (f.x > this.width + 10) f.x = -10;
+                if (f.y < -10) f.y = this.height + 10;
+                if (f.y > this.height + 10) f.y = -10;
+
+                this.actx.save();
+                this.actx.fillStyle = `${f.color} ${Math.max(0, f.alpha)})`;
+                this.actx.beginPath();
+                this.actx.arc(f.x, f.y, f.size, 0, Math.PI * 2);
+                this.actx.fill();
+                this.actx.restore();
+            }
+
+            // Floating Hearts (Active in Scene 4 & Scene 5)
+            if (this.currentScene >= 4) {
+                if (Math.random() > 0.85 && this.hearts.length < 35) {
+                    this.hearts.push(this.createHeart());
+                }
+
+                for (let i = this.hearts.length - 1; i >= 0; i--) {
+                    const h = this.hearts[i];
+                    h.y += h.speedY;
+                    h.x += h.speedX;
+                    h.alpha -= h.fadeSpeed;
+
+                    if (h.alpha <= 0 || h.y < -30) {
+                        this.hearts.splice(i, 1);
+                        continue;
+                    }
+
+                    this.drawHeart(
+                        this.actx,
+                        h.x,
+                        h.y,
+                        h.size,
+                        `hsla(${h.hue}, 90%, 75%, ${h.alpha * 0.8})`
+                    );
+                }
+            }
+
+            // Confetti in Scene 3
+            if (this.currentScene === 3 && this.confetti.length > 0) {
+                for (let i = this.confetti.length - 1; i >= 0; i--) {
+                    const c = this.confetti[i];
+                    c.x += c.vx;
+                    c.y += c.vy;
+                    c.rotation += c.rotSpeedX;
+
+                    if (c.y > this.height + 20) {
+                        this.confetti.splice(i, 1);
+                        continue;
+                    }
+
+                    this.actx.save();
+                    this.actx.translate(c.x, c.y);
+                    this.actx.rotate(c.rotation);
+                    this.actx.fillStyle = c.color;
+                    this.actx.fillRect(-c.w / 2, -c.h / 2, c.w, c.h);
+                    this.actx.restore();
+                }
+            }
+
+            // Click sparkles
+            for (let i = this.clickSparks.length - 1; i >= 0; i--) {
+                const s = this.clickSparks[i];
+                s.x += s.vx;
+                s.y += s.vy;
+                s.life -= s.decay;
+
+                if (s.life <= 0) {
+                    this.clickSparks.splice(i, 1);
+                    continue;
+                }
+
+                this.actx.save();
+                this.actx.globalAlpha = s.life;
+                if (s.isHeart) {
+                    this.drawHeart(this.actx, s.x, s.y, s.size * 2, s.color);
+                } else {
+                    this.actx.fillStyle = s.color;
+                    this.actx.beginPath();
+                    this.actx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+                    this.actx.fill();
+                }
+                this.actx.restore();
+            }
+        }
+
+        // --- 2. Fireworks Canvas Rendering (Scene 5) ---
+        if (this.fctx && this.currentScene === 5) {
+            // Trail trail effect
+            this.fctx.fillStyle = 'rgba(10, 8, 30, 0.2)';
+            this.fctx.fillRect(0, 0, this.width, this.height);
+
+            // Update & draw rocket trails
+            for (let i = this.fireworks.length - 1; i >= 0; i--) {
+                const r = this.fireworks[i];
+                r.x += r.vx;
+                r.y += r.vy;
+
+                r.trail.push({ x: r.x, y: r.y });
+                if (r.trail.length > 5) r.trail.shift();
+
+                // Draw trail
+                this.fctx.save();
+                this.fctx.strokeStyle = `hsl(${r.hue}, 100%, 75%)`;
+                this.fctx.lineWidth = 2.5;
+                this.fctx.beginPath();
+                if (r.trail.length > 1) {
+                    this.fctx.moveTo(r.trail[0].x, r.trail[0].y);
+                    for (let j = 1; j < r.trail.length; j++) {
+                        this.fctx.lineTo(r.trail[j].x, r.trail[j].y);
+                    }
+                }
+                this.fctx.stroke();
+                this.fctx.restore();
+
+                // Check detonation
+                if (r.y <= r.targetY || r.vy >= 0) {
+                    this.explodeFirework(r.x, r.y, r.hue, r.isHeart);
+                    this.fireworks.splice(i, 1);
+                }
+            }
+
+            // Update & draw exploding particles
+            for (let i = this.fireworkParticles.length - 1; i >= 0; i--) {
+                const p = this.fireworkParticles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vy += p.gravity;
+                p.vx *= 0.98;
+                p.alpha -= p.decay;
+
+                if (p.alpha <= 0) {
+                    this.fireworkParticles.splice(i, 1);
+                    continue;
+                }
+
+                this.fctx.save();
+                this.fctx.globalAlpha = p.alpha;
+                this.fctx.fillStyle = p.color;
+                this.fctx.shadowBlur = 8;
+                this.fctx.shadowColor = p.color;
+                this.fctx.beginPath();
+                this.fctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                this.fctx.fill();
+                this.fctx.restore();
+            }
+        } else if (this.fctx) {
+            this.fctx.clearRect(0, 0, this.width, this.height);
+        }
+
+        requestAnimationFrame(this.render);
+    }
+}
+
+window.particleSystem = new ParticleCanvas();
+
+</script>
+    <script>
+// Application Logic, Scene Progression, Animations & Interactivity
+
+class BirthdayExperience {
+    constructor() {
+        this.currentScene = 1;
+        this.totalScenes = 5;
+        this.scenes = [];
+        this.dots = [];
+        this.isCandleBlown = false;
+        this.autoPlayTimer = null;
+
+        this.sceneTitles = [
+            'Enchanted Garden 🌸',
+            'Playful Moments 🐾',
+            'Birthday Surprise 🎂',
+            'From The Heart 💗',
+            'Fireworks Finale 🎆'
+        ];
+
+        this.init();
+    }
+
+    init() {
+        // Collect DOM elements
+        this.scenes = document.querySelectorAll('.scene');
+        this.dots = document.querySelectorAll('.scene-dot');
+        this.titleBadge = document.querySelector('.scene-title-badge');
+        this.musicToggleBtn = document.getElementById('music-toggle');
+
+        // Setup Event Listeners
+        this.setupNavigation();
+        this.setupInteractiveCharacters();
+        this.setupBirthdayCake();
+        this.setupAudioControls();
+
+        // Keyboard navigation
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'Space') {
+                this.nextScene();
+            } else if (e.key === 'ArrowLeft') {
+                this.prevScene();
+            }
+        });
+
+        // Touch swipe navigation
+        let touchStartX = 0;
+        let touchEndX = 0;
+        window.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        window.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 60) {
+                this.nextScene();
+            } else if (touchEndX - touchStartX > 60) {
+                this.prevScene();
+            }
+        }, { passive: true });
+
+        // Show initial scene
+        this.goToScene(1);
+    }
+
+    setupNavigation() {
+        // Scene 1 Start Button
+        const startBtn = document.getElementById('btn-start-surprise');
+        if (startBtn) {
+            startBtn.addEventListener('click', () => {
+                if (window.fairytaleAudio) {
+                    window.fairytaleAudio.start();
+                }
+                this.goToScene(2);
+            });
+        }
+
+        // Generic Next & Prev Buttons
+        document.querySelectorAll('[data-next-scene]').forEach(btn => {
+            btn.addEventListener('click', () => this.nextScene());
+        });
+
+        document.querySelectorAll('[data-prev-scene]').forEach(btn => {
+            btn.addEventListener('click', () => this.prevScene());
+        });
+
+        // Navigation dots
+        this.dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                this.goToScene(index + 1);
+            });
+        });
+
+        // Replay Button in Scene 5
+        const replayBtn = document.getElementById('btn-replay');
+        if (replayBtn) {
+            replayBtn.addEventListener('click', () => {
+                this.goToScene(1);
+            });
+        }
+    }
+
+    setupAudioControls() {
+        if (!this.musicToggleBtn) return;
+        this.musicToggleBtn.addEventListener('click', () => {
+            if (window.fairytaleAudio) {
+                const muted = window.fairytaleAudio.toggleMute();
+                if (muted) {
+                    this.musicToggleBtn.classList.add('muted');
+                    this.musicToggleBtn.setAttribute('title', 'Music is Muted (Click to Play)');
+                } else {
+                    this.musicToggleBtn.classList.remove('muted');
+                    this.musicToggleBtn.setAttribute('title', 'Music is Playing (Click to Mute)');
+                }
+            }
+        });
+    }
+
+    setupInteractiveCharacters() {
+        // Priya interactions
+        const priya = document.getElementById('char-priya');
+        if (priya) {
+            priya.addEventListener('click', () => {
+                priya.classList.add('laughing');
+                if (window.fairytaleAudio) {
+                    window.fairytaleAudio.playSparkle();
+                }
+                setTimeout(() => priya.classList.remove('laughing'), 2500);
+            });
+        }
+
+        // Kitten interactions
+        const kitty = document.getElementById('actor-cat');
+        const yarn = document.getElementById('yarn-ball');
+        const catReaction = () => {
+            if (kitty) {
+                kitty.style.transform = 'scale(1.25) rotate(-10deg) translateY(-15px)';
+                setTimeout(() => kitty.style.transform = '', 600);
+            }
+            if (yarn) {
+                yarn.style.transform = 'translateX(60px) rotate(720deg)';
+                setTimeout(() => yarn.style.transform = '', 1000);
+            }
+            if (window.fairytaleAudio) {
+                window.fairytaleAudio.playCatPurr();
+            }
+        };
+
+        if (kitty) kitty.addEventListener('click', catReaction);
+        if (yarn) yarn.addEventListener('click', catReaction);
+
+        // Puppy interactions
+        const puppy = document.getElementById('actor-dog');
+        if (puppy) {
+            puppy.addEventListener('click', () => {
+                puppy.style.transform = 'scale(1.3) translateY(-25px) rotate(8deg)';
+                setTimeout(() => puppy.style.transform = '', 600);
+                if (window.fairytaleAudio) {
+                    window.fairytaleAudio.playDogBark();
+                }
+            });
+        }
+
+        // Squirrel interactions
+        const squirrel = document.getElementById('actor-squirrel');
+        if (squirrel) {
+            squirrel.addEventListener('click', () => {
+                squirrel.style.transform = 'scale(1.3) rotate(-12deg) translateY(-10px)';
+                setTimeout(() => squirrel.style.transform = '', 500);
+                if (window.fairytaleAudio) {
+                    window.fairytaleAudio.playSparkle();
+                }
+            });
+        }
+
+        // Bunny interactions
+        const bunny = document.getElementById('actor-bunny');
+        if (bunny) {
+            bunny.addEventListener('click', () => {
+                bunny.style.transform = 'scale(1.25) translateY(-20px)';
+                setTimeout(() => bunny.style.transform = '', 500);
+                if (window.fairytaleAudio) {
+                    window.fairytaleAudio.playSparkle();
+                }
+            });
+        }
+    }
+
+    setupBirthdayCake() {
+        const cake = document.getElementById('birthday-cake');
+        const hintTag = document.getElementById('cake-hint');
+        if (!cake) return;
+
+        cake.addEventListener('click', () => {
+            if (this.isCandleBlown) return;
+            this.isCandleBlown = true;
+
+            // Extinguish flames
+            document.querySelectorAll('.candle-flame').forEach(f => {
+                f.classList.add('extinguished');
+            });
+
+            if (hintTag) {
+                hintTag.innerHTML = '✨ Wishes sent to the stars! 🌟';
+                hintTag.style.background = '#d8f3dc';
+                hintTag.style.color = '#2d6a4f';
+            }
+
+            if (window.fairytaleAudio) {
+                window.fairytaleAudio.playBlowCandle();
+            }
+
+            if (window.particleSystem) {
+                window.particleSystem.burstConfetti();
+            }
+        });
+    }
+
+    nextScene() {
+        if (this.currentScene < this.totalScenes) {
+            this.goToScene(this.currentScene + 1);
+        }
+    }
+
+    prevScene() {
+        if (this.currentScene > 1) {
+            this.goToScene(this.currentScene - 1);
+        }
+    }
+
+    goToScene(sceneNum) {
+        if (sceneNum < 1 || sceneNum > this.totalScenes) return;
+
+        this.currentScene = sceneNum;
+
+        // Update active class on scene sections
+        this.scenes.forEach((scene, index) => {
+            if (index + 1 === sceneNum) {
+                scene.classList.add('active');
+            } else {
+                scene.classList.remove('active');
+            }
+        });
+
+        // Update navigation dots & badge
+        this.dots.forEach((dot, index) => {
+            if (index + 1 === sceneNum) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+
+        if (this.titleBadge) {
+            this.titleBadge.textContent = this.sceneTitles[sceneNum - 1];
+        }
+
+        // Notify Particle System
+        if (window.particleSystem) {
+            window.particleSystem.setScene(sceneNum);
+        }
+
+        // Update Audio Mood
+        if (window.fairytaleAudio) {
+            const moods = ['garden', 'playful', 'celebration', 'emotional', 'fireworks'];
+            window.fairytaleAudio.setMood(moods[sceneNum - 1]);
+        }
+
+        // Trigger scene specific animations
+        this.handleSceneEnter(sceneNum);
+    }
+
+    handleSceneEnter(sceneNum) {
+        if (sceneNum === 3) {
+            // Sequenced reveal of birthday wishes
+            const cards = document.querySelectorAll('.wish-card');
+            cards.forEach((card, idx) => {
+                card.classList.remove('show');
+                setTimeout(() => {
+                    card.classList.add('show');
+                }, 400 + idx * 750);
+            });
+        }
+
+        if (sceneNum === 4) {
+            // Sequenced reveal of emotional messages
+            const lines = document.querySelectorAll('.emotional-line');
+            lines.forEach((line, idx) => {
+                line.classList.remove('show');
+                setTimeout(() => {
+                    line.classList.add('show');
+                }, 500 + idx * 1200);
+            });
+        }
+
+        if (sceneNum === 5) {
+            // Sequenced reveal of grand fireworks typography
+            const burstText = document.getElementById('finale-burst');
+            const subText = document.getElementById('finale-sub');
+            const blessingText = document.getElementById('finale-blessing');
+            const madeTag = document.getElementById('made-with-love');
+            const finaleCtrls = document.getElementById('finale-actions');
+
+            if (burstText) burstText.classList.remove('show');
+            if (subText) subText.classList.remove('show');
+            if (blessingText) blessingText.classList.remove('show');
+            if (madeTag) madeTag.classList.remove('show');
+            if (finaleCtrls) finaleCtrls.classList.remove('show');
+
+            setTimeout(() => {
+                if (burstText) burstText.classList.add('show');
+            }, 800);
+
+            setTimeout(() => {
+                if (subText) subText.classList.add('show');
+            }, 2400);
+
+            setTimeout(() => {
+                if (blessingText) blessingText.classList.add('show');
+            }, 4200);
+
+            setTimeout(() => {
+                if (madeTag) madeTag.classList.add('show');
+                if (finaleCtrls) finaleCtrls.classList.add('show');
+            }, 6800);
+        }
+    }
+}
+
+// Initialize on DOM Ready
+document.addEventListener('DOMContentLoaded', () => {
+    window.birthdayApp = new BirthdayExperience();
+});
+
+</script>
+</body>
+</html>
