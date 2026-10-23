@@ -1,11 +1,10 @@
-// Web Audio API Procedural Fairytale Music & Sound Effects Generator
-// 100% self-contained, no external MP3 dependencies required.
+// Web Audio API Procedural Fairytale Music + "Toota Jo Kabhi Tara" Synthesizer & MP3 Player
 
 class FairytaleAudio {
     constructor() {
         this.ctx = null;
         this.isPlaying = false;
-        this.currentMood = 'garden'; // 'garden', 'playful', 'celebration', 'emotional', 'fireworks'
+        this.currentMood = 'garden';
         this.musicInterval = null;
         this.ambientInterval = null;
         this.masterGain = null;
@@ -14,48 +13,64 @@ class FairytaleAudio {
         this.melodyStep = 0;
         this.isMuted = false;
 
-        // Pentatonic & Lydian magical scales (Hz)
-        this.scales = {
-            garden: [
-                261.63, 293.66, 329.63, 392.00, 440.00, 523.25, 587.33, 659.25, 783.99 // C major / pentatonic
-            ],
-            playful: [
-                329.63, 369.99, 392.00, 440.00, 493.88, 587.33, 659.25, 739.99, 783.99 // E melodic / bright
-            ],
-            celebration: [
-                261.63, 329.63, 392.00, 523.25, 659.25, 783.99, 1046.50 // celebratory arpeggio
-            ],
-            emotional: [
-                220.00, 261.63, 329.63, 392.00, 440.00, 523.25, 659.25, 783.99 // A minor / warm emotional
-            ],
-            fireworks: [
-                261.63, 329.63, 392.00, 493.88, 523.25, 659.25, 783.99, 987.77, 1046.50 // Grand celestial
-            ]
+        // MP3 Audio element for "Toota Jo Kabhi Tara"
+        this.audioElement = null;
+        this.hasMp3Loaded = false;
+        this.useSynthesizerFallback = true;
+
+        // Frequencies for "Toota Jo Kabhi Tara" in D Major (Hz)
+        this.notes = {
+            'B3': 246.94,
+            'C#4': 277.18,
+            'D4': 293.66,
+            'E4': 329.63,
+            'F#4': 369.99,
+            'G4': 392.00,
+            'A4': 440.00,
+            'B4': 493.88,
+            'C#5': 554.37,
+            'D5': 587.33,
+            'E5': 659.25,
+            'F#5': 739.99
         };
 
-        // Chords for emotional & sweet pads
-        this.chords = {
-            garden: [
-                [261.63, 329.63, 392.00], // C
-                [220.00, 261.63, 329.63], // Am
-                [174.61, 220.00, 261.63], // F
-                [196.00, 246.94, 293.66]  // G
-            ],
-            celebration: [
-                [261.63, 329.63, 392.00], // C
-                [196.00, 246.94, 293.66], // G
-                [220.00, 261.63, 329.63], // Am
-                [174.61, 220.00, 261.63]  // F
-            ],
-            emotional: [
-                [220.00, 261.63, 329.63], // Am
-                [174.61, 220.00, 261.63], // F
-                [261.63, 329.63, 392.00], // C
-                [196.00, 246.94, 293.66]  // G
-            ]
-        };
+        // Exact iconic melody sequence of "Toota Jo Kabhi Tara" (Chorus & Verse)
+        // [noteName, durationInBeats, isPause]
+        this.tootaTaraMelody = [
+            // "Too-ta jo ka-bhi taa-ra..."
+            ['F#4', 1.0], ['F#4', 0.8], ['F#4', 0.8], ['E4', 0.8], ['D4', 1.2], ['F#4', 1.2], ['A4', 2.0],
+            // "...saj-na ve"
+            ['G4', 1.0], ['F#4', 1.0], ['E4', 2.2],
 
-        this.chordStep = 0;
+            // "Tu-jhe rab se maan-ga..."
+            ['E4', 1.0], ['E4', 0.8], ['E4', 0.8], ['D4', 0.8], ['C#4', 1.2], ['E4', 1.2], ['G4', 2.0],
+            // "...rab se jo maan-ga"
+            ['F#4', 1.0], ['E4', 1.0], ['D4', 2.2],
+
+            // "mi-ley har ta-roor..."
+            ['D4', 0.9], ['D4', 0.9], ['C#4', 0.9], ['B3', 1.2], ['D4', 1.2], ['F#4', 2.0],
+            // "...saj-na ve"
+            ['E4', 1.0], ['D4', 1.0], ['C#4', 1.0], ['D4', 2.5],
+
+            // Verse: "Ki-si aur ko tu chaa-he..."
+            ['B3', 0.8], ['D4', 0.8], ['F#4', 1.0], ['F#4', 1.0], ['F#4', 0.8], ['E4', 0.8], ['F#4', 1.8],
+            // "ki-si aur ko tu so-che..."
+            ['B3', 0.8], ['D4', 0.8], ['G4', 1.0], ['G4', 1.0], ['G4', 0.8], ['F#4', 0.8], ['G4', 1.8],
+            // "paas aa-ye paas aa-ye..."
+            ['A4', 0.9], ['A4', 0.9], ['G4', 0.9], ['F#4', 0.9], ['E4', 1.0], ['D4', 1.8],
+            ['E4', 1.0], ['F#4', 1.0], ['E4', 1.0], ['D4', 2.4]
+        ];
+
+        // Chords for Toota Jo Kabhi Tara (Bm - G - D - A progression)
+        this.tootaTaraChords = [
+            [246.94, 293.66, 369.99], // Bm
+            [196.00, 246.94, 293.66], // G
+            [293.66, 369.99, 440.00], // D
+            [220.00, 277.18, 329.63]  // A
+        ];
+
+        this.melodyNoteIndex = 0;
+        this.chordIndex = 0;
     }
 
     init() {
@@ -68,7 +83,7 @@ class FairytaleAudio {
             this.masterGain.connect(this.ctx.destination);
 
             this.musicGain = this.ctx.createGain();
-            this.musicGain.gain.setValueAtTime(0.45, this.ctx.currentTime);
+            this.musicGain.gain.setValueAtTime(0.48, this.ctx.currentTime);
             this.musicGain.connect(this.masterGain);
 
             this.sfxGain = this.ctx.createGain();
@@ -79,20 +94,79 @@ class FairytaleAudio {
         if (this.ctx.state === 'suspended') {
             this.ctx.resume();
         }
+
+        // Setup HTML5 Audio element for MP3 if present
+        if (!this.audioElement) {
+            this.setupAudioElement();
+        }
+    }
+
+    setupAudioElement() {
+        this.audioElement = document.getElementById('toota-tara-audio');
+        if (!this.audioElement) {
+            this.audioElement = new Audio();
+            this.audioElement.id = 'toota-tara-audio';
+            this.audioElement.loop = true;
+            this.audioElement.preload = 'auto';
+            document.body.appendChild(this.audioElement);
+        }
+
+        // Try to load default local file
+        this.audioElement.src = 'toota-jo-kabhi-tara.mp3';
+
+        this.audioElement.addEventListener('canplaythrough', () => {
+            this.hasMp3Loaded = true;
+            console.log('MP3 "Toota Jo Kabhi Tara" loaded successfully!');
+            const badge = document.querySelector('.song-status-text');
+            if (badge) badge.textContent = 'Playing: Toota Jo Kabhi Tara (Original)';
+        });
+
+        this.audioElement.addEventListener('error', () => {
+            // If local MP3 is not found, keep using procedural synthesis of Toota Jo Kabhi Tara
+            this.hasMp3Loaded = false;
+            console.log('Using procedural "Toota Jo Kabhi Tara" synthesizer');
+            const badge = document.querySelector('.song-status-text');
+            if (badge) badge.textContent = 'Toota Jo Kabhi Tara (Acoustic)';
+        });
+    }
+
+    loadCustomFile(file) {
+        if (!file) return;
+        const objectUrl = URL.createObjectURL(file);
+        if (!this.audioElement) this.setupAudioElement();
+        this.audioElement.src = objectUrl;
+        this.audioElement.play().then(() => {
+            this.hasMp3Loaded = true;
+            this.isPlaying = true;
+            if (this.musicInterval) clearInterval(this.musicInterval);
+            const badge = document.querySelector('.song-status-text');
+            if (badge) badge.textContent = `Playing: ${file.name.replace(/\.[^/.]+$/, "")} ❤️`;
+        }).catch(err => {
+            console.log('Playback error:', err);
+        });
     }
 
     start() {
         this.init();
         if (this.isPlaying) return;
         this.isPlaying = true;
-        this.scheduleMelodyLoop();
+
+        // If MP3 is loaded, play it
+        if (this.hasMp3Loaded && this.audioElement) {
+            this.audioElement.play().catch(() => {});
+        } else {
+            // Otherwise play synthesized Toota Jo Kabhi Tara
+            this.scheduleTootaTaraLoop();
+        }
+
         this.startAmbient();
     }
 
     pause() {
         this.isPlaying = false;
-        if (this.musicInterval) clearInterval(this.musicInterval);
+        if (this.musicInterval) clearTimeout(this.musicInterval);
         if (this.ambientInterval) clearInterval(this.ambientInterval);
+        if (this.audioElement) this.audioElement.pause();
     }
 
     toggleMute() {
@@ -101,10 +175,13 @@ class FairytaleAudio {
             return false;
         }
         this.isMuted = !this.isMuted;
+
         if (this.isMuted) {
-            this.masterGain.gain.setTargetAtTime(0, this.ctx.currentTime, 0.1);
+            if (this.masterGain) this.masterGain.gain.setTargetAtTime(0, this.ctx.currentTime, 0.1);
+            if (this.audioElement) this.audioElement.muted = true;
         } else {
-            this.masterGain.gain.setTargetAtTime(0.7, this.ctx.currentTime, 0.1);
+            if (this.masterGain) this.masterGain.gain.setTargetAtTime(0.7, this.ctx.currentTime, 0.1);
+            if (this.audioElement) this.audioElement.muted = false;
             if (!this.isPlaying) this.start();
         }
         return this.isMuted;
@@ -112,51 +189,61 @@ class FairytaleAudio {
 
     setMood(mood) {
         this.currentMood = mood;
-        this.melodyStep = 0;
-        this.chordStep = 0;
+        // In scene 4 and 5, emphasize the emotional "Toota Jo Kabhi Tara" theme
+        if (mood === 'emotional' || mood === 'fireworks') {
+            if (this.musicGain && this.ctx) {
+                this.musicGain.gain.setTargetAtTime(0.65, this.ctx.currentTime, 0.8);
+            }
+        }
     }
 
-    // Play a single soft bell / music box tone
-    playBell(freq, duration = 1.2, gainLevel = 0.3) {
+    // Play an acoustic guitar / harp plucked note
+    playAcousticPluck(freq, duration = 1.6, gainLevel = 0.26) {
         if (!this.ctx || this.isMuted) return;
 
         const now = this.ctx.currentTime;
         const osc = this.ctx.createOscillator();
-        const osc2 = this.ctx.createOscillator();
+        const oscHarmonic = this.ctx.createOscillator();
         const noteGain = this.ctx.createGain();
+        const filter = this.ctx.createBiquadFilter();
 
-        // Music box / celesta tone: sine + gentle overtone
-        osc.type = 'sine';
+        // Warm triangle + sine blend for guitar/harp
+        osc.type = 'triangle';
         osc.frequency.setValueAtTime(freq, now);
 
-        osc2.type = 'triangle';
-        osc2.frequency.setValueAtTime(freq * 2.01, now); // slight shimmer detune
+        oscHarmonic.type = 'sine';
+        oscHarmonic.frequency.setValueAtTime(freq * 2, now);
 
-        const overtoneGain = this.ctx.createGain();
-        overtoneGain.gain.setValueAtTime(0.2, now);
-        osc2.connect(overtoneGain);
-        overtoneGain.connect(noteGain);
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(1400, now);
+        filter.frequency.exponentialRampToValueAtTime(350, now + duration * 0.8);
 
-        osc.connect(noteGain);
+        const harmGain = this.ctx.createGain();
+        harmGain.gain.setValueAtTime(0.3, now);
+        oscHarmonic.connect(harmGain);
+        harmGain.connect(filter);
+
+        osc.connect(filter);
+        filter.connect(noteGain);
         noteGain.connect(this.musicGain);
 
-        // Bell envelope
+        // Pluck envelope: sharp attack, gentle decay
         noteGain.gain.setValueAtTime(0.001, now);
-        noteGain.gain.exponentialRampToValueAtTime(gainLevel, now + 0.02);
+        noteGain.gain.linearRampToValueAtTime(gainLevel, now + 0.018);
         noteGain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
 
         osc.start(now);
-        osc2.start(now);
+        oscHarmonic.start(now);
         osc.stop(now + duration);
-        osc2.stop(now + duration);
+        oscHarmonic.stop(now + duration);
     }
 
-    // Play an emotional warm pad chord
-    playChord(frequencies, duration = 3.5) {
+    // Play warm lush string pad chord
+    playChord(frequencies, duration = 3.6) {
         if (!this.ctx || this.isMuted) return;
         const now = this.ctx.currentTime;
 
-        frequencies.forEach(freq => {
+        frequencies.forEach((freq, idx) => {
             const osc = this.ctx.createOscillator();
             const gain = this.ctx.createGain();
             const filter = this.ctx.createBiquadFilter();
@@ -165,74 +252,56 @@ class FairytaleAudio {
             osc.frequency.setValueAtTime(freq, now);
 
             filter.type = 'lowpass';
-            filter.frequency.setValueAtTime(800, now);
+            filter.frequency.setValueAtTime(750, now);
 
             osc.connect(filter);
             filter.connect(gain);
             gain.connect(this.musicGain);
 
             gain.gain.setValueAtTime(0.001, now);
-            gain.gain.linearRampToValueAtTime(0.08, now + 1.0);
+            gain.gain.linearRampToValueAtTime(0.065, now + 0.8);
             gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
 
-            osc.start(now);
+            osc.start(now + idx * 0.03);
             osc.stop(now + duration);
         });
     }
 
-    // Melodic sequence loop that adapts to scene mood
-    scheduleMelodyLoop() {
-        if (this.musicInterval) clearInterval(this.musicInterval);
+    // Loop through the melody of "Toota Jo Kabhi Tara"
+    scheduleTootaTaraLoop() {
+        if (this.musicInterval) clearTimeout(this.musicInterval);
 
-        const tempoMs = {
-            garden: 480,
-            playful: 360,
-            celebration: 320,
-            emotional: 640,
-            fireworks: 420
-        };
+        const beatMs = 450; // Tempo of the song
 
-        const tick = () => {
+        const playNextNote = () => {
             if (!this.isPlaying) return;
 
-            const scale = this.scales[this.currentMood] || this.scales.garden;
-            const chords = this.chords[this.currentMood] || this.chords.garden;
-
-            // Trigger chord every 8 steps
-            if (this.melodyStep % 8 === 0 && chords) {
-                const chord = chords[this.chordStep % chords.length];
-                this.playChord(chord, (tempoMs[this.currentMood] * 8) / 1000);
-                this.chordStep++;
+            // Trigger backing chord every 4 melody notes
+            if (this.melodyNoteIndex % 4 === 0) {
+                const chord = this.tootaTaraChords[this.chordIndex % this.tootaTaraChords.length];
+                this.playChord(chord, 3.8);
+                this.chordIndex++;
             }
 
-            // Generate musical arpeggio pattern
-            const patterns = {
-                garden: [0, 2, 4, 7, 5, 4, 2, 0, 1, 3, 5, 8, 7, 5, 3, 1],
-                playful: [0, 4, 2, 5, 4, 7, 6, 8, 7, 5, 4, 2, 3, 5, 7, 8],
-                celebration: [0, 2, 4, 6, 4, 2, 4, 6, 0, 3, 5, 6, 5, 3, 2, 0],
-                emotional: [0, 2, 4, 5, 4, 2, 0, 3, 2, 0, 4, 5, 4, 3, 2, 0],
-                fireworks: [0, 3, 5, 7, 8, 7, 5, 3, 0, 4, 6, 8, 7, 6, 4, 2]
-            };
+            const item = this.tootaTaraMelody[this.melodyNoteIndex % this.tootaTaraMelody.length];
+            const noteName = item[0];
+            const durationBeats = item[1];
+            const freq = this.notes[noteName];
 
-            const pattern = patterns[this.currentMood] || patterns.garden;
-            const noteIdx = pattern[this.melodyStep % pattern.length];
-            const baseFreq = scale[noteIdx % scale.length];
+            if (freq) {
+                const noteDuration = durationBeats * (beatMs / 1000) * 1.3;
+                this.playAcousticPluck(freq, noteDuration, 0.28);
+            }
 
-            // Add occasional sparkle octave
-            const freq = (this.melodyStep % 4 === 0 && Math.random() > 0.4) ? baseFreq * 2 : baseFreq;
-            const duration = this.currentMood === 'emotional' ? 1.8 : 1.1;
-            const volume = this.currentMood === 'celebration' ? 0.28 : 0.22;
-
-            this.playBell(freq, duration, volume);
-
-            this.melodyStep++;
-            this.musicInterval = setTimeout(tick, tempoMs[this.currentMood] || 480);
+            this.melodyNoteIndex++;
+            const nextDelay = durationBeats * beatMs;
+            this.musicInterval = setTimeout(playNextNote, nextDelay);
         };
 
-        tick();
+        playNextNote();
     }
 
-    // Ambient nature sounds (gentle birds, magical wind)
+    // Ambient background nature & wind chimes
     startAmbient() {
         if (this.ambientInterval) clearInterval(this.ambientInterval);
 
@@ -240,18 +309,13 @@ class FairytaleAudio {
             if (!this.isPlaying || this.isMuted) return;
 
             if (this.currentMood === 'garden' || this.currentMood === 'playful') {
-                if (Math.random() > 0.4) {
-                    this.playBirdChirp();
-                }
-            } else if (this.currentMood === 'emotional') {
-                if (Math.random() > 0.5) {
-                    this.playWindChime();
-                }
+                if (Math.random() > 0.4) this.playBirdChirp();
+            } else if (this.currentMood === 'emotional' || this.currentMood === 'fireworks') {
+                if (Math.random() > 0.45) this.playWindChime();
             }
-        }, 3200);
+        }, 3000);
     }
 
-    // Cute bird chirp SFX
     playBirdChirp() {
         if (!this.ctx || this.isMuted) return;
         const now = this.ctx.currentTime;
@@ -259,13 +323,13 @@ class FairytaleAudio {
         const gain = this.ctx.createGain();
 
         osc.type = 'sine';
-        const startFreq = 2200 + Math.random() * 800;
+        const startFreq = 2200 + Math.random() * 700;
         osc.frequency.setValueAtTime(startFreq, now);
-        osc.frequency.exponentialRampToValueAtTime(startFreq + 600, now + 0.08);
-        osc.frequency.exponentialRampToValueAtTime(startFreq - 200, now + 0.16);
+        osc.frequency.exponentialRampToValueAtTime(startFreq + 550, now + 0.08);
+        osc.frequency.exponentialRampToValueAtTime(startFreq - 150, now + 0.16);
 
         gain.gain.setValueAtTime(0.001, now);
-        gain.gain.linearRampToValueAtTime(0.05, now + 0.03);
+        gain.gain.linearRampToValueAtTime(0.045, now + 0.03);
         gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.18);
 
         osc.connect(gain);
@@ -275,18 +339,16 @@ class FairytaleAudio {
         osc.stop(now + 0.2);
     }
 
-    // Sparkly wind chime / fairy dust SFX
     playWindChime() {
         if (!this.ctx || this.isMuted) return;
         const notes = [1046.50, 1318.51, 1567.98, 2093.00, 2637.02];
         notes.forEach((freq, idx) => {
             setTimeout(() => {
-                this.playBell(freq, 1.5, 0.08);
-            }, idx * 120 + Math.random() * 50);
+                this.playAcousticPluck(freq, 1.4, 0.06);
+            }, idx * 110 + Math.random() * 40);
         });
     }
 
-    // Interactive Tap / Heart Sparkle SFX
     playSparkle() {
         this.init();
         if (this.isMuted) return;
@@ -302,17 +364,16 @@ class FairytaleAudio {
 
             gain.gain.setValueAtTime(0.001, now + i * 0.05);
             gain.gain.linearRampToValueAtTime(0.12, now + i * 0.05 + 0.02);
-            gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.05 + 0.4);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.05 + 0.35);
 
             osc.connect(gain);
             gain.connect(this.sfxGain);
 
             osc.start(now + i * 0.05);
-            osc.stop(now + i * 0.05 + 0.45);
+            osc.stop(now + i * 0.05 + 0.4);
         });
     }
 
-    // Purr / pet sound effect for kitty
     playCatPurr() {
         this.init();
         if (this.isMuted) return;
@@ -326,7 +387,7 @@ class FairytaleAudio {
         osc.frequency.linearRampToValueAtTime(85, now + 0.4);
 
         gain.gain.setValueAtTime(0.001, now);
-        gain.gain.linearRampToValueAtTime(0.15, now + 0.1);
+        gain.gain.linearRampToValueAtTime(0.14, now + 0.1);
         gain.gain.linearRampToValueAtTime(0.001, now + 0.5);
 
         osc.connect(gain);
@@ -335,13 +396,11 @@ class FairytaleAudio {
         osc.start(now);
         osc.stop(now + 0.5);
 
-        // Add a cute high meow tone
         setTimeout(() => {
-            this.playBell(1046.50, 0.3, 0.1);
+            this.playAcousticPluck(1046.50, 0.3, 0.08);
         }, 150);
     }
 
-    // Puppy happy chirp / bark SFX
     playDogBark() {
         this.init();
         if (this.isMuted) return;
@@ -355,23 +414,21 @@ class FairytaleAudio {
         osc.frequency.exponentialRampToValueAtTime(320, now + 0.2);
 
         gain.gain.setValueAtTime(0.01, now);
-        gain.gain.linearRampToValueAtTime(0.18, now + 0.04);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+        gain.gain.linearRampToValueAtTime(0.16, now + 0.04);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.24);
 
         osc.connect(gain);
         gain.connect(this.sfxGain);
 
         osc.start(now);
-        osc.stop(now + 0.26);
+        osc.stop(now + 0.25);
     }
 
-    // Candle blow-out whoosh sound
     playBlowCandle() {
         this.init();
         if (this.isMuted) return;
         const now = this.ctx.currentTime;
 
-        // Noise buffer for gentle breath whoosh
         const bufferSize = this.ctx.sampleRate * 0.6;
         const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
         const data = buffer.getChannelData(0);
@@ -389,7 +446,7 @@ class FairytaleAudio {
 
         const gain = this.ctx.createGain();
         gain.gain.setValueAtTime(0.01, now);
-        gain.gain.linearRampToValueAtTime(0.2, now + 0.1);
+        gain.gain.linearRampToValueAtTime(0.18, now + 0.1);
         gain.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
 
         noise.connect(filter);
@@ -399,19 +456,16 @@ class FairytaleAudio {
         noise.start(now);
         noise.stop(now + 0.65);
 
-        // Followed by fanfare sparkle
         setTimeout(() => {
             this.playWindChime();
         }, 300);
     }
 
-    // Realistic Firework sound (Whistle up + Boom rumble)
     playFireworkSound() {
         this.init();
         if (this.isMuted) return;
         const now = this.ctx.currentTime;
 
-        // 1. Whistle rocket launch
         const osc = this.ctx.createOscillator();
         const oscGain = this.ctx.createGain();
         osc.type = 'sawtooth';
@@ -419,7 +473,7 @@ class FairytaleAudio {
         osc.frequency.exponentialRampToValueAtTime(1400, now + 0.5);
 
         oscGain.gain.setValueAtTime(0.001, now);
-        oscGain.gain.linearRampToValueAtTime(0.08, now + 0.1);
+        oscGain.gain.linearRampToValueAtTime(0.07, now + 0.1);
         oscGain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
 
         const whistleFilter = this.ctx.createBiquadFilter();
@@ -434,12 +488,10 @@ class FairytaleAudio {
         osc.start(now);
         osc.stop(now + 0.52);
 
-        // 2. Boom detonation at peak
         setTimeout(() => {
             if (!this.ctx || this.isMuted) return;
             const boomTime = this.ctx.currentTime;
 
-            // Noise burst for crackle
             const bufferSize = this.ctx.sampleRate * 0.8;
             const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
             const data = buffer.getChannelData(0);
@@ -452,10 +504,10 @@ class FairytaleAudio {
 
             const filter = this.ctx.createBiquadFilter();
             filter.type = 'lowpass';
-            filter.frequency.setValueAtTime(350, boomTime);
+            filter.frequency.setValueAtTime(320, boomTime);
 
             const boomGain = this.ctx.createGain();
-            boomGain.gain.setValueAtTime(0.35, boomTime);
+            boomGain.gain.setValueAtTime(0.32, boomTime);
             boomGain.gain.exponentialRampToValueAtTime(0.001, boomTime + 0.7);
 
             noise.connect(filter);
@@ -468,5 +520,4 @@ class FairytaleAudio {
     }
 }
 
-// Global audio instance
 window.fairytaleAudio = new FairytaleAudio();

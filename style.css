@@ -135,7 +135,28 @@ html, body {
     pointer-events: auto;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
+}
+
+.song-pill {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1.5px solid var(--glass-border);
+    border-radius: 50px;
+    padding: 7px 14px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--pink-primary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 15px rgba(255, 117, 143, 0.18);
+    font-family: var(--font-heading);
+    max-width: 230px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .control-btn {
@@ -917,6 +938,27 @@ html, body {
     text-align: center;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4),
                 0 0 40px rgba(255, 105, 180, 0.25);
+}
+
+.song-theme-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 20px;
+    background: rgba(255, 182, 193, 0.18);
+    border: 1.5px solid rgba(255, 209, 102, 0.55);
+    border-radius: 50px;
+    font-family: var(--font-heading);
+    font-size: clamp(0.85rem, 2.2vw, 1.05rem);
+    color: #ffd166;
+    margin-bottom: 22px;
+    text-shadow: 0 0 10px rgba(255, 209, 102, 0.5);
+    animation: glowPulse 2.5s infinite alternate;
+}
+
+@keyframes glowPulse {
+    0% { transform: scale(0.98); box-shadow: 0 0 10px rgba(255, 209, 102, 0.2); }
+    100% { transform: scale(1.02); box-shadow: 0 0 20px rgba(255, 209, 102, 0.6); }
 }
 
 .emotional-lines-container {

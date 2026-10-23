@@ -13,6 +13,9 @@
     <canvas id="ambient-canvas"></canvas>
     <canvas id="fireworks-canvas"></canvas>
 
+    <!-- Audio Player for Toota Jo Kabhi Tara -->
+    <audio id="toota-tara-audio" src="toota-jo-kabhi-tara.mp3" loop preload="auto"></audio>
+
     <!-- Floating Top Header & Controls -->
     <header class="floating-header">
         <div class="scene-tracker">
@@ -25,14 +28,21 @@
         </div>
 
         <div class="controls-group">
-            <button id="music-toggle" class="control-btn" title="Toggle Fairytale Music">
-                <span class="music-icon">🎵</span>
+            <div class="song-pill" id="song-info-pill" title="Song: Toota Jo Kabhi Tara">
+                <span class="song-pill-icon">🎵</span>
+                <span class="song-status-text">Toota Jo Kabhi Tara ❤️</span>
+            </div>
+            <button id="music-toggle" class="control-btn" title="Toggle Music">
                 <span class="music-waves">
                     <span></span>
                     <span></span>
                     <span></span>
                 </span>
                 <span class="music-label">Music</span>
+            </button>
+            <input type="file" id="song-file-input" accept="audio/*" style="display:none">
+            <button id="btn-upload-song" class="control-btn" title="Load your MP3 from device">
+                <span>📂</span>
             </button>
         </div>
     </header>
@@ -617,6 +627,12 @@
 
             <!-- Emotional Glass Card -->
             <div class="emotional-content-card">
+                <!-- Song Tribute Pill -->
+                <div class="song-theme-badge">
+                    <span class="music-note-icon">🎶</span>
+                    <span>“Toota jo kabhi tara, sajna ve... Tujhe rab se maanga ❤️”</span>
+                </div>
+
                 <div class="emotional-lines-container">
                     <p class="emotional-line">
                         “And yrr ek baat bolni thi jo kaafi time se kehna chahta tha… 👉🏻👈🏻🥹”

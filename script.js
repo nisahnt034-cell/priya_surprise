@@ -100,19 +100,33 @@ class BirthdayExperience {
     }
 
     setupAudioControls() {
-        if (!this.musicToggleBtn) return;
-        this.musicToggleBtn.addEventListener('click', () => {
-            if (window.fairytaleAudio) {
-                const muted = window.fairytaleAudio.toggleMute();
-                if (muted) {
-                    this.musicToggleBtn.classList.add('muted');
-                    this.musicToggleBtn.setAttribute('title', 'Music is Muted (Click to Play)');
-                } else {
-                    this.musicToggleBtn.classList.remove('muted');
-                    this.musicToggleBtn.setAttribute('title', 'Music is Playing (Click to Mute)');
+        if (this.musicToggleBtn) {
+            this.musicToggleBtn.addEventListener('click', () => {
+                if (window.fairytaleAudio) {
+                    const muted = window.fairytaleAudio.toggleMute();
+                    if (muted) {
+                        this.musicToggleBtn.classList.add('muted');
+                        this.musicToggleBtn.setAttribute('title', 'Music is Muted (Click to Play)');
+                    } else {
+                        this.musicToggleBtn.classList.remove('muted');
+                        this.musicToggleBtn.setAttribute('title', 'Music is Playing (Click to Mute)');
+                    }
                 }
-            }
-        });
+            });
+        }
+
+        const uploadBtn = document.getElementById('btn-upload-song');
+        const fileInput = document.getElementById('song-file-input');
+        if (uploadBtn && fileInput) {
+            uploadBtn.addEventListener('click', () => fileInput.click());
+            fileInput.addEventListener('change', (e) => {
+                if (e.target.files && e.target.files[0]) {
+                    if (window.fairytaleAudio) {
+                        window.fairytaleAudio.loadCustomFile(e.target.files[0]);
+                    }
+                }
+            });
+        }
     }
 
     setupInteractiveCharacters() {
