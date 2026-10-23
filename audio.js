@@ -1,4 +1,7 @@
-// Web Audio API Procedural Fairytale Music + "Toota Jo Kabhi Tara" Synthesizer & MP3 Player
+// Audio Engine for Priya Verma's Birthday Surprise
+// 1. Plays original "Toota Jo Kabhi Tara" (Atif Aslam & Sumedha K.) via YouTube Stream / Local MP3
+// 2. Procedural Web Audio synthesizer fallback for offline or standalone file usage
+// 3. Ambient nature and interactive sound effects
 
 class FairytaleAudio {
     constructor() {
@@ -13,55 +16,29 @@ class FairytaleAudio {
         this.melodyStep = 0;
         this.isMuted = false;
 
-        // MP3 Audio element for "Toota Jo Kabhi Tara"
+        // Audio Sources
         this.audioElement = null;
         this.hasMp3Loaded = false;
-        this.useSynthesizerFallback = true;
+        this.ytPlayer = null;
+        this.isYtReady = false;
+        this.activeSource = 'synth'; // 'mp3', 'youtube', 'synth'
 
-        // Frequencies for "Toota Jo Kabhi Tara" in D Major (Hz)
+        // Musical notes for procedural fallback
         this.notes = {
-            'B3': 246.94,
-            'C#4': 277.18,
-            'D4': 293.66,
-            'E4': 329.63,
-            'F#4': 369.99,
-            'G4': 392.00,
-            'A4': 440.00,
-            'B4': 493.88,
-            'C#5': 554.37,
-            'D5': 587.33,
-            'E5': 659.25,
-            'F#5': 739.99
+            'B3': 246.94, 'C#4': 277.18, 'D4': 293.66, 'E4': 329.63,
+            'F#4': 369.99, 'G4': 392.00, 'A4': 440.00, 'B4': 493.88,
+            'C#5': 554.37, 'D5': 587.33, 'E5': 659.25, 'F#5': 739.99
         };
 
-        // Exact iconic melody sequence of "Toota Jo Kabhi Tara" (Chorus & Verse)
-        // [noteName, durationInBeats, isPause]
         this.tootaTaraMelody = [
-            // "Too-ta jo ka-bhi taa-ra..."
             ['F#4', 1.0], ['F#4', 0.8], ['F#4', 0.8], ['E4', 0.8], ['D4', 1.2], ['F#4', 1.2], ['A4', 2.0],
-            // "...saj-na ve"
             ['G4', 1.0], ['F#4', 1.0], ['E4', 2.2],
-
-            // "Tu-jhe rab se maan-ga..."
             ['E4', 1.0], ['E4', 0.8], ['E4', 0.8], ['D4', 0.8], ['C#4', 1.2], ['E4', 1.2], ['G4', 2.0],
-            // "...rab se jo maan-ga"
             ['F#4', 1.0], ['E4', 1.0], ['D4', 2.2],
-
-            // "mi-ley har ta-roor..."
             ['D4', 0.9], ['D4', 0.9], ['C#4', 0.9], ['B3', 1.2], ['D4', 1.2], ['F#4', 2.0],
-            // "...saj-na ve"
-            ['E4', 1.0], ['D4', 1.0], ['C#4', 1.0], ['D4', 2.5],
-
-            // Verse: "Ki-si aur ko tu chaa-he..."
-            ['B3', 0.8], ['D4', 0.8], ['F#4', 1.0], ['F#4', 1.0], ['F#4', 0.8], ['E4', 0.8], ['F#4', 1.8],
-            // "ki-si aur ko tu so-che..."
-            ['B3', 0.8], ['D4', 0.8], ['G4', 1.0], ['G4', 1.0], ['G4', 0.8], ['F#4', 0.8], ['G4', 1.8],
-            // "paas aa-ye paas aa-ye..."
-            ['A4', 0.9], ['A4', 0.9], ['G4', 0.9], ['F#4', 0.9], ['E4', 1.0], ['D4', 1.8],
-            ['E4', 1.0], ['F#4', 1.0], ['E4', 1.0], ['D4', 2.4]
+            ['E4', 1.0], ['D4', 1.0], ['C#4', 1.0], ['D4', 2.5]
         ];
 
-        // Chords for Toota Jo Kabhi Tara (Bm - G - D - A progression)
         this.tootaTaraChords = [
             [246.94, 293.66, 369.99], // Bm
             [196.00, 246.94, 293.66], // G
@@ -71,6 +48,8 @@ class FairytaleAudio {
 
         this.melodyNoteIndex = 0;
         this.chordIndex = 0;
+
+        this.initYouTubeAPI();
     }
 
     init() {
@@ -79,7 +58,7 @@ class FairytaleAudio {
             this.ctx = new AudioCtx();
 
             this.masterGain = this.ctx.createGain();
-            this.masterGain.gain.setValueAtTime(0.7, this.ctx.currentTime);
+            this.masterGain.gain.setValueAtTime(0.75, this.ctx.currentTime);
             this.masterGain.connect(this.ctx.destination);
 
             this.musicGain = this.ctx.createGain();
@@ -87,7 +66,7 @@ class FairytaleAudio {
             this.musicGain.connect(this.masterGain);
 
             this.sfxGain = this.ctx.createGain();
-            this.sfxGain.gain.setValueAtTime(0.6, this.ctx.currentTime);
+            this.sfxGain.gain.setValueAtTime(0.65, this.ctx.currentTime);
             this.sfxGain.connect(this.masterGain);
         }
 
@@ -95,9 +74,73 @@ class FairytaleAudio {
             this.ctx.resume();
         }
 
-        // Setup HTML5 Audio element for MP3 if present
         if (!this.audioElement) {
             this.setupAudioElement();
+        }
+    }
+
+    initYouTubeAPI() {
+        if (!window.onYouTubeIframeAPIReady) {
+            window.onYouTubeIframeAPIReady = () => {
+                this.setupYouTubePlayer();
+            };
+
+            // Inject YouTube IFrame API script
+            const tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+            const firstScript = document.getElementsByTagName('script')[0];
+            if (firstScript && firstScript.parentNode) {
+                firstScript.parentNode.insertBefore(tag, firstScript);
+            } else {
+                document.head.appendChild(tag);
+            }
+        }
+    }
+
+    setupYouTubePlayer() {
+        const playerDiv = document.getElementById('yt-player');
+        if (!playerDiv || !window.YT) return;
+
+        try {
+            this.ytPlayer = new window.YT.Player('yt-player', {
+                height: '140',
+                width: '240',
+                videoId: 'GTOdXVfrXF0', // Official Toota Jo Kabhi Tara (A Flying Jatt)
+                playerVars: {
+                    'playsinline': 1,
+                    'autoplay': 0,
+                    'controls': 1,
+                    'loop': 1,
+                    'playlist': 'GTOdXVfrXF0',
+                    'rel': 0,
+                    'modestbranding': 1
+                },
+                events: {
+                    'onReady': () => {
+                        this.isYtReady = true;
+                        console.log('YouTube Player Ready for Toota Jo Kabhi Tara!');
+                        const badge = document.querySelector('.song-status-text');
+                        if (badge && !this.hasMp3Loaded) {
+                            badge.textContent = 'Toota Jo Kabhi Tara (Original) 🎶';
+                        }
+                    },
+                    'onStateChange': (event) => {
+                        const playBtn = document.getElementById('yt-toggle-btn');
+                        const musicWaves = document.querySelectorAll('.music-waves span');
+                        if (event.data === window.YT.PlayerState.PLAYING) {
+                            this.isPlaying = true;
+                            this.activeSource = 'youtube';
+                            if (playBtn) playBtn.textContent = '⏸️';
+                            musicWaves.forEach(w => w.style.animationPlayState = 'running');
+                        } else if (event.data === window.YT.PlayerState.PAUSED) {
+                            if (playBtn) playBtn.textContent = '▶️';
+                            musicWaves.forEach(w => w.style.animationPlayState = 'paused');
+                        }
+                    }
+                }
+            });
+        } catch (e) {
+            console.log('YouTube API init error:', e);
         }
     }
 
@@ -111,22 +154,23 @@ class FairytaleAudio {
             document.body.appendChild(this.audioElement);
         }
 
-        // Try to load default local file
         this.audioElement.src = 'toota-jo-kabhi-tara.mp3';
 
         this.audioElement.addEventListener('canplaythrough', () => {
             this.hasMp3Loaded = true;
-            console.log('MP3 "Toota Jo Kabhi Tara" loaded successfully!');
+            this.activeSource = 'mp3';
+            console.log('Local MP3 Toota Jo Kabhi Tara loaded!');
             const badge = document.querySelector('.song-status-text');
-            if (badge) badge.textContent = 'Playing: Toota Jo Kabhi Tara (Original)';
+            if (badge) badge.textContent = 'Toota Jo Kabhi Tara (Original MP3) ❤️';
         });
 
         this.audioElement.addEventListener('error', () => {
-            // If local MP3 is not found, keep using procedural synthesis of Toota Jo Kabhi Tara
             this.hasMp3Loaded = false;
-            console.log('Using procedural "Toota Jo Kabhi Tara" synthesizer');
-            const badge = document.querySelector('.song-status-text');
-            if (badge) badge.textContent = 'Toota Jo Kabhi Tara (Acoustic)';
+            if (this.isYtReady) {
+                this.activeSource = 'youtube';
+            } else {
+                this.activeSource = 'synth';
+            }
         });
     }
 
@@ -134,15 +178,22 @@ class FairytaleAudio {
         if (!file) return;
         const objectUrl = URL.createObjectURL(file);
         if (!this.audioElement) this.setupAudioElement();
+
+        // Pause YouTube if running
+        if (this.ytPlayer && typeof this.ytPlayer.pauseVideo === 'function') {
+            this.ytPlayer.pauseVideo();
+        }
+
         this.audioElement.src = objectUrl;
         this.audioElement.play().then(() => {
             this.hasMp3Loaded = true;
             this.isPlaying = true;
-            if (this.musicInterval) clearInterval(this.musicInterval);
+            this.activeSource = 'mp3';
+            if (this.musicInterval) clearTimeout(this.musicInterval);
             const badge = document.querySelector('.song-status-text');
             if (badge) badge.textContent = `Playing: ${file.name.replace(/\.[^/.]+$/, "")} ❤️`;
         }).catch(err => {
-            console.log('Playback error:', err);
+            console.log('Custom audio playback error:', err);
         });
     }
 
@@ -151,11 +202,23 @@ class FairytaleAudio {
         if (this.isPlaying) return;
         this.isPlaying = true;
 
-        // If MP3 is loaded, play it
+        // Priority 1: Play Local MP3 if available
         if (this.hasMp3Loaded && this.audioElement) {
+            this.activeSource = 'mp3';
             this.audioElement.play().catch(() => {});
-        } else {
-            // Otherwise play synthesized Toota Jo Kabhi Tara
+        }
+        // Priority 2: Play Official YouTube Song Stream
+        else if (this.isYtReady && this.ytPlayer && typeof this.ytPlayer.playVideo === 'function') {
+            this.activeSource = 'youtube';
+            try {
+                this.ytPlayer.playVideo();
+            } catch (e) {
+                this.scheduleTootaTaraLoop();
+            }
+        }
+        // Priority 3: Procedural Synthesizer
+        else {
+            this.activeSource = 'synth';
             this.scheduleTootaTaraLoop();
         }
 
@@ -164,9 +227,12 @@ class FairytaleAudio {
 
     pause() {
         this.isPlaying = false;
+        if (this.audioElement) this.audioElement.pause();
+        if (this.ytPlayer && typeof this.ytPlayer.pauseVideo === 'function') {
+            try { this.ytPlayer.pauseVideo(); } catch(e) {}
+        }
         if (this.musicInterval) clearTimeout(this.musicInterval);
         if (this.ambientInterval) clearInterval(this.ambientInterval);
-        if (this.audioElement) this.audioElement.pause();
     }
 
     toggleMute() {
@@ -174,14 +240,21 @@ class FairytaleAudio {
             this.start();
             return false;
         }
+
         this.isMuted = !this.isMuted;
 
         if (this.isMuted) {
-            if (this.masterGain) this.masterGain.gain.setTargetAtTime(0, this.ctx.currentTime, 0.1);
             if (this.audioElement) this.audioElement.muted = true;
+            if (this.ytPlayer && typeof this.ytPlayer.mute === 'function') {
+                try { this.ytPlayer.mute(); } catch(e) {}
+            }
+            if (this.masterGain) this.masterGain.gain.setTargetAtTime(0, this.ctx.currentTime, 0.1);
         } else {
-            if (this.masterGain) this.masterGain.gain.setTargetAtTime(0.7, this.ctx.currentTime, 0.1);
             if (this.audioElement) this.audioElement.muted = false;
+            if (this.ytPlayer && typeof this.ytPlayer.unMute === 'function') {
+                try { this.ytPlayer.unMute(); } catch(e) {}
+            }
+            if (this.masterGain) this.masterGain.gain.setTargetAtTime(0.75, this.ctx.currentTime, 0.1);
             if (!this.isPlaying) this.start();
         }
         return this.isMuted;
@@ -189,15 +262,15 @@ class FairytaleAudio {
 
     setMood(mood) {
         this.currentMood = mood;
-        // In scene 4 and 5, emphasize the emotional "Toota Jo Kabhi Tara" theme
         if (mood === 'emotional' || mood === 'fireworks') {
-            if (this.musicGain && this.ctx) {
-                this.musicGain.gain.setTargetAtTime(0.65, this.ctx.currentTime, 0.8);
+            if (this.audioElement) this.audioElement.volume = 1.0;
+            if (this.ytPlayer && typeof this.ytPlayer.setVolume === 'function') {
+                try { this.ytPlayer.setVolume(100); } catch(e) {}
             }
         }
     }
 
-    // Play an acoustic guitar / harp plucked note
+    // Procedural Fallback Methods
     playAcousticPluck(freq, duration = 1.6, gainLevel = 0.26) {
         if (!this.ctx || this.isMuted) return;
 
@@ -207,7 +280,6 @@ class FairytaleAudio {
         const noteGain = this.ctx.createGain();
         const filter = this.ctx.createBiquadFilter();
 
-        // Warm triangle + sine blend for guitar/harp
         osc.type = 'triangle';
         osc.frequency.setValueAtTime(freq, now);
 
@@ -227,7 +299,6 @@ class FairytaleAudio {
         filter.connect(noteGain);
         noteGain.connect(this.musicGain);
 
-        // Pluck envelope: sharp attack, gentle decay
         noteGain.gain.setValueAtTime(0.001, now);
         noteGain.gain.linearRampToValueAtTime(gainLevel, now + 0.018);
         noteGain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
@@ -238,7 +309,6 @@ class FairytaleAudio {
         oscHarmonic.stop(now + duration);
     }
 
-    // Play warm lush string pad chord
     playChord(frequencies, duration = 3.6) {
         if (!this.ctx || this.isMuted) return;
         const now = this.ctx.currentTime;
@@ -267,16 +337,13 @@ class FairytaleAudio {
         });
     }
 
-    // Loop through the melody of "Toota Jo Kabhi Tara"
     scheduleTootaTaraLoop() {
         if (this.musicInterval) clearTimeout(this.musicInterval);
-
-        const beatMs = 450; // Tempo of the song
+        const beatMs = 450;
 
         const playNextNote = () => {
-            if (!this.isPlaying) return;
+            if (!this.isPlaying || this.activeSource !== 'synth') return;
 
-            // Trigger backing chord every 4 melody notes
             if (this.melodyNoteIndex % 4 === 0) {
                 const chord = this.tootaTaraChords[this.chordIndex % this.tootaTaraChords.length];
                 this.playChord(chord, 3.8);
@@ -301,13 +368,10 @@ class FairytaleAudio {
         playNextNote();
     }
 
-    // Ambient background nature & wind chimes
     startAmbient() {
         if (this.ambientInterval) clearInterval(this.ambientInterval);
-
         this.ambientInterval = setInterval(() => {
             if (!this.isPlaying || this.isMuted) return;
-
             if (this.currentMood === 'garden' || this.currentMood === 'playful') {
                 if (Math.random() > 0.4) this.playBirdChirp();
             } else if (this.currentMood === 'emotional' || this.currentMood === 'fireworks') {
@@ -424,7 +488,6 @@ class FairytaleAudio {
         osc.stop(now + 0.25);
     }
 
-    // Ghungroo classical bell chime for Kathakali dance
     playGhungrooChime() {
         this.init();
         if (this.isMuted) return;
@@ -436,7 +499,6 @@ class FairytaleAudio {
         });
     }
 
-    // Cute noodle slurp / munch sound
     playNoodleSlurp() {
         this.init();
         if (this.isMuted) return;
@@ -462,7 +524,6 @@ class FairytaleAudio {
         setTimeout(() => this.playSparkle(), 180);
     }
 
-    // Dreamy K-Drama romance chime
     playKDramaChime() {
         this.init();
         if (this.isMuted) return;

@@ -128,6 +128,32 @@ class BirthdayExperience {
                 }
             });
         }
+
+        const ytToggleBtn = document.getElementById('yt-toggle-btn');
+        const ytMinBtn = document.getElementById('yt-min-btn');
+        const ytDock = document.getElementById('yt-music-dock');
+
+        if (ytToggleBtn) {
+            ytToggleBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (window.fairytaleAudio) {
+                    if (window.fairytaleAudio.isPlaying) {
+                        window.fairytaleAudio.pause();
+                        ytToggleBtn.textContent = '▶️';
+                    } else {
+                        window.fairytaleAudio.start();
+                        ytToggleBtn.textContent = '⏸️';
+                    }
+                }
+            });
+        }
+
+        if (ytMinBtn && ytDock) {
+            ytMinBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                ytDock.classList.toggle('minimized');
+            });
+        }
     }
 
     setupDailyMoodTabs() {
