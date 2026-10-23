@@ -151,26 +151,34 @@ class FairytaleAudio {
             this.audioElement.id = 'toota-tara-audio';
             this.audioElement.loop = true;
             this.audioElement.preload = 'auto';
+            this.audioElement.innerHTML = `
+                <source src="toota-jo-kabhi-tara.mp3" type="audio/mpeg">
+                <source src="toota-jo-kabhi-tara.m4a" type="audio/mp4">
+            `;
             document.body.appendChild(this.audioElement);
         }
 
-        this.audioElement.src = 'toota-jo-kabhi-tara.mp3';
+        this.hasMp3Loaded = true;
+
+        this.audioElement.addEventListener('playing', () => {
+            this.isPlaying = true;
+            this.activeSource = 'mp3';
+            const badge = document.querySelector('.song-status-text');
+            if (badge) badge.textContent = 'Toota Jo Kabhi Tara (Atif Aslam) ❤️';
+            const playBtn = document.getElementById('yt-toggle-btn');
+            if (playBtn) playBtn.textContent = '⏸️';
+        });
+
+        this.audioElement.addEventListener('pause', () => {
+            const playBtn = document.getElementById('yt-toggle-btn');
+            if (playBtn) playBtn.textContent = '▶️';
+        });
 
         this.audioElement.addEventListener('canplaythrough', () => {
             this.hasMp3Loaded = true;
             this.activeSource = 'mp3';
-            console.log('Local MP3 Toota Jo Kabhi Tara loaded!');
             const badge = document.querySelector('.song-status-text');
-            if (badge) badge.textContent = 'Toota Jo Kabhi Tara (Original MP3) ❤️';
-        });
-
-        this.audioElement.addEventListener('error', () => {
-            this.hasMp3Loaded = false;
-            if (this.isYtReady) {
-                this.activeSource = 'youtube';
-            } else {
-                this.activeSource = 'synth';
-            }
+            if (badge) badge.textContent = 'Toota Jo Kabhi Tara (Atif Aslam) ❤️';
         });
     }
 
