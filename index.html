@@ -219,6 +219,298 @@
                 <h1 class="welcome-title">
                     Heyyy <span class="priya-highlight">Priyaaa!</span> 🥹❤️
                 </h1>
+
+                <!-- Priya's Alone, Happy & Quirky Daily Life Showcase -->
+                <div class="priya-daily-theater">
+                    <div class="theater-header-tag">
+                        🌸 Priya in her own happy little world:
+                    </div>
+
+                    <!-- Interactive Mood Tabs -->
+                    <div class="daily-mood-tabs">
+                        <button class="mood-tab active" data-mood="kathakali" title="Dancing Kathakali alone">
+                            <span>💃</span> Kathakali Vibes
+                        </button>
+                        <button class="mood-tab" data-mood="noodles" title="Eating hot noodles">
+                            <span>🍜</span> Slurping Noodles
+                        </button>
+                        <button class="mood-tab" data-mood="kdrama" title="Binge-watching K-Drama">
+                            <span>📺</span> K-Drama & Oppas
+                        </button>
+                    </div>
+
+                    <!-- Animated Stage Frames -->
+                    <div class="daily-stage-container">
+
+                        <!-- Frame 1: Dancing Indian Kathakali Alone -->
+                        <div class="daily-stage-frame mood-frame-kathakali active" id="frame-kathakali">
+                            <div class="theater-stage-avatar">
+                                <svg width="180" height="190" viewBox="0 0 180 190" class="anim-kathakali-char">
+                                    <defs>
+                                        <linearGradient id="kathakaliSkirt" x1="0" y1="0" x2="100%" y2="0%">
+                                            <stop offset="0%" stop-color="#2d6a4f"/>
+                                            <stop offset="50%" stop-color="#52b788"/>
+                                            <stop offset="100%" stop-color="#2d6a4f"/>
+                                        </linearGradient>
+                                        <linearGradient id="goldZari" x1="0" y1="0" x2="100%" y2="0%">
+                                            <stop offset="0%" stop-color="#ffd166"/>
+                                            <stop offset="100%" stop-color="#ffb703"/>
+                                        </linearGradient>
+                                    </defs>
+
+                                    <!-- Golden Aura / Sunburst behind dancer -->
+                                    <circle cx="90" cy="85" r="70" fill="rgba(255, 209, 102, 0.15)"/>
+
+                                    <!-- Pleated Kathakali Skirt -->
+                                    <path d="M50 135 Q90 148, 130 135 L145 180 Q90 195, 35 180 Z" fill="url(#kathakaliSkirt)"/>
+                                    <!-- Golden border stripes on skirt -->
+                                    <path d="M40 168 Q90 184, 140 168" stroke="url(#goldZari)" stroke-width="6" fill="none"/>
+                                    <path d="M36 177 Q90 192, 144 177" stroke="#e63946" stroke-width="3" fill="none"/>
+
+                                    <!-- Feet with Ghungroos & Alta -->
+                                    <g class="anim-ghungroo-feet">
+                                        <!-- Left Foot -->
+                                        <ellipse cx="72" cy="182" rx="10" ry="5" fill="#e63946"/>
+                                        <circle cx="72" cy="178" r="3" fill="#ffd166"/>
+                                        <circle cx="68" cy="178" r="2.5" fill="#ffd166"/>
+                                        <circle cx="76" cy="178" r="2.5" fill="#ffd166"/>
+                                        <!-- Right Foot tapping -->
+                                        <ellipse cx="108" cy="180" rx="10" ry="5" fill="#e63946"/>
+                                        <circle cx="108" cy="176" r="3" fill="#ffd166"/>
+                                        <circle cx="104" cy="176" r="2.5" fill="#ffd166"/>
+                                        <circle cx="112" cy="176" r="2.5" fill="#ffd166"/>
+                                    </g>
+
+                                    <!-- Body & Choli (Crimson Red) -->
+                                    <path d="M72 95 L108 95 L112 135 L68 135 Z" fill="#d00000"/>
+                                    <!-- Golden Waistbelt (Odiyanam) -->
+                                    <rect x="68" y="132" width="44" height="6" fill="url(#goldZari)" rx="3"/>
+
+                                    <!-- Classical Mudra Arms -->
+                                    <g class="anim-mudra-arms">
+                                        <!-- Left Arm (Upward Mudra) -->
+                                        <path d="M72 102 C45 90, 40 70, 48 55" stroke="#ffe4dc" stroke-width="11" stroke-linecap="round" fill="none"/>
+                                        <!-- Hand Mudra (Hamsasya/Katakamukha) -->
+                                        <circle cx="48" cy="53" r="6" fill="#ffe4dc"/>
+                                        <circle cx="43" cy="50" r="3" fill="#e63946"/> <!-- Alta on tip -->
+                                        <!-- Golden Bangle -->
+                                        <rect x="52" y="60" width="8" height="4" fill="#ffd166" transform="rotate(-30 52 60)"/>
+
+                                        <!-- Right Arm (Graceful Sway Mudra) -->
+                                        <path d="M108 102 C135 90, 140 70, 132 55" stroke="#ffe4dc" stroke-width="11" stroke-linecap="round" fill="none"/>
+                                        <circle cx="132" cy="53" r="6" fill="#ffe4dc"/>
+                                        <circle cx="137" cy="50" r="3" fill="#e63946"/>
+                                        <rect x="120" y="60" width="8" height="4" fill="#ffd166" transform="rotate(30 120 60)"/>
+                                    </g>
+
+                                    <!-- Head & Expressive Dramatic Face -->
+                                    <ellipse cx="90" cy="65" rx="26" ry="24" fill="#ffe4dc"/>
+
+                                    <!-- Dramatic Kohl Eyebrows & Eyes -->
+                                    <g class="anim-expressive-eyes">
+                                        <!-- Eyebrows raised dramatically -->
+                                        <path d="M74 54 Q82 48, 88 53" stroke="#1b1b1b" stroke-width="3" stroke-linecap="round" fill="none"/>
+                                        <path d="M92 53 Q98 48, 106 54" stroke="#1b1b1b" stroke-width="3" stroke-linecap="round" fill="none"/>
+
+                                        <!-- Big Expressive Classical Eyes with Kohl Wings -->
+                                        <ellipse cx="81" cy="63" rx="6" ry="7" fill="#1b1b1b"/>
+                                        <ellipse cx="80" cy="61" rx="2.5" ry="3" fill="#ffffff"/>
+                                        <path d="M86 64 C90 62, 92 60, 93 59" stroke="#1b1b1b" stroke-width="2.5" stroke-linecap="round"/>
+
+                                        <ellipse cx="99" cy="63" rx="6" ry="7" fill="#1b1b1b"/>
+                                        <ellipse cx="98" cy="61" rx="2.5" ry="3" fill="#ffffff"/>
+                                        <path d="M94 64 C90 62, 88 60, 87 59" stroke="#1b1b1b" stroke-width="2.5" stroke-linecap="round"/>
+                                    </g>
+
+                                    <!-- Red Round Bindi on Forehead -->
+                                    <circle cx="90" cy="55" r="3.5" fill="#d00000"/>
+                                    <circle cx="90" cy="55" r="1.5" fill="#ffd166"/>
+
+                                    <!-- Joyful Smiling Red Lips -->
+                                    <path d="M84 76 Q90 84, 96 76" stroke="#d00000" stroke-width="2.8" stroke-linecap="round" fill="#d00000"/>
+
+                                    <!-- Golden Headpiece (Kireetam/Tikka) & Jasmine Gajra -->
+                                    <path d="M82 43 L90 28 L98 43 Z" fill="url(#goldZari)"/>
+                                    <circle cx="90" cy="26" r="3.5" fill="#e63946"/>
+                                    <!-- Jasmine Gajra Flowers -->
+                                    <circle cx="70" cy="48" r="4.5" fill="#ffffff"/>
+                                    <circle cx="76" cy="44" r="4.5" fill="#ffffff"/>
+                                    <circle cx="104" cy="44" r="4.5" fill="#ffffff"/>
+                                    <circle cx="110" cy="48" r="4.5" fill="#ffffff"/>
+
+                                    <!-- Musical notes floating -->
+                                    <text x="25" y="45" font-size="16" fill="#ff5e7e">♪</text>
+                                    <text x="145" y="40" font-size="16" fill="#ffd166">♫</text>
+                                </svg>
+                            </div>
+                            <div class="daily-frame-caption">
+                                “Happily alone, dancing dramatic Kathakali like nobody's watching! 💃✨”
+                            </div>
+                        </div>
+
+                        <!-- Frame 2: Eating Steaming Noodles -->
+                        <div class="daily-stage-frame mood-frame-noodles" id="frame-noodles">
+                            <div class="theater-stage-avatar">
+                                <svg width="180" height="190" viewBox="0 0 180 190" class="anim-noodle-char">
+                                    <defs>
+                                        <linearGradient id="hoodieGrad" x1="0" y1="0" x2="100%" y2="0%">
+                                            <stop offset="0%" stop-color="#ffb5a7"/>
+                                            <stop offset="100%" stop-color="#fcd5ce"/>
+                                        </linearGradient>
+                                        <linearGradient id="bowlGrad" x1="0" y1="0" x2="100%" y2="0%">
+                                            <stop offset="0%" stop-color="#457b9d"/>
+                                            <stop offset="100%" stop-color="#1d3557"/>
+                                        </linearGradient>
+                                    </defs>
+
+                                    <!-- Cozy Background Glow -->
+                                    <circle cx="90" cy="85" r="70" fill="rgba(255, 181, 167, 0.18)"/>
+
+                                    <!-- Steaming Aroma Curves -->
+                                    <g class="anim-noodle-steam">
+                                        <path d="M80 85 Q75 70, 85 55" stroke="rgba(255,255,255,0.7)" stroke-width="3" stroke-linecap="round" fill="none"/>
+                                        <path d="M95 82 Q105 65, 95 50" stroke="rgba(255,255,255,0.7)" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+                                        <path d="M110 85 Q105 70, 115 55" stroke="rgba(255,255,255,0.7)" stroke-width="3" stroke-linecap="round" fill="none"/>
+                                    </g>
+
+                                    <!-- Cozy Oversized Hoodie Body (Sitting Cross-legged) -->
+                                    <path d="M50 135 C50 115, 130 115, 130 135 L145 180 L35 180 Z" fill="url(#hoodieGrad)"/>
+
+                                    <!-- Head & Happy Chewing Face -->
+                                    <ellipse cx="90" cy="65" rx="26" ry="24" fill="#ffe4dc"/>
+                                    <!-- Comfy Hoodie Hood behind head -->
+                                    <path d="M60 65 C60 30, 120 30, 120 65" stroke="#fcd5ce" stroke-width="12" fill="none"/>
+
+                                    <!-- Cute Hair Bun with Pencil/Chopstick -->
+                                    <circle cx="90" cy="38" r="14" fill="#4a2810"/>
+                                    <line x1="75" y1="36" x2="105" y2="36" stroke="#d4a373" stroke-width="3" stroke-linecap="round"/>
+
+                                    <!-- Happy Closed Eyes in Food Bliss (^ _ ^) -->
+                                    <path d="M74 62 Q80 56, 86 62" stroke="#2b1a17" stroke-width="3" stroke-linecap="round" fill="none"/>
+                                    <path d="M94 62 Q100 56, 106 62" stroke="#2b1a17" stroke-width="3" stroke-linecap="round" fill="none"/>
+
+                                    <!-- Puffed Blushing Cheeks (*nom nom*) -->
+                                    <ellipse cx="71" cy="71" rx="8" ry="6" fill="#ff758f" opacity="0.6"/>
+                                    <ellipse cx="109" cy="71" rx="8" ry="6" fill="#ff758f" opacity="0.6"/>
+
+                                    <!-- Mouth slurping noodle string -->
+                                    <ellipse cx="90" cy="74" rx="5" ry="4" fill="#d62828"/>
+
+                                    <!-- Giant Steaming Ramen/Noodle Bowl -->
+                                    <g id="noodle-bowl" class="anim-bowl-shake">
+                                        <path d="M55 125 C55 160, 125 160, 125 125 Z" fill="url(#bowlGrad)"/>
+                                        <ellipse cx="90" cy="125" rx="35" ry="8" fill="#e9c46a"/> <!-- Delicious soup -->
+                                        <!-- Toppings: Egg, Green onions -->
+                                        <circle cx="80" cy="124" r="5" fill="#ffffff"/>
+                                        <circle cx="80" cy="124" r="2.8" fill="#f4a261"/>
+                                        <circle cx="100" cy="123" r="2" fill="#2a9d8f"/>
+                                        <circle cx="104" cy="125" r="2" fill="#2a9d8f"/>
+
+                                        <!-- Springy Wavy Noodle string going into mouth -->
+                                        <path class="anim-slurping-noodle" d="M90 75 Q85 95, 95 105 T90 125" stroke="#f4d35e" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+
+                                        <!-- Chopsticks lifting noodles -->
+                                        <line x1="70" y1="100" x2="115" y2="108" stroke="#bc6c25" stroke-width="3.5" stroke-linecap="round"/>
+                                        <line x1="72" y1="104" x2="114" y2="112" stroke="#bc6c25" stroke-width="3.5" stroke-linecap="round"/>
+                                    </g>
+
+                                    <!-- Floating Heart & Yummy Star -->
+                                    <text x="30" y="55" font-size="18" fill="#ff4d6d">😋</text>
+                                    <text x="140" y="60" font-size="18" fill="#ffd166">✨</text>
+                                </svg>
+                            </div>
+                            <div class="daily-frame-caption">
+                                “Cozy noodle therapy! Slurping ramen in peace 🍜😋”
+                            </div>
+                        </div>
+
+                        <!-- Frame 3: Binge-watching Korean Drama & Crying over Oppas -->
+                        <div class="daily-stage-frame mood-frame-kdrama" id="frame-kdrama">
+                            <div class="theater-stage-avatar">
+                                <svg width="180" height="190" viewBox="0 0 180 190" class="anim-kdrama-char">
+                                    <defs>
+                                        <linearGradient id="blanketGrad" x1="0" y1="0" x2="100%" y2="0%">
+                                            <stop offset="0%" stop-color="#c8b6ff"/>
+                                            <stop offset="100%" stop-color="#b8c0ff"/>
+                                        </linearGradient>
+                                        <linearGradient id="screenGlow" x1="0" y1="0" x2="0" y2="100%">
+                                            <stop offset="0%" stop-color="#a0c4ff"/>
+                                            <stop offset="100%" stop-color="#bdb2ff"/>
+                                        </linearGradient>
+                                    </defs>
+
+                                    <!-- Romantic Purple/Blue Night Glow -->
+                                    <circle cx="90" cy="85" r="70" fill="rgba(200, 182, 255, 0.2)"/>
+
+                                    <!-- Cozy Floor Cushion / Pillow behind her -->
+                                    <ellipse cx="65" cy="150" rx="30" ry="25" fill="#ffd6a5"/>
+
+                                    <!-- Bundled up in Warm Pastel Blanket -->
+                                    <path d="M40 120 C40 100, 100 100, 100 120 L105 180 L30 180 Z" fill="url(#blanketGrad)"/>
+
+                                    <!-- Head with Cute Bunny Hood -->
+                                    <ellipse cx="68" cy="82" rx="24" ry="22" fill="#ffe4dc"/>
+                                    <path d="M42 82 C42 50, 94 50, 94 82" stroke="#c8b6ff" stroke-width="10" fill="none"/>
+                                    <!-- Bunny Ears on hood -->
+                                    <ellipse cx="55" cy="48" rx="6" ry="14" fill="#c8b6ff" stroke="#ffccd5" stroke-width="2"/>
+                                    <ellipse cx="78" cy="48" rx="6" ry="14" fill="#c8b6ff" stroke="#ffccd5" stroke-width="2"/>
+
+                                    <!-- Sparkly Teary Heart Eyes (Emotional K-Drama Scene!) -->
+                                    <g class="anim-kdrama-tears">
+                                        <!-- Left eye with teardrop -->
+                                        <ellipse cx="61" cy="80" rx="5" ry="6" fill="#1b1b1b"/>
+                                        <circle cx="60" cy="78" r="2" fill="#ffffff"/>
+                                        <circle cx="63" cy="82" r="1.2" fill="#ffffff"/>
+                                        <!-- Sparkling emotional teardrop -->
+                                        <path d="M57 88 C55 93, 59 95, 60 93 C61 91, 58 88, 57 88 Z" fill="#48cae4"/>
+
+                                        <!-- Right eye with teardrop -->
+                                        <ellipse cx="77" cy="80" rx="5" ry="6" fill="#1b1b1b"/>
+                                        <circle cx="76" cy="78" r="2" fill="#ffffff"/>
+                                        <circle cx="79" cy="82" r="1.2" fill="#ffffff"/>
+                                        <path d="M81 88 C83 93, 79 95, 78 93 C77 91, 80 88, 81 88 Z" fill="#48cae4"/>
+                                    </g>
+
+                                    <!-- Blushing cheeks -->
+                                    <ellipse cx="56" cy="88" rx="6" ry="4" fill="#ff758f" opacity="0.6"/>
+                                    <ellipse cx="82" cy="88" rx="6" ry="4" fill="#ff758f" opacity="0.6"/>
+
+                                    <!-- Romantic 'Awww' Smile -->
+                                    <path d="M66 93 Q70 97, 74 93" stroke="#d00000" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+
+                                    <!-- Glowing Laptop Screen showing K-Drama Oppa -->
+                                    <g id="kdrama-laptop" class="anim-laptop-screen">
+                                        <!-- Laptop Base -->
+                                        <rect x="110" y="150" width="55" height="6" rx="2" fill="#adb5bd"/>
+                                        <!-- Screen Lid -->
+                                        <rect x="115" y="105" width="46" height="45" rx="4" fill="#343a40"/>
+                                        <rect x="118" y="108" width="40" height="38" rx="2" fill="url(#screenGlow)"/>
+
+                                        <!-- Silhouette of K-Drama Oppa on screen -->
+                                        <circle cx="138" cy="122" r="6" fill="#1d3557"/>
+                                        <path d="M128 138 C128 130, 148 130, 148 138 Z" fill="#1d3557"/>
+                                        <!-- Screen Heart -->
+                                        <text x="133" y="118" font-size="10" fill="#ff4d6d">💖</text>
+                                    </g>
+
+                                    <!-- Tissue Box on side -->
+                                    <rect x="135" y="162" width="28" height="15" rx="3" fill="#ffccd5"/>
+                                    <!-- White tissue sticking out -->
+                                    <path d="M144 162 Q149 152, 154 162 Z" fill="#ffffff"/>
+
+                                    <!-- Floating Korean Finger Heart & Love text -->
+                                    <text x="85" y="65" font-size="16">🫰🏻</text>
+                                    <text x="100" y="80" font-size="13" fill="#ff4d6d">사랑해</text>
+                                </svg>
+                            </div>
+                            <div class="daily-frame-caption">
+                                “Binge-watching K-Dramas & crying over fictional Oppas 😭💖 ‘Oppa!’”
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
                 <p class="welcome-sub">
                     Come, I have something special for you… 🌸
                 </p>

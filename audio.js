@@ -424,6 +424,56 @@ class FairytaleAudio {
         osc.stop(now + 0.25);
     }
 
+    // Ghungroo classical bell chime for Kathakali dance
+    playGhungrooChime() {
+        this.init();
+        if (this.isMuted) return;
+        const notes = [1760.00, 2093.00, 2637.02, 3135.96];
+        notes.forEach((freq, idx) => {
+            setTimeout(() => {
+                this.playAcousticPluck(freq, 0.4, 0.12);
+            }, idx * 60);
+        });
+    }
+
+    // Cute noodle slurp / munch sound
+    playNoodleSlurp() {
+        this.init();
+        if (this.isMuted) return;
+        const now = this.ctx.currentTime;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(300, now);
+        osc.frequency.exponentialRampToValueAtTime(950, now + 0.18);
+        osc.frequency.exponentialRampToValueAtTime(600, now + 0.28);
+
+        gain.gain.setValueAtTime(0.01, now);
+        gain.gain.linearRampToValueAtTime(0.12, now + 0.08);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+
+        osc.connect(gain);
+        gain.connect(this.sfxGain);
+
+        osc.start(now);
+        osc.stop(now + 0.32);
+
+        setTimeout(() => this.playSparkle(), 180);
+    }
+
+    // Dreamy K-Drama romance chime
+    playKDramaChime() {
+        this.init();
+        if (this.isMuted) return;
+        const notes = [523.25, 659.25, 783.99, 1046.50];
+        notes.forEach((freq, idx) => {
+            setTimeout(() => {
+                this.playAcousticPluck(freq, 1.2, 0.15);
+            }, idx * 100);
+        });
+    }
+
     playBlowCandle() {
         this.init();
         if (this.isMuted) return;

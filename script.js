@@ -32,6 +32,7 @@ class BirthdayExperience {
         this.setupInteractiveCharacters();
         this.setupBirthdayCake();
         this.setupAudioControls();
+        this.setupDailyMoodTabs();
 
         // Keyboard navigation
         window.addEventListener('keydown', (e) => {
@@ -127,6 +128,63 @@ class BirthdayExperience {
                 }
             });
         }
+    }
+
+    setupDailyMoodTabs() {
+        const tabs = document.querySelectorAll('.mood-tab');
+        const frames = {
+            'kathakali': document.getElementById('frame-kathakali'),
+            'noodles': document.getElementById('frame-noodles'),
+            'kdrama': document.getElementById('frame-kdrama')
+        };
+        const moodKeys = ['kathakali', 'noodles', 'kdrama'];
+        let currentIdx = 0;
+        let autoCycleTimer = null;
+
+        const switchMood = (moodName, manual = false) => {
+            tabs.forEach(tab => {
+                if (tab.dataset.mood === moodName) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+
+            Object.keys(frames).forEach(key => {
+                if (frames[key]) {
+                    if (key === moodName) {
+                        frames[key].classList.add('active');
+                    } else {
+                        frames[key].classList.remove('active');
+                    }
+                }
+            });
+
+            if (manual && window.fairytaleAudio) {
+                if (moodName === 'kathakali') window.fairytaleAudio.playGhungrooChime();
+                else if (moodName === 'noodles') window.fairytaleAudio.playNoodleSlurp();
+                else if (moodName === 'kdrama') window.fairytaleAudio.playKDramaChime();
+            }
+        };
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                if (autoCycleTimer) clearInterval(autoCycleTimer);
+                const mood = tab.dataset.mood;
+                currentIdx = moodKeys.indexOf(mood);
+                switchMood(mood, true);
+            });
+        });
+
+        // Auto-cycle through the 3 moods every 4 seconds in Scene 1
+        autoCycleTimer = setInterval(() => {
+            if (this.currentScene !== 1) {
+                clearInterval(autoCycleTimer);
+                return;
+            }
+            currentIdx = (currentIdx + 1) % moodKeys.length;
+            switchMood(moodKeys[currentIdx], false);
+        }, 4000);
     }
 
     setupInteractiveCharacters() {
